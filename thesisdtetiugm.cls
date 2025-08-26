@@ -59,14 +59,24 @@
 %======================================
 %% Class & Package Loading
 %======================================
-\LoadClass[12pt]{report}  % this class is based on the report class
-\usepackage{geometry}% easy layouting
-%\usepackage{hyperref}% hyperlink
+\LoadClass[12pt]{report}  % this class is based on the report 
+
+\usepackage[utf8]{inputenc}
+\usepackage[bahasa]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in} % Mengatur margin halaman
+\usepackage{graphicx}
+\usepackage{booktabs}   % Defines \toprule, \midrule, and \bottomrule
+\usepackage{tabularx}   % Defines the 'X' column type for tables
+\usepackage{tabularx}      % Tabel yang lebih fleksibel
+\usepackage{array}
+% \usepackage{hyperref}% hyperlink
 \usepackage{subcaption} % subfigure
 \usepackage[figurewithin=none]{caption}
 \usepackage{tocloft}% edit font toc
 \usepackage{fancyhdr}% page number
 \usepackage[cmex10]{amsmath}
+\usepackage{amssymb}
 \usepackage{cite}
 \usepackage{multirow}
 \usepackage{titlesec}
@@ -82,7 +92,7 @@
 \usepackage{longtable}
 \usepackage{enumitem}
 \usepackage[labelsep=period]{caption} % use period as label separator
-\usepackage[bookmarks=true,hidelinks,bookmarksnumbered]{hyperref}  
+\usepackage[bookmarks=true,hidelinks,bookmarksnumbered]{hyperref}
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{pgf-pie}
@@ -170,7 +180,7 @@
 }
 \setlength{\parindent}{1.25cm}
 \setlength{\parskip}{6pt}
-\setlength{\footskip}{1.5cm} 
+\setlength{\footskip}{1.5cm}
 \setlength{\topskip}{1ex}
 \pgfplotsset{compat=1.16}
 
@@ -179,7 +189,7 @@
 %======================================
 % Author info
 \renewcommand*{\author}[2]{
-	\newcommand{\@authorName}{#1} 
+	\newcommand{\@authorName}{#1}
 	\newcommand{\@authorID}{#2}
 }
 % Thesis info
@@ -262,9 +272,9 @@
 				\includegraphics[width=0.5\textwidth]{#1}
 				\vfill
 				\iftoggle{lang}{\textit{\textbf{\MakeUppercase{The Sustainable Development Goals}}}}{\textbf{\MakeUppercase{The Sustainable Development Goals}}}\\
-				\iftoggle{lang}{\textit{\textbf{Industry, Innovation and Infrastructure}}}{\textbf{Industry, Innovation and Infrastructure}}\\
-				\iftoggle{lang}{\textit{\textbf{Affordable and Clean Energy}}}{\textbf{Affordable and Clean Energy}}\\
-				\iftoggle{lang}{\textit{\textbf{Climate Action}}}{\textbf{Climate Action}}
+				\iftoggle{lang}{\textit{\textbf{Good Health and Well-being}}}{\textbf{Good Health and Well-being}}\\
+				\iftoggle{lang}{\textit{\textbf{Industry, Innovation, and Infrastructure}}}{\textbf{Industry, Innovation, and Infrastructure}}\\
+				\iftoggle{lang}{\textit{\textbf{Reduced Inequalities}}}{\textbf{Reduced Inequalities}}
 				\vfill
 				\iftoggle{lang}{\textbf{Disusun oleh:}}{Written by:}\\
 				\vspace{0.4em}
@@ -276,9 +286,9 @@
 					{\MakeUppercase{\@program \vspace{1em} Program}}\\
 					\iftoggle{lang}{\scalebox{1.0}[1.0]{\MakeUppercase{\@departmentIna}}}{\MakeUppercase{\@departmentEng}} \\
 					\iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}}
-					\MakeUppercase{\@university} \\ 
-					\MakeUppercase{\@city} \\ 
-					\@yearsubmit	
+					\MakeUppercase{\@university} \\
+					\MakeUppercase{\@city} \\
+					\@yearsubmit
 				}
 			\end{singlespacing}
 		\end{center}
@@ -299,12 +309,12 @@
 				\textbf{#2}\\
 				\vspace{1cm}
 				\iftoggle{lang}
-					{untuk memenuhi bagian persyaratan \\ mencapai derajat Sarjana S-2}
-					{submitted in partial fulfillment of the requirements \\ for the degree of master}\\
+				{untuk memenuhi bagian persyaratan \\ mencapai derajat Sarjana S-2}
+				{submitted in partial fulfillment of the requirements \\ for the degree of master}\\
 				\vspace{12pt}
 				\iftoggle{lang}
-					{Program Studi \@program} 
-					{\@program \vspace{1em} Program}\\
+				{Program Studi \@program}
+				{\@program \vspace{1em} Program}\\
 				\@major \\
 				\iftoggle{lang}{\@departmentIna}{\@departmentEng} \\
 				\vspace{1cm}
@@ -312,19 +322,19 @@
 				\includegraphics[width=0.5\textwidth]{#1}
 				\vfill
 				\iftoggle{lang}
-					{diajukan oleh}
-					{proposed by}\\\vspace{0.4em}
+				{diajukan oleh}
+				{proposed by}\\\vspace{0.4em}
 				\textbf{\@authorName \\ \@authorID \\}
 				\vspace{1cm}
 				\vfill
 				\iftoggle{lang}{Kepada}{To}\\
 				\vspace{0.4em}
 				\textbf{
-					\iftoggle{lang}{\MakeUppercase{\@graduateIna}}{\MakeUppercase{\@graduateEng}} \\ 
-					\iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}} \\ 
-					\MakeUppercase{\@university} \\ 
-					\MakeUppercase{\@city} \\ 
-					\@yearsubmit	
+					\iftoggle{lang}{\MakeUppercase{\@graduateIna}}{\MakeUppercase{\@graduateEng}} \\
+					\iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}} \\
+					\MakeUppercase{\@university} \\
+					\MakeUppercase{\@city} \\
+					\@yearsubmit
 				}
 			\end{singlespacing}
 		\end{center}
@@ -344,24 +354,24 @@
 				\MakeUppercase{\fontsize{14pt}{16pt}\selectfont\@title}\\
 				\vspace{1.5cm}
 				\iftoggle{lang}
-					{Bidang Studi \@program} 
-					{\@program \vspace{1em} Program}\\
+				{Bidang Studi \@program}
+				{\@program \vspace{1em} Program}\\
 				\vfill
 				\includegraphics[width=0.5\textwidth]{#1}
 				\vfill
 				\iftoggle{lang}
-					{diajukan oleh}
-					{proposed by}\\\vspace{0.4em}
+				{diajukan oleh}
+				{proposed by}\\\vspace{0.4em}
 				\textbf{\@authorName \\ \@authorID \\}
 				\vfill
 				\iftoggle{lang}{Kepada}{To}\\
 				\vspace{0.4em}
 				\textbf{
-					\iftoggle{lang}{\MakeUppercase{\@graduateIna}}{\MakeUppercase{\@graduateEng}} \\ 
-					\iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}} \\ 
-					\MakeUppercase{\@university} \\ 
-					\MakeUppercase{\@city} \\ 
-					\@yearsubmit	
+					\iftoggle{lang}{\MakeUppercase{\@graduateIna}}{\MakeUppercase{\@graduateEng}} \\
+					\iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}} \\
+					\MakeUppercase{\@university} \\
+					\MakeUppercase{\@city} \\
+					\@yearsubmit
 				}
 			\end{singlespacing}
 		\end{center}
@@ -392,14 +402,14 @@
 				\textbf{\iftoggle{lang}{SKRIPSI}{THESIS}}\\
 				\vspace{2cm}
 				\iftoggle{lang}
-					{Diajukan Sebagai Salah Satu Syarat untuk Memperoleh}
-					{Proposed as A Requirement to Obtain}\\
+				{Diajukan Sebagai Salah Satu Syarat untuk Memperoleh}
+				{Proposed as A Requirement to Obtain}\\
 				\iftoggle{lang}
-					{Gelar Sarjana Teknik}
-					{Undergraduate Degree (\textit{Sarjana Teknik})}\\
+				{Gelar Sarjana Teknik}
+				{Undergraduate Degree (\textit{Sarjana Teknik})}\\
 				\iftoggle{lang}
-					{pada \@departmentIna}
-					{in \@departmentEng}\\
+				{pada \@departmentIna}
+				{in \@departmentEng}\\
 				\iftoggle{lang}{\@facultyIna}{\@facultyEng}\\
 				\@university\\
 				\vfill
@@ -408,18 +418,18 @@
 				\textbf{\underline{\@authorName} \\ \@authorID \\}
 				\vfill
 				\iftoggle{lang}
-					{Telah disetujui dan disahkan}
-					{Has been approved and endorsed}\\
+				{Telah disetujui dan disahkan}
+				{Has been approved and endorsed}\\
 				\vspace{0.5cm}
 				\iftoggle{lang}{Pada tanggal $\ldots\ldots$}{on $\ldots\ldots$}\\
 				\vfill
 				\begin{center}
 					\begin{tabular}{ccc}
-						\iftoggle{lang}{Dosen Pembimbing I}{Supervisor I} &\hspace{2cm} & \iftoggle{lang}{Dosen Pembimbing II}{Supervisor II} \\
-						\vspace{0.3cm} & \vspace{0.3cm} & \vspace{0.3cm}\\
-						\textbf{\underline{\scalebox{.7}[1.0]{\getsupervisor{1}{1}}}}& &
-					              \textbf{\underline{\scalebox{.7}[1.0]{\getsupervisor{2}{1}}}} \\
-						\textbf{\getsupervisor{1}{2}} & & \textbf{\getsupervisor{2}{2}}\\
+						\iftoggle{lang}{Dosen Pembimbing I}{Supervisor I}             & \hspace{2cm}   & \iftoggle{lang}{Dosen Pembimbing II}{Supervisor II} \\
+						\vspace{0.3cm}                                                & \vspace{0.3cm} & \vspace{0.3cm}                                      \\
+						\textbf{\underline{\scalebox{.7}[1.0]{\getsupervisor{1}{1}}}} &                &
+						\textbf{\underline{\scalebox{.7}[1.0]{\getsupervisor{2}{1}}}}                                                                        \\
+						\textbf{\getsupervisor{1}{2}}                                 &                & \textbf{\getsupervisor{2}{2}}                       \\
 					\end{tabular}
 				\end{center}
 			\end{singlespacing}
@@ -438,7 +448,7 @@
 		\addtocounter{page}{-1}
 	}
 	\newcommand{\printendorsement}{
-	%	\chapter*{\endorsementname}%
+		%	\chapter*{\endorsementname}%
 		\fancyhf{}
 		\fancyfoot[C]{\thepage}
 		\begin{center}
@@ -452,54 +462,54 @@
 				\textbf{\underline{\@authorName} \\ \@authorID \\}
 				\vspace{1em}
 				\iftoggle{lang}
-					{Telah dipertahankan di depan dewan penguji}
-					{Has been presented} \\
+				{Telah dipertahankan di depan dewan penguji}
+				{Has been presented} \\
 				\iftoggle{lang}
-					{Pada tanggal: \@examdate} 
-					{on \@examdate}\\
+				{Pada tanggal: \@examdate}
+				{on \@examdate}\\
 				\vspace{1em}
 				\iftoggle{lang}
-					{\textbf{Susunan Dewan Penguji}}
-					{\textbf{Thesis Examiners}}\\
-				
+				{\textbf{Susunan Dewan Penguji}}
+				{\textbf{Thesis Examiners}}\\
+
 				\begin{center}
 					\begin{tabular}{ccc}
-						\iftoggle{lang}{Pembimbing I}{Supervisor I} &\hspace{2cm} & \iftoggle{lang}{Anggota Dewan Penguji Lain}{Examiners} \\
-						\vspace{0.3cm} & \vspace{0.3cm} & \vspace{0.3cm}\\
-						\textbf{\underline{\getsupervisor{1}{1}}}& &
-						\textbf{\underline{\getexaminer{1}{1}}} \\
-						\iftoggle{lang}{Pembimbing II}{Supervisor II} &\hspace{2cm} &   \\
-						\vspace{0.3cm} & \vspace{0.3cm} & \vspace{0.3cm}\\
-						\textbf{\underline{\getsupervisor{2}{1}}}& &
-						\textbf{\underline{\getexaminer{2}{1}}} \\
+						\iftoggle{lang}{Pembimbing I}{Supervisor I}   & \hspace{2cm}   & \iftoggle{lang}{Anggota Dewan Penguji Lain}{Examiners} \\
+						\vspace{0.3cm}                                & \vspace{0.3cm} & \vspace{0.3cm}                                         \\
+						\textbf{\underline{\getsupervisor{1}{1}}}     &                &
+						\textbf{\underline{\getexaminer{1}{1}}}                                                                                 \\
+						\iftoggle{lang}{Pembimbing II}{Supervisor II} & \hspace{2cm}   &                                                        \\
+						\vspace{0.3cm}                                & \vspace{0.3cm} & \vspace{0.3cm}                                         \\
+						\textbf{\underline{\getsupervisor{2}{1}}}     &                &
+						\textbf{\underline{\getexaminer{2}{1}}}                                                                                 \\
 					\end{tabular}
 				\end{center}
 				\vspace{0.5cm}
-				
+
 				\iftoggle{lang}
-					{Tesis ini telah diterima sebagai salah satu persyaratan \\ untuk memperoleh gelar Magister} 
-					{This thesis has been accepted as a partial fulfillment \\ for the degree of Master}\\
+				{Tesis ini telah diterima sebagai salah satu persyaratan \\ untuk memperoleh gelar Magister}
+				{This thesis has been accepted as a partial fulfillment \\ for the degree of Master}\\
 				\vspace{0.3cm}
-				
+
 				\iftoggle{lang}{Tanggal:}{Date: $\ldots\ldots$} \\
 				\iftoggle{lang}
-					{Pengelola Program Studi \@program} 
-					{Program Coordinator of \@program}\\
+				{Pengelola Program Studi \@program}
+				{Program Coordinator of \@program}\\
 				\vspace{1.3cm}
 				\textbf{\underline{\@programcoorName}}\\
 				NIP. \@programcoorNIP \\
 				\vspace{0.5cm}
-				
-				\iftoggle{lang}{Mengetahui,\\}{} 
+
+				\iftoggle{lang}{Mengetahui,\\}{}
 				\iftoggle{lang}
-					{Ketua Departemen/Wakil Penanggung Jawab Program Studi}
-					 {Head of Department}\\
+				{Ketua Departemen/Wakil Penanggung Jawab Program Studi}
+				{Head of Department}\\
 				\iftoggle{lang}{\@departmentIna}{\@departmentEng}\\
 				\vspace{1.3cm}
 				\textbf{\underline{\@depheadName}}\\
 				NIP. \@depheadNIP \\
-				
-			\end{singlespacing}			
+
+			\end{singlespacing}
 		\end{center}
 		\addcontentsline{toc}{chapter}{\approvalpage}
 	}
@@ -523,74 +533,73 @@
 				\raggedright \hspace{2cm}Tim Promotor menyetujui laporan disertasi: \\
 				\begin{center}
 					\begin{tabular}{lcl}
-						Nama & : & \@authorName \\
-						NIM & : & \@authorID \\
-						Judul & : & \@title \\
+						Nama  & : & \@authorName \\
+						NIM   & : & \@authorID   \\
+						Judul & : & \@title      \\
 					\end{tabular}
 				\end{center}
 				\raggedright \hspace{2cm} yang telah diperbaiki sesuai saran dari Tim Penguji Ujian Tertutup \\
 				\vspace{1cm}
 				\begin{center}
 					\begin{tabular}{ccc}
-						Tanda Tangan & \hspace{3cm} & Tanggal\\
-						\vspace{0.6cm} & \vspace{0.6cm} & \vspace{0.6cm}\\
-						\textbf{\underline{\getsupervisor{1}{1}}}& &
-						\ldots\ldots\ldots \\
-						(Promotor) & & \\
-						
-						\vspace{0.6cm} & \vspace{0.6cm} & \vspace{0.6cm}\\
-						\textbf{\underline{\getsupervisor{2}{1}}}& &
-						\ldots\ldots\ldots \\
-						(Ko-promotor) & & \\
-						
-						\vspace{0.6cm} & \vspace{0.6cm} & \vspace{0.6cm}\\
-						\textbf{\underline{\getsupervisor{3}{1}}}& &
-						\ldots\ldots\ldots \\
-						(Ko-promotor) & & \\
+						Tanda Tangan                              & \hspace{3cm}   & Tanggal        \\
+						\vspace{0.6cm}                            & \vspace{0.6cm} & \vspace{0.6cm} \\
+						\textbf{\underline{\getsupervisor{1}{1}}} &                &
+						\ldots\ldots\ldots                                                          \\
+						(Promotor)                                &                &                \\
+
+						\vspace{0.6cm}                            & \vspace{0.6cm} & \vspace{0.6cm} \\
+						\textbf{\underline{\getsupervisor{2}{1}}} &                &
+						\ldots\ldots\ldots                                                          \\
+						(Ko-promotor)                             &                &                \\
+
+						\vspace{0.6cm}                            & \vspace{0.6cm} & \vspace{0.6cm} \\
+						\textbf{\underline{\getsupervisor{3}{1}}} &                &
+						\ldots\ldots\ldots                                                          \\
+						(Ko-promotor)                             &                &                \\
 					\end{tabular}
 				\end{center}
 
-			\end{singlespacing}			
+			\end{singlespacing}
 		\end{center}
 		\addcontentsline{toc}{chapter}{\approvalpage}
 		\newpage
 		\chapter*{\approvalpage}
 		\begin{center}
 			\begin{singlespacing}
-					\raggedright \hspace{2cm}Tim Penguji menyetujui laporan disertasi: \\
-					\begin{center}
-						\begin{tabular}{lcl}
-							Nama & : & \@authorName \\
-							NIM & : & \@authorID \\
-							Judul & : & \@title \\
-						\end{tabular}
-					\end{center}
-					\raggedright \hspace{2cm} yang telah diperbaiki sesuai saran dari Tim Penguji Ujian Tertutup \\
-					\vspace{1cm}
-					\begin{center}
-						\begin{longtable}{ccc}
-							Tanda Tangan & \hspace{3cm} & Tanggal\\
-							% Iterate through the list of examiners
-							% get number of examiners from \value{exm}
-							\newcounter{end}
-							\forloop{end}{1}{\theend < \numexpr\value{exm}+1}{
-								\vspace{0.6cm} & \vspace{0.6cm} & \vspace{0.6cm}\\
-								\textbf{\underline{\getexaminer{\theend}{1}}} & &
-								\ldots\ldots\ldots \\
-								\ifthenelse{\theend = 1}{(Ketua Tim Penguji)}{(Anggota Tim Penguji)} & & \\
-								\ifthenelse{\theend = 4} %newpage after the 4th item
-								{
-									\hspace{2cm}\\
-									\pagebreak
-									Tanda Tangan & \hspace{3cm} & Tanggal\\
-								}{}
-							}
-							
-						\end{longtable}
-					\end{center}
-					
-				\end{singlespacing}			
-			\end{center}
+				\raggedright \hspace{2cm}Tim Penguji menyetujui laporan disertasi: \\
+				\begin{center}
+					\begin{tabular}{lcl}
+						Nama  & : & \@authorName \\
+						NIM   & : & \@authorID   \\
+						Judul & : & \@title      \\
+					\end{tabular}
+				\end{center}
+				\raggedright \hspace{2cm} yang telah diperbaiki sesuai saran dari Tim Penguji Ujian Tertutup \\
+				\vspace{1cm}
+				\begin{center}
+					\begin{longtable}{ccc}
+						Tanda Tangan                                                         & \hspace{3cm}   & Tanggal        \\
+						% Iterate through the list of examiners
+						% get number of examiners from \value{exm}
+						\newcounter{end}
+						\forloop{end}{1}{\theend < \numexpr\value{exm}+1}{
+						\vspace{0.6cm}                                                       & \vspace{0.6cm} & \vspace{0.6cm} \\
+						\textbf{\underline{\getexaminer{\theend}{1}}}                        &                &
+						\ldots\ldots\ldots                                                                                     \\
+						\ifthenelse{\theend = 1}{(Ketua Tim Penguji)}{(Anggota Tim Penguji)} &                &                \\
+							\ifthenelse{\theend = 4} %newpage after the 4th item
+							{
+						\hspace{2cm}                                                                                           \\
+								\pagebreak
+						Tanda Tangan                                                         & \hspace{3cm}   & Tanggal        \\
+							}{}
+						}
+					\end{longtable}
+				\end{center}
+
+			\end{singlespacing}
+		\end{center}
 	}
 }
 
@@ -602,8 +611,8 @@
 	\fancyhf{}
 	\fancyfoot[C]{\thepage}
 	\begin{center}
-	\vspace*{-4cm}
-	\noindent\makebox[\textwidth]{\includegraphics[width=\paperwidth]{#1}}
+		\vspace*{-4cm}
+		\noindent\makebox[\textwidth]{\includegraphics[width=\paperwidth]{#1}}
 	\end{center}
 	\addcontentsline{toc}{chapter}{\approvalpage}
 	\clearpage
@@ -637,8 +646,8 @@
 	\fancyhf{}
 	\fancyfoot[C]{\thepage}
 	\begin{center}
-	\vspace*{-4cm}
-	\noindent\makebox[\textwidth]{\includegraphics[width=\paperwidth]{#1}}		
+		\vspace*{-4cm}
+		\noindent\makebox[\textwidth]{\includegraphics[width=\paperwidth]{#1}}
 	\end{center}
 	\addcontentsline{toc}{chapter}{\statementname}
 	\clearpage
@@ -659,7 +668,7 @@
 %======================================
 \newcommand{\chapternomenclature}[1]{
 	\chapter*{\nomenclaturename}
-	\input{#1}	
+	\input{#1}
 	\addcontentsline{toc}{chapter}{\nomenclaturename}
 }
 
@@ -678,7 +687,7 @@
 \newcommand{\chapterintisari}[1]{
 	\chapter*{INTISARI}
 	\input{#1}
-	\addcontentsline{toc}{chapter}{INTISARI}	
+	\addcontentsline{toc}{chapter}{INTISARI}
 }
 
 %======================================
@@ -741,29 +750,91 @@
 %======================================
 %% Misc Styling
 %======================================
-%Source code style
+% %Source code style
+% \definecolor{codegreen}{rgb}{0,0.6,0}
+% \definecolor{codegray}{rgb}{0.5,0.5,0.5}
+% \definecolor{codepurple}{rgb}{0.58,0,0.82}
+
+% \lstdefinestyle{mystyle}{
+% 	commentstyle=\color{codegreen},
+% 	keywordstyle=\color{magenta},
+% 	numberstyle=\tiny\color{codegray},
+% 	stringstyle=\color{codepurple},
+% 	basicstyle=\small,
+% 	breakatwhitespace=false,
+% 	breaklines=true,
+% 	captionpos=b,
+% 	keepspaces=true,
+% 	numbers=left,
+% 	numbersep=5pt,
+% 	showspaces=false,
+% 	showstringspaces=false,
+% 	showtabs=false,
+% 	tabsize=2
+% }
+% \lstset{style=mystyle}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.98,0.98,0.97} % Warna latar belakang lebih soft
+\definecolor{deepblue}{rgb}{0,0,0.5}
 
-\lstdefinestyle{mystyle}{ 
-	commentstyle=\color{codegreen},
-	keywordstyle=\color{magenta},
-	numberstyle=\tiny\color{codegray},
-	stringstyle=\color{codepurple},
-	basicstyle=\small,
-	breakatwhitespace=false,         
-	breaklines=true,                 
-	captionpos=b,                    
-	keepspaces=true,                 
-	numbers=left,                    
-	numbersep=5pt,                  
-	showspaces=false,                
+\lstdefinelanguage{json}{
+	basicstyle=\ttfamily\small,
+	stringstyle=\color{codepurple}, % Color for strings
+	keywordstyle=\color{deepblue},  % Color for keywords (true, false, null)
+	commentstyle=\color{codegray},    % Color for numbers, since JSON has no comments
+	backgroundcolor=\color{backcolour},
 	showstringspaces=false,
-	showtabs=false,                  
-	tabsize=2
+	breaklines=true,
+	% Define JSON keywords
+	keywords={true, false, null},
+	% Define strings
+	string=[s]{"}{"},
+	% In JSON, numbers are not strings or keywords, so we can treat them as comments for styling
+	morecomment=[l]{:},
+	literate=
+		*{0}{{{\color{codegray}0}}}{1}
+		{1}{{{\color{codegray}1}}}{1}
+		{2}{{{\color{codegray}2}}}{1}
+		{3}{{{\color{codegray}3}}}{1}
+		{4}{{{\color{codegray}4}}}{1}
+		{5}{{{\color{codegray}5}}}{1}
+		{6}{{{\color{codegray}6}}}{1}
+		{7}{{{\color{codegray}7}}}{1}
+		{8}{{{\color{codegray}8}}}{1}
+		{9}{{{\color{codegray}9}}}{1}
 }
-\lstset{style=mystyle}
+
+\lstdefinestyle{jsonstyle}{
+	language=json,
+	backgroundcolor=\color{backcolour},
+	commentstyle=\color{codegreen},
+	stringstyle=\color{codepurple},
+	keywordstyle=\color{deepblue}, % Untuk true, false, null
+	numberstyle=\tiny\color{codegray},
+	basicstyle=\ttfamily\small,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2,
+	literate= % Membuat angka menjadi hitam, bukan bagian dari string
+		*{0}{{{\color{black}0}}}{1}
+		{1}{{{\color{black}1}}}{1}
+		{2}{{{\color{black}2}}}{1}
+		{3}{{{\color{black}3}}}{1}
+		{4}{{{\color{black}4}}}{1}
+		{5}{{{\color{black}5}}}{1}
+		{6}{{{\color{black}6}}}{1}
+		{7}{{{\color{black}7}}}{1}
+		{8}{{{\color{black}8}}}{1}
+		{9}{{{\color{black}9}}}{1}
+}
+\lstset{style=jsonstyle}
 
 
 %======================================
@@ -813,26 +884,26 @@
 	\nopagebreak
 	\setlength{\parindent}{1.25cm}
 }
-	
+
 
 % Main chapter head styling
 \renewcommand{\@makechapterhead}[1]{%   
 	{\parindent \z@ \centering \bfseries
-	\fontsize{14pt}{16pt}\selectfont
-	\chaptername \space \thechapter
-	\par\nobreak
-	\MakeUppercase{#1}\par\nobreak
-	\vskip 20\p@
-}}
+			\fontsize{14pt}{16pt}\selectfont
+			\chaptername \space \thechapter
+			\par\nobreak
+			\MakeUppercase{#1}\par\nobreak
+			\vskip 20\p@
+		}}
 
 % Other chapter head styling
 \renewcommand{\@makeschapterhead}[1]{%
 	{\parindent \z@ \centering \bfseries
-		\fontsize{14pt}{16pt}\selectfont
-		\par\nobreak 
-		 \MakeUppercase{#1}\par\nobreak 
-		 \vskip 20\p@ 
-}}
+			\fontsize{14pt}{16pt}\selectfont
+			\par\nobreak
+			\MakeUppercase{#1}\par\nobreak
+			\vskip 20\p@
+		}}
 
 % References
 \newcommand{\thereferences}{
@@ -853,16 +924,16 @@
 	\renewcommand{\thepage}{L-\arabic{page}}
 	\renewcommand \thesection {L.\@arabic\c@section}
 	\renewcommand\thesubsection {L.\@arabic\c@section.\@arabic\c@subsection}
-	
+
 	% Add to TOC
-    \addcontentsline{toc}{chapter}{LAMPIRAN}	
+	\addcontentsline{toc}{chapter}{LAMPIRAN}
 	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
 	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
 	%\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
 	% Page number style
 	\fancyhf{}
 	\fancyfoot[C]{\thepage}
-	
+
 	\fontsize{14pt}{16pt}\selectfont
 	%\centering\MakeUppercase{\normalfont\bfseries \appendixname }\\
 	\vspace{20pt}
@@ -879,7 +950,7 @@
 	\renewcommand{\thepage}{L-\arabic{page}}
 	\renewcommand \thesection {L.\@arabic\c@section}
 	\renewcommand\thesubsection {L.\@arabic\c@section.\@arabic\c@subsection}
-	
+
 	% Add to TOC
 	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
 	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\chaptername}	
@@ -887,7 +958,7 @@
 	% Page number style
 	\fancyhf{}
 	\fancyfoot[C]{\thepage}
-	
+
 	\fontsize{14pt}{16pt}\selectfont
 	%\centering\MakeUppercase{\normalfont\bfseries \appendixname }\\
 	\vspace{20pt}
@@ -897,13 +968,13 @@
 }
 
 \newcommand{\appendixtables}{
-  \renewcommand{\thetable}{L.\arabic{table}}%
-  \setcounter{table}{0}%
+	\renewcommand{\thetable}{L.\arabic{table}}%
+	\setcounter{table}{0}%
 }
 
 \newcommand{\appendixfigures}{
-  \renewcommand{\thefigure}{L.\arabic{figure}} 
-  \setcounter{figure}{0} 
+	\renewcommand{\thefigure}{L.\arabic{figure}}
+	\setcounter{figure}{0}
 }
 
 %----------------

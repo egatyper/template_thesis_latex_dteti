@@ -1,373 +1,160 @@
 \chapter{Pendahuluan}
 
 \section{Latar Belakang}
+Kesehatan mental merupakan komponen fundamental bagi kesejahteraan individu dan masyarakat secara keseluruhan.
+Isu kesehatan mental global menunjukkan tren yang mengkhawatirkan, ditandai dengan peningkatan prevalensi berbagai gangguan mental seperti depresi, kecemasan, dan stres di berbagai negara.
+Sebagai contoh, penelitian yang dilakukan oleh Institute for Health Metrics and Evaluation (IHME) memperkirakan bahwa sekitar 970 juta orang, atau 12\% dari populasi global, mengalami gangguan mental pada 2019 \cite{GBD2019MentalDisorders}.
+Di Indonesia, situasinya juga tidak kalah mengkhawatirkan. Khususnya pada populasi remaja, hasil temuan penelitian Indonesia - National Adolescence Mental Health Survey (I-NAMHS) yang dirilis pada tahun 2022 menyajikan gambaran yang lebih detail:
+satu dari tiga remaja Indonesia (34,9\%), setara dengan 15,5 juta jiwa, memiliki setidaknya satu masalah kesehatan mental dalam 12 bulan terakhir.
+Lebih lanjut, satu dari dua puluh remaja (5,5\%), atau sekitar 2,45 juta jiwa, terdiagnosis mengalami gangguan mental dalam periode yang sama, dengan gangguan kecemasan sebagai jenis yang paling umum ditemui \cite{INAMHS2022}.
+Dampak dari gangguan kesehatan mental ini sangat luas, tidak hanya memengaruhi kualitas hidup, produktivitas, dan interaksi sosial individu, tetapi juga memberikan beban signifikan pada sistem layanan kesehatan dan perekonomian.
+Oleh karena itu, investasi dalam upaya peningkatan kesehatan mental sangat krusial, karena berpotensi meningkatkan kualitas kesehatan masyarakat secara umum, yang pada gilirannya akan mendukung peningkatan fungsi sosial, produktivitas, dan pertumbuhan ekonomi.
 
-Sub-bab ini berisi uraian tentang latar belakang atau justifikasi ilmiah (dari \textit{paper} dan jurnal) dari permasalahan yang akan diteliti, alasan penelitian dan penelitian yang pernah dilakukan sebelumnya terkait fenomena tersebut.
+Sayangnya, akses terhadap layanan kesehatan mental yang berkualitas masih menjadi tantangan besar.
+Faktor-faktor seperti stigma sosial yang kuat, keterbatasan jumlah tenaga profesional kesehatan mental yang terdistribusi tidak merata, serta biaya layanan yang sering kali tidak terjangkau oleh sebagian besar masyarakat, menciptakan kesenjangan besar antara kebutuhan dan ketersediaan layanan.
+Sebanyak 71\% dari penderita psikosis tidak mendapatkan penanganan kesehatan mental \cite{WHO2022MentalHealth}. Data I-NAMHS 2022 semakin memperjelas jurang ini:
+hanya 2,6\% dari remaja dengan masalah kesehatan mental yang pernah mengakses layanan yang menyediakan dukungan atau konseling untuk masalah emosi dan perilaku dalam 12 bulan terakhir.
+Lebih lanjut, secara keseluruhan, hanya satu dari lima puluh remaja (2\%) yang pernah menggunakan layanan dalam 12 bulan terakhir, dan dua pertiga dari mereka (66,5\%)
+hanya pernah menggunakan layanan sebanyak satu kali. Ironisnya, ketika ditanyakan mengenai penyedia layanan yang paling banyak diakses oleh mereka yang mencari bantuan, hampir dua perlima (38,2\%)
+pengasuh utama menjawab petugas sekolah, yang mengindikasikan peran penting namun mungkin belum optimal dari sistem pendidikan dalam deteksi dini dan rujukan. Fenomena ini juga diperkuat oleh temuan bahwa
+hanya 4,3\% dari pengasuh utama yang menyatakan bahwa remaja mereka membutuhkan bantuan untuk masalah emosi dan perilaku, meskipun data menunjukkan 34,9\% remaja mengalami masalah kesehatan mental.
+Dari pengasuh utama yang menyadari kebutuhan bantuan, lebih dari dua perlima (43,8\%) melaporkan tidak mencari bantuan karena lebih memilih untuk menangani sendiri masalah remaja tersebut atau dengan dukungan
+dari keluarga dan teman-teman, yang mungkin juga mencerminkan stigma atau ketidakpercayaan terhadap layanan formal. Kondisi ini mendesak perlunya inovasi untuk memperluas jangkauan dan meningkatkan kualitas dukungan kesehatan mental.
+Pandemi COVID-19 juga turut memperburuk situasi, di mana 4,6\% remaja melaporkan sering merasa lebih cemas, lebih depresi, lebih kesepian, atau lebih sulit berkonsentrasi dari biasanya selama periode tersebut \cite{INAMHS2022}.
 
-%HAPUS YANG TIDAK PERLU
-%-------------------------------------------------
-\noindent\textbf{Contoh latar belakang penelitian untuk teknik elektro:} \\
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-				
-		\hspace{1cm} "Peningkatan konsumsi energi listrik yang terus menerus menyebabkan ketersediaan 
-		sumber energi yang semakin terbatas. Sumber energi terbarukan seperti solar dan angin 
-		menjadi solusi yang menjanjikan untuk memenuhi kebutuhan energi. Namun, kapasitas 
-		produksi dan efisiensi dari sumber energi terbarukan masih sangat tergantung pada 
-		kondisi cuaca dan geografis. Oleh karena itu, perlu adanya sistem penyimpanan energi 
-		yang efisien dan dapat memastikan ketersediaan energi listrik secara kontinu. Penelitian 
-		ini akan mengevaluasi kemampuan superkapasitor dalam menyimpan dan mengirimkan 
-		energi secara efisien dan memastikan ketersediaan energi listrik secara kontinu."
-		
-	}%
-}
+Teknologi kecerdasan buatan atau \textit{Artificial Intelligence} (AI) telah berkembang secara masif selama beberapa dekade terakhir mulai menggeser perubahan aktivitas manusia.
+AI mengubah proses-proses tradisional yang kaku dan membutuhkan campur tangan manusia secara intens menjadi proses modern yang luwes dan minim campur tangan manusia.
+Teknologi ini sudah banyak mengintervensi kegiatan sehari-hari di berbagai sektor industri sperti \textit{online shopping}, \textit{online banking}, dan \textit{mental helth care} \cite{MultiIndustryAIChatbot}.
+Salah satu aplikasi teknologi AI dalam kesehatan mental yang paling banyak dikembangkan adalah \textit{chatbot} atau agen percakapan.
+\textit{Chatbot} kesehatan mental menawarkan potensi solusi yang menjanjikan dengan memberikan dukungan emosional awal dan informasi psikoedukasi yang mudah diakses kapan saja dan di mana saja melalui perangkat digital.
+Keunggulan tersebut diharapkan dapat membantu mengatasi beberapa hambatan penderita mental disorder dalam mencari bantuan, terutama terkait dengan stigma dan aksesibilitas geografis maupun finansial \cite{CBTWoebotTest}.
+Salah satu penerapan \textit{chatbot} pada bidang kesehatan mental adalah Lintang \textit{Chatbot} yang dikembangkan oleh Health Promoting University (HPU) Universitas Gadjah Mada (UGM).
+\textit{Chatbot} ini berbasis pada aturan (\textit{rule based}) yang dirancang untuk memberikan pertolongan pertama psikologis dan informasi kesehatan mental.
 
-%-------------------------------------------------	
-\vspace{5mm}
-Latar belakang ini memperkenalkan masalah ketersediaan sumber energi dan 
-peningkatan konsumsi energi listrik yang terus menerus. Ini juga memperkenalkan solusi 
-yang menjanjikan dari sumber energi terbarukan dan menjelaskan mengapa perlu adanya 
-sistem penyimpanan energi yang efisien. Latar belakang ini memberikan dasar yang kuat 
-bagi perumusan masalah dan tujuan penelitian, memastikan bahwa hasil penelitian 
-memiliki relevansi dan signifikansi bagi bidang terkait.
+Meskipun menawarkan potensi yang menjanjikan, \textit{chatbot} kesehatan mental yang ada saat ini, utamanya yang berbasis pada aturan atau model generatif sederhana, masih memiliki keterbatasan.
+Sering kali respons yang diberikan terasa kaku, repetitif, dan gagal memahami nuansa dalam ekspresi emosi atau pertanyaan pengguna.
+Tantangan utama terletak pada kemampuan \textit{chatbot} dalam mengakses, memproses, dan menyajikan informasi yang tidak hanya akurat dan relevan, tetapi juga kontekstual dan empatik.
+Pengguna sering kali membutuhkan informasi yang sangat spesifik mengenai kondisi mereka, opsi perawatan, atau fasilitas yang tersedia.
+Informasi ini sering kali tidak tersedia oleh \textit{chatbot} pada umumnya karena keterbatasan terhadap data yang selalu berubah dan berkembang setiap waktu.
+Keterbatasan akses tersebut dapat membuat model generatif mengalami "halusinasi", yaitu model menciptakan informasi yang terdengar meyakinkan namun tidak faktual atau tidak bersumber dari basis pengetahuannya.
+Lebih lanjut, memastikan bahwa basis pengetahuan \textit{chatbot} selalu terbarui, berbasis bukti ilmiah (\textit{evidence-based}), dan bebas dari misinformasi merupakan hal yang krusial, mengingat sensitivitas isu kesehatan mental.
 
-%HAPUS YANG TIDAK PERLU
-%-------------------------------------------------
-\noindent\textbf{Contoh latar belakang penelitian untuk teknik biomedis:} \\
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-		
-		\hspace{1cm} "Diagnosis dan pengobatan penyakit memerlukan integrasi informasi medis yang 
-		akurat dan terkini. Alat diagnostik tradisional seperti CT scan dan MRI memiliki resolusi 
-		yang tinggi dan dapat mengidentifikasi masalah pada tingkat sel, tetapi sering 
-		memerlukan banyak waktu dan biaya. Alat deteksi dini seperti tes darah dan urin memiliki 
-		biaya rendah dan mudah digunakan, tetapi sering kurang akurat dan tidak memberikan gambaran yang jelas tentang masalah medis. Oleh karena itu, penting untuk menemukan metode baru yang memadukan keunggulan dari kedua jenis alat tersebut. Penelitian ini akan mengevaluasi kemampuan nanopartikel dalam meningkatkan akurasi dan efisiensi diagnosis medis."
-		
-	}%
-}
+Untuk menjawab tantangan tersebut, salah satu pendekatan yang telah dikembangkan adalah \textit{Retrieval-Augmented Generation} (RAG) \cite{Lewis2021RAGKnowledgeIntensiveNLP}.
+Pendekatan ini memanfaatkan kekuatan model bahasa generatif seperti \textit{Large Language Model} (LLM).
+LLM merupakan model kecerdasan buatan yang telah dilatih dengan data teks dalam jumlah sangat besar, memungkinkannya untuk menghasilkan respons yang sangat luwes dan alami.
+RAG kemudian menggabungkan kemampuan generatif ini dengan informasi relevan yang diambil dari basis pengetahuan.
+Pendekatan tersebut diharapkan \textit{chatbot} dapat memberikan jawaban yang lebih faktual, mengurangi halusinasi, dan menyajikan informasi yang lebih spesifik dan terkini.
+Kualitas RAG dipengaruhi oleh setidaknya 2 komponen yaitu efektivitas mekanisme \textit{retrieval} dan kualitas basis pengetahuan yang digunakan.
 
-%-------------------------------------------------	
-\vspace{5mm}
-Latar belakang ini memperkenalkan masalah diagnostik dan pengobatan penyakit dan mempertimbangkan pentingnya integrasi informasi medis yang akurat dan terkini. Ini 
-juga memperkenalkan kelemahan dari alat diagnostik tradisional dan deteksi dini dan menjelaskan mengapa penting untuk menemukan metode baru yang memadukan 
-keunggulan dari kedua jenis alat tersebut. Latar belakang ini memberikan dasar yang kuat bagi perumusan masalah dan tujuan penelitian, memastikan bahwa hasil penelitian 
-memiliki relevansi dan signifikansi bagi bidang terkait.
+Dalam domain yang kaya akan informasi terstruktur dan relasi kompleks seperti kesehatan mental, penggunaan \textit{Knowledge Graph} (KG) sebagai basis pengetahuan eksternal menawarkan keunggulan signifikan dibandingkan sumber data teks tidak terstruktur.
+\textit{Knowledge Graph} merepresentasikan pengetahuan sebagai jaringan entitas (misalnya, jenis gangguan, gejala, terapi, obat) dan relasi semantik di antara mereka
+(misalnya, "Depresi Mayor" memiliki gejala "Kehilangan Minat", "Terapi Kognitif Perilaku" digunakan untuk mengobati "Gangguan Panik") \cite{Chen2020ReviewKnowldgeReasoningOverKnowledgeGraph}.
+Representasi terstruktur ini memungkinkan pencarian informasi yang lebih presisi, penarikan kesimpulan (\textit{reasoning}), dan pemahaman konteks yang lebih mendalam.
+Integrasi KG ke dalam RAG berpotensi meningkatkan kemampuan \textit{chatbot} kesehatan mental untuk memberikan penjelasan yang kaya, jawaban yang akurat atas pertanyaan-pertanyaan spesifik, dan bahkan membantu pengguna memahami hubungan antara berbagai aspek kondisi mental mereka.
 
-%HAPUS YANG TIDAK PERLU
-%-------------------------------------------------
-\noindent\textbf{Contoh latar belakang penelitian untuk teknologi informasi:} \\
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-		
-\hspace{1cm} "Dengan perkembangan teknologi informasi yang sangat pesat dalam beberapa tahun terakhir, penyimpanan data menjadi masalah yang semakin penting. Semakin banyak data yang diterima setiap hari, semakin penting bagi organisasi untuk memastikan bahwa data 
-mereka aman dan terlindungi. Pada saat yang sama, organisasi juga membutuhkan akses cepat dan efisien ke data mereka untuk membuat keputusan yang tepat. Teknologi 
-enkripsi kuantum baru-baru ini muncul sebagai solusi potensial untuk memenuhi kebutuhan ini, dengan menawarkan tingkat keamanan yang jauh lebih tinggi dan proses 
-enkripsi yang lebih cepat dibandingkan dengan teknologi enkripsi konvensional. Oleh karena itu, penting untuk mengevaluasi efektivitas dan keamanan teknologi enkripsi 
-kuantum dalam sistem penyimpanan data cloud."
-		
-	}%
-}
+Namun, efektivitas KG dalam arsitektur RAG sangat ditentukan oleh dua proses fundamental yaitu \textit{Knowledge Extraction} (Ekstraksi Pengetahuan) dan \textit{Knowledge Retrieval} (Pengambilan Pengetahuan).
+\textit{Knowledge Extraction} adalah proses mengidentifikasi dan mengekstrak informasi terstruktur (entitas, relasi, atribut) dari berbagai sumber data (misalnya, literatur medis, jurnal psikologi, pedoman klinis, forum diskusi terkurasi) untuk membangun atau memperkaya KG \cite{Choi2025KnowledgeGraphConstruction}.
+Dalam domain kesehatan mental, proses ini dihadapkan pada tantangan seperti variasi terminologi, sinonim, polisemi, dan kebutuhan krusial akan akurasi serta validitas informasi.
+Ekstraksi yang tidak optimal akan menghasilkan KG yang tidak lengkap, tidak akurat, atau bias, yang pada akhirnya akan menurunkan kualitas informasi yang dapat diakses oleh sistem RAG.
 
-%-------------------------------------------------	
-\vspace{5mm}
-Latar belakang ini memperkenalkan masalah penyimpanan data dan mempertimbangkan pentingnya keamanan data. Ini juga memperkenalkan teknologi enkripsi kuantum sebagai solusi potensial dan menjelaskan mengapa evaluasi teknologi ini penting bagi bidang teknologi informasi. Latar belakang ini memberikan dasar yang kuat bagi perumusan masalah dan tujuan penelitian, memastikan bahwa hasil penelitian memiliki relevansi dan signifikansi bagi bidang terkait.
+Selanjutnya, \textit{Knowledge Retrieval} dari KG untuk diumpankan ke model generatif dalam RAG juga merupakan aspek kritis.
+Ketika pengguna berinteraksi dengan \textit{chatbot} menggunakan bahasa alami, sistem harus mampu menerjemahkan pertanyaan atau pernyataan pengguna menjadi kueri yang dapat dipahami oleh KG.
+Sistem kemudian harus secara efisien mengambil fragmen pengetahuan (sub-graf) yang paling relevan dari KG untuk mendukung generasi respons.
+Proses ini harus mampu menangani ambiguitas bahasa, memahami intensi pengguna secara akurat, dan mengambil informasi yang relevan tanpa membebani model generatif dengan informasi yang berlebihan atau tidak perlu.
+Metode \textit{retrieval} yang suboptimal akan menghasilkan respons yang kurang relevan, tidak lengkap, atau bahkan menyesatkan \cite{Edge2025LocalGlobalGraphRAG}.
+
+Meskipun potensi RAG berbasis KG untuk \textit{chatbot} kesehatan mental sangat besar, penelitian yang secara spesifik berfokus pada optimalisasi proses \textit{Knowledge Extraction} dan \textit{Knowledge Retrieval} dalam konteks ini masih relatif terbatas.
+Kebanyakan penelitian lebih terfokus pada pembangunan KG secara umum atau aplikasi RAG dengan sumber data teks bebas.
+Padahal, optimalisasi kedua proses ini, yang disesuaikan dengan karakteristik unik dan tuntutan domain kesehatan mental seperti kebutuhan akan akurasi tinggi, empati, dan penyampaian informasi yang mudah dicerna sangat esensial untuk memaksimalkan efektivitas dan keamanan \textit{chatbot}.
+
+Berdasarkan latar belakang di atas, penelitian ini diusulkan untuk menginvestigasi dan mengembangkan metode optimalisasi untuk proses \textit{Knowledge Extraction} dan \textit{Knowledge Retrieval} dalam arsitektur RAG yang memanfaatkan \textit{Knowledge Graph} sebagai basis pengetahuan eksternal,
+dengan studi kasus pada pengembangan \textit{chatbot} kesehatan mental. Penelitian ini diharapkan dapat memberikan kontribusi pada pengembangan \textit{chatbot} kesehatan mental yang lebih cerdas, andal, dan bermanfaat,
+serta menawarkan panduan praktis bagi pengembangan sistem serupa di masa depan, sehingga dapat memperluas aksesibilitas dan kualitas dukungan kesehatan mental berbasis teknologi.
+
+
+% \begin{enumerate}
+% 	\item pentingnya kesehatan mental ??
+% 	\item isu kesehatam mental global/indo like menurut WHO/kemenkes ..... OK
+% 	\item kendala akses ke psikolog butuh biaya /stigma malu /waktu terbatas OK
+% 	\item peran AI dalam menangani kasus kesehatan mental - chatbot OK
+% 	\item potensi AI dalam memecahkan masalah kesehatan mental OK
+% 	\item chatbot ugm lintang yg masih rule based
+% 	\item tantangan chatbot (bahasa yang tidak judging, empati, informasi mutakhir, punya evidence, tidak menyesatkan)
+
+% 	\item RAG sebagai alternatif mengatasi tantangan tsb
+% 	\item kinerja RAG dipengaruhi oleh konwledge domainnya aka knowledge extract dan Retrieval
+% 	\item Knowledge Graph sebagai sebagai model/desain/skema/archi untuk memodelkan knowledge
+% 	\item integrasi KG pada RAG menjawab tantangan evidence
+
+% 	\item Tantangan integrasi KG pada RAG
+% 	\item knowledge Extraction
+% 	\item knowledge Retrieval
+% 	\item dengan berkembangnya LLM yang masiv dpt membantu 2 proses ituhh
+% 	\item oleh karena ituu....
+% \end{enumerate}
 
 \section{Rumusan Masalah}
-
-Sub-bab ini berisi poin-poin yang menjelaskan masalah atau isu yang akan diteliti dalam suatu penelitian. Ini mencakup formulasi masalah yang jelas dan spesifik dan 
-mempertimbangkan latar belakang dan deskripsi masalah yang terkait yang tertulis Dalam latar belakang pada sub-bab sebelumnya. Perumusan masalah yang baik akan membantu menentukan fokus penelitian dan memberikan dasar untuk tujuan dan hipotesis penelitian. Dalam penelitian, perumusan masalah memainkan peran penting dalam memastikan bahwa hasil penelitian berguna dan relevan untuk masalah yang diteliti.
-
-Jika rumusan masalah lebih dari 1, maka ditulis dengan format \textit{list}. Contoh sebagai  berikut:
-
+Berdasarkan uraian pada latar belakang, terlihat adanya potensi besar pemanfaatan \textit{chatbot} sebagai alat bantu layanan kesehatan mental yang aksesibel.
+Namun, potensi ini dihadapkan pada tantangan fundamental yaitu memastikan bahwa informasi dan respons yang diberikan tidak hanya simpatik, tetapi juga akurat, dapat diandalkan, dan berbasis bukti ilmiah.
+Kegagalan dalam memenuhi standar ini dapat berisiko memberikan informasi yang salah atau bahkan berbahaya bagi pengguna.
+Pengembangan arsitektur \textit{chatbot} canggih yang memanfaatkan teknologi seperti LLM dan KG menawarkan solusi yang menjanjikan, namun implementasinya masih menghadapi berbagai kendala teknis yang signifikan.
+Oleh karena itu, penelitian ini merumuskan beberapa permasalahan utama yang perlu diatasi untuk mewujudkan \textit{chatbot} kesehatan mental yang aman dan efektif.
 \begin{enumerate}
-	\item Rumusan masalah 1.
-	\item Rumusan masalah 2.
+	\item Belum adanya rancangan arsitektur \textit{chatbot} layanan kesehatan mental yang teruji untuk menjamin konsistensi dan akurasi respons berbasis bukti, sehingga berisiko menimbulkan misinformasi yang dapat membahayakan pengguna dalam konteks kesehatan mental yang sensitif.
+	\item Adanya tantangan dalam merancang proses \textit{Knowledge Extraction} menggunakan LLM yang mampu membangun KG yang terstruktur secara efektif untuk kebutuhan \textit{Knowledge Retrieval}. Ketidakefektifan proses \textit{Knowledge Extraction} dapat menghasilkan KG yang relasinya sulit diinterpretasi oleh algoritma \textit{retrieval}, sehingga informasi penting gagal ditemukan saat pengguna bertanya.
+	\item Ketidakmampuan proses \textit{Knowledge Retrieval} untuk secara konsisten menemukan potongan informasi yang paling relevan dari KG sebagai respons terhadap pertanyaan pengguna, berisiko membuat arsitektur RAG mengambil basis bukti yang salah atau tidak lengkap, sehingga respons yang dihasilkan menjadi tidak akurat dalam menjawab pertanyaan spesifik pengguna.
 \end{enumerate}
-
-%-------------------------------------------------
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-\noindent\textbf{Contoh} perumusan masalah untuk \textbf{Teknik Elektro}: \\		
-
-\hspace{1cm} \textbf{"Bagaimana memperbaiki efisiensi penghematan energi pada sistem pencahayaan rumah tangga melalui implementasi teknologi kontrol otomatis?"} \\
-	
-\hspace{1cm} Perumusan masalah ini jelas dan spesifik dan menentukan fokus penelitian pada perbaikan efisiensi penghematan energi dalam sistem pencahayaan rumah tangga dengan menggunakan teknologi kontrol otomatis. Ini juga mempertimbangkan latar belakang tentang pentingnya penghematan energi dan memberikan solusi praktis melalui implementasi teknologi. Perumusan masalah ini memberikan dasar yang kuat untuk tujuan dan hipotesis penelitian dan memastikan bahwa hasil penelitian akan berguna bagi bidang teknik elektro.
-		
-	}%
-}
-
-%-------------------------------------------------
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-\noindent\textbf{Contoh} perumusan masalah untuk \textbf{Teknik Biomedis}: \\		
-
-\hspace{1cm} \textbf{"Bagaimana memperbaiki akurasi deteksi kanker payudara dengan menggunakan teknologi pemindaian ultrasonografi berbasis AI?"} \\
-
-\hspace{1cm} Perumusan masalah ini jelas dan spesifik dan menentukan fokus penelitian pada 
-perbaikan akurasi deteksi kanker payudara dengan menggunakan teknologi pemindaian ultrasonografi berbasis AI. Ini mempertimbangkan latar belakang tentang pentingnya deteksi dini kanker payudara dan memberikan solusi praktis melalui implementasi teknologi. Perumusan masalah ini memberikan dasar yang kuat untuk tujuan dan hipotesis penelitian dan memastikan bahwa hasil penelitian akan berguna bagi bidang teknik biomedis.
-		
-	}%
-}
-
-%-------------------------------------------------	
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-\noindent\textbf{Contoh} perumusan masalah untuk \textbf{Teknologi Informasi}: \\		
-
-\hspace{1cm} \textbf{"Bagaimana meningkatkan efisiensi dan keamanan sistem penyimpanan data cloud melalui implementasi teknologi enkripsi kuantum?"} \\
-
-\hspace{1cm} Perumusan masalah ini jelas dan spesifik dan menentukan fokus penelitian pada peningkatan efisiensi dan keamanan sistem penyimpanan data cloud dengan menggunakan teknologi enkripsi kuantum. Ini mempertimbangkan latar belakang tentang pentingnya keamanan data dan memberikan solusi praktis melalui implementasi teknologi. Perumusan masalah ini memberikan dasar yang kuat untuk tujuan dan hipotesis penelitian dan memastikan bahwa hasil penelitian akan berguna bagi bidang teknologi informasi.
-		
-	}%
-}
-
-%-------------------------------------------------	
-
 \section{Tujuan Penelitian}
-
-Tujuan penelitian pada skripsi Teknik (TE, TB, TIF) adalah menentukan sasaran atau target yang ingin dicapai melalui proses penelitian. Tujuan penelitian bisa beragam sesuai dengan bidang ilmu yang dipelajari, topik penelitian, dan permasalahan yang akan dicari solusinya.
-
-%Secara umum, tujuan penelitian pada skripsi bidang teknik adalah untuk:
-%
-%\begin{itemize}
-%	\item Mengidentifikasi dan menganalisis masalah atau permasalahan dalam bidang \textit{engineering}.
-%	\item Meningkatkan pemahaman dan wawasan tentang bidang \textit{engineering} melalui penerapan teori dan metodologi yang sesuai.
-%	\item Mengembangkan solusi atau produk baru yang inovatif dan efektif dalam 
-%	bidang \textit{engineering}.
-%	\item Menunjukkan penerapan prinsip-prinsip keteknikan dalam solusi atau produk yang dikembangkan.
-%	\item Menjelaskan implikasi dan rekomendasi dari hasil penelitian bagi bidang \textit{engineering} dan masyarakat.
-%\end{itemize}
-%
-%
-%\noindent Catatan: Tujuan penelitian dalam skripsi bidang teknik harus jelas, spesifik, terukur, dan dapat dicapai dalam jangka waktu yang ditentukan.
-
-
-\textcolor{red}{Tujuan perlu disinkronkan dengan rumusan masalah. Setiap rumusan masalah boleh memiliki lebih dari 1 tujuan. Berikut ini adalah contoh tujuan dari rumusan masalah "Bagaimanakan memperbaiki efisiensi penghematan energi pada sistem pencahayaan rumah tangga melalui implementasi teknologi kontrol otomatis?"
+Berdasarkan rumusan masalah yang telah dipaparkan, penelitian ini memiliki beberapa tujuan spesifik yang dirancang untuk menjawab tantangan tersebut.
+Adapun tujuan dari penelitian ini adalah sebagai berikut:
 \begin{enumerate}
-	\item Memodelkan sistem pencahayaan rumah tangga;
-	\item Mendesain sistem kontrol otomatis untuk sistem pencahayaan rumah tangga.
+	\item Merancang dan mengimplementasikan sebuah arsitektur \textit{chatbot} kesehatan mental yang mengintegrasikan KG dan RAG untuk menghasilkan respons berbasis bukti yang konsisten dan akurat.
+	\item Mengembangkan metode \textit{Knowledge Extraction} menggunakan LLM yang mampu membangun KG dengan struktur relasi yang efektif untuk mendukung proses \textit{Knowledge Retrieval}.
+	\item Merancang dan menerapkan sebuah metode \textit{Knowledge Retrieval} yang mampu secara akurat dan efisien menemukan informasi paling relevan dari KG sebagai respons terhadap pertanyaan spesifik pengguna, guna meningkatkan akurasi sistem RAG.
 \end{enumerate}
-}
-
-\noindent Catatan: Tujuan penelitian dalam skripsi bidang teknik harus jelas, spesifik, terukur, dan dapat dicapai dalam jangka waktu yang ditentukan.
-
-Berikut ini adalah contoh detail tujuan untuk masing-masing prodi di DTETI:
-
-\newpage
-\vspace{5mm}
-\textbf{Contoh Tujuan Penelitian Skripsi Teknik Elektro:}
-
-\begin{minipage}{0.92\textwidth}
-Berikut adalah beberapa contoh tujuan penelitian yang sesuai dengan rumusan masalah 
-“perbaikan efisiensi penghematan energi pada sistem pencahayaan rumah tangga 
-melalui implementasi teknologi kontrol otomatis”:
-\end{minipage}
-
-
-
-%-------------------------------------------------	
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-\begin{enumerate}
-\item Menganalisis tingkat efisiensi energi pada sistem pencahayaan rumah tangga 
-sebelum dan setelah implementasi teknologi kontrol otomatis.
-\item Mengukur pengurangan biaya listrik setelah implementasi teknologi kontrol 
-otomatis pada sistem pencahayaan rumah tangga.
-\item Menunjukkan bagaimana teknologi kontrol otomatis dapat memperbaiki 
-efisiensi penghematan energi pada sistem pencahayaan rumah tangga.
-\item Meningkatkan kenyamanan dan keamanan pengguna rumah tangga melalui 
-penggunaan teknologi kontrol otomatis pada sistem pencahayaan.
-\item Menjelaskan bagaimana implementasi teknologi kontrol otomatis 
-mempengaruhi kualitas cahaya dan faktor-faktor lain dalam sistem pencahayaan 
-rumah tangga.
-\item Membandingkan efisiensi energi dan biaya pada sistem pencahayaan rumah 
-tangga dengan teknologi kontrol otomatis dan sistem manual.
-\item Menunjukkan implikasi dan rekomendasi dari hasil penelitian bagi rumah tangga 
-dan lingkungan.
-\end{enumerate}
-		
-	}%
-}
-
-%-------------------------------------------------	
-
-\newpage
-\vspace{5mm}
-\textbf{Contoh Tujuan Penelitian Skripsi Teknik Biomedis:}
-
-\begin{minipage}{0.92\textwidth}
-Berikut adalah beberapa contoh tujuan penelitian untuk penelitian dengan tema "Bagaimana memperbaiki akurasi deteksi kanker payudara dengan menggunakan 
-teknologi pemindaian ultrasonografi berbasis AI":
-\end{minipage}
-
-%-------------------------------------------------	
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-\begin{enumerate}
-\item Mengidentifikasi faktor-faktor yang mempengaruhi akurasi deteksi kanker 
-payudara dengan menggunakan teknologi pemindaian ultrasonografi berbasis 
-AI.
-\item Menilai efektivitas teknologi pemindaian ultrasonografi berbasis AI dalam 
-meningkatkan akurasi deteksi kanker payudara.
-\item Menentukan metode pemindaian ultrasonografi berbasis AI yang paling efektif dalam meningkatkan akurasi deteksi kanker payudara.
-\item Menilai keamanan dan tolerabilitas teknologi pemindaian ultrasonografi berbasis AI dalam deteksi kanker payudara.
-\item Membandingkan akurasi deteksi kanker payudara dengan teknologi pemindaian 
-ultrasonografi berbasis AI dengan metode deteksi lainnya.
-\item Menyediakan bukti ilmiah untuk menunjukkan bahwa teknologi pemindaian 
-ultrasonografi berbasis AI dapat digunakan sebagai metode deteksi kanker 
-payudara yang lebih efektif dan akurat.
-\item Meningkatkan akurasi deteksi kanker payudara dengan menggunakan teknologi 
-pemindaian ultrasonografi berbasis AI.
-\end{enumerate}
-		
-	}%
-}
-
-%-------------------------------------------------	
-
-\newpage
-\vspace{5mm}
-\textbf{Contoh Tujuan Penelitian Skripsi Teknologi Informasi:}
-
-\begin{minipage}{0.92\textwidth}
-Berikut adalah beberapa contoh tujuan penelitian untuk penelitian dengan tema 
-"Bagaimana meningkatkan efisiensi dan keamanan sistem penyimpanan data cloud 
-melalui implementasi teknologi enkripsi kuantum?":
-\end{minipage}
-
-%-------------------------------------------------	
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-\begin{enumerate}
-\item Menilai efektivitas implementasi teknologi enkripsi kuantum dalam 
-meningkatkan keamanan data pada sistem penyimpanan cloud.
-\item Menentukan metode enkripsi kuantum yang paling efektif dalam meningkatkan 
-keamanan data pada sistem penyimpanan cloud.
-\item Membandingkan efisiensi enkripsi kuantum dengan metode enkripsi lainnya 
-dalam meningkatkan keamanan data pada sistem penyimpanan cloud.
-\item Menilai keamanan dan stabilitas sistem penyimpanan data cloud setelah 
-implementasi teknologi enkripsi kuantum.
-\item Menyediakan bukti ilmiah untuk menunjukkan bahwa implementasi teknologi 
-enkripsi kuantum dapat meningkatkan efisiensi dan keamanan sistem 
-penyimpanan data cloud.
-\item Mengidentifikasi potensi masalah dan hambatan dalam implementasi teknologi 
-enkripsi kuantum pada sistem penyimpanan data cloud.
-\end{enumerate}
-		
-	}%
-}
-
-%-------------------------------------------------	
-
-
 \section{Batasan Penelitian}
-
-Batasan penelitian teknik adalah pembatasan atau definisi yang menentukan lingkup dan ruang lingkup suatu penelitian dalam bidang teknik. Ini membantu membatasi masalah dan isu yang akan diteliti, menentukan metode dan teknik penelitian, membatasi populasi dan sampel, dan membatasi variabel dan hipotesis yang akan diuji. Batasan penelitian juga mencakup keterbatasan dan hambatan yang mungkin timbul selama proses penelitian. Tujuan utama dari batasan penelitian teknik adalah membuat penelitian terfokus dan terarah, serta memastikan hasil yang diperoleh dapat digunakan untuk menjawab pertanyaan dan masalah teknik secara efektif dan akurat.
-
-Batasan penelitian dapat ditulis dengan format \textit{list}. Contohnya adalah sebagai berikut:
-
 \begin{enumerate}
-	\item Batasan 1.
-	\item Batasan 2.
+	\item \textbf{Objek Penelitian}: Penelitian ini akan berfokus pada metode RAG berbasis \textit{Knowledge Graph} yang mencakup
+	      Metode optimalisasi \textit{Knowledge Extraction} dari sumber data tekstual kesehatan mental,
+	      struktur, kualitas, dan pemanfaatan \textit{Knowledge Graph} kesehatan mental sebagai basis bukti,
+	      algoritma dan strategi optimalisasi \textit{Knowledge Retrieval} dari \textit{Knowledge Graph} untuk mendukung sistem RAG, dan
+	      kualitas dan efektivitas respons berbasis bukti yang dihasilkan oleh prototipe \textit{chatbot} kesehatan mental yang dikembangkan.
+	\item \textbf{Metode Penelitian}: Penelitian ini akan menggunakan pendekatan metode eksperimen dan kuantitatif.
+	      Pada tahap pengembangan akan menggunakan pendekatan desain dan rekayasa sistem (\textit{design and engineering}) untuk merancang, membangun, dan mengimplementasikan metode \textit{Knowledge Extraction}, \textit{Knowledge Graph}, dan \textit{Knowledge Retrieval}.
+	      Ini melibatkan studi literatur, perancangan algoritma, implementasi perangkat lunak, dan pengujian iteratif.
+	      Selanjutnya evaluasi performa komponen sistem dilakukan secara kuantitatif.
+	      Performa komponen \textit{retriever} dan jawaban akhir akan dibandingkan degan \textit{golden standard}.
+	\item \textbf{Waktu dan Tempat Penelitian}: Penelitian ini akan dilakukan selama periode enam bulan, dimulai pada bulan Februari 2025 hingga Juli 2025. Tempat penelitian adalah di Gedung DTETI FT UGM, dengan menggunakan VS Code untuk pengembangan dan pengujian model.
+	\item	\textbf{Populasi dan Sampel}: Populasi dalam penelitian ini adalah seluruh korpus data teks yang relevan dengan domain kesehatan mental seperti artikel ilmiah dan buku teks.
+	      Sampel data dipilih dari populasi tersebut yang berupa buku dan artikel ilmiah yang tersedia pada \textit{website} \href{https://ugm.ac.id/}{UGM}, \href{https://cpmh.psikologi.ugm.ac.id/}{CPMH}, \href{https://hpu.ugm.ac.id}{HPU UGM}, dan \href{https://repository.kemkes.go.id/}{Kementerian Kesehatan}.
+	\item	\textbf{Variabel}: Penelitian ini menggunakan variabel bebas berupa metode \textit{knowledge extraction} dan \textit{knowledge retrieval} yang diterapkan.
+	      Variabel terikat adalah performa \textit{chatbot} yang berupa kualitas respons yang dinilai berdasarkan metrik tertentu.
+	\item	\textbf{Hipotesis}: Hipotesis yang diusulkan dalam penelitian ini adalah \textit{chatbot} kesehatan mental yang menggunakan RAG berbasis \textit{Knowledge Graph} dengan optimalisasi pada \textit{knowledge extraction} dan \textit{knowledge retrieval} menunjukkan peningkatan performa dibandingkan dengan \textit{chatbot} yang menggunakan pendekatan RAG standar atau tanpa \textit{Knowledge Graph}.
+	\item	\textbf{Keterbatasan Penelitian}: Penelitian ini memiliki keterbatasan pada \textit{dataset} yang digunakan sebagai basis pengetahuan dalam sistem RAG.
+	      Akurasi dan kelengkapan data bergantung pada \textit{dataset} yang mungkin belum mencakup semua aspek permasalahan kesehatan mental.
+	      Penelitian ini tidak mengevaluasi dampak klinis \textit{chatbot} pada kondisi psikologis pengguna melainkan hanya mengevaluasi hasil respons \textit{chatbot} dengan metrik yang tersedia.
 \end{enumerate}
-
-
-%\noindent \textbf{Contoh penulisan batasan skripsi Teknik Elektro:}
-%
-%%-------------------------------------------------	
-%\noindent\fbox{%
-%	\parbox{\textwidth}{%
-%\begin{enumerate}
-%\item Objek penelitian: Studi efisiensi dan kinerja sistem pemantauan suhu dan arus pada sistem pembangkit tenaga listrik.
-%\item Metode penelitian: Penelitian eksperimental menggunakan analisis simulasi dan pengujian sistem pada skala laboratorium.
-%\item Waktu dan tempat penelitian: Waktu penelitian adalah Maret-Agustus 2022 di 
-%FasLab TTL.
-%\item Populasi dan sampel: Populasi adalah sistem pembangkit tenaga listrik, dan sampel diambil sebanyak 3 sistem yang berbeda.
-%\item Variabel: Variabel bebas adalah metode pemantauan suhu dan arus, dan variabel terikat adalah efisiensi dan kinerja
-%\item Hipotesis: bahwa metode pemantauan suhu dan arus berpengaruh terhadap efisiensi dan kinerja sistem pembangkit tenaga listrik.
-%\item Keterbatasan Penelitian: Keterbatasan penelitian adalah hanya melibatkan 
-%pengujian sistem pada skala laboratorium dan membatasi analisis pada variabel 
-%bebas dan terikat.
-%\end{enumerate}
-%		
-%	}%
-%}
-%
-%%-------------------------------------------------	
-%\newpage
-%
-%\noindent \textbf{Contoh penulisan batasan skripsi Teknik Biomedis:}
-%
-%%-------------------------------------------------	
-%\noindent\fbox{%
-%	\parbox{\textwidth}{%
-%\begin{enumerate}
-%\item Objek Penelitian: Studi efektivitas dan keamanan alat elektromedik seperti pacu jantung.
-%\item Metode Penelitian: Penelitian deskriptif dan observasional menggunakan survei dan analisis data.
-%\item Waktu dan Tempat Penelitian: Waktu penelitian adalah Januari-Juni 2022 di 
-%Rumah Sakit Sarjito. 
-%\item Populasi dan Sampel: Populasi adalah pasien yang menggunakan pacu jantung, dan sampel diambil dengan metode random sampling sebanyak 100 pasien. 
-%\item Variabel: Variabel bebas nya adalah jenis alat pacu jantung, dan variabel terikatnya adalah efektivitas dan keamanan. 
-%\item Hipotesis: bahwa jenis alat pacu jantung berpengaruh terhadap efektivitas dan keamanan. 
-%\item Keterbatasan Penelitian: Keterbatasan penelitian adalah hanya melibatkan satu rumah sakit sebagai lokasi penelitian dan membatasi dalam analisis data hanya pada variabel bebas dan terikat.
-%\end{enumerate}
-%		
-%	}%
-%}
-%
-%%-------------------------------------------------	
-%
-%\newpage
-%\noindent \textbf{Contoh penulisan batasan skripsi Teknologi Informasi:}
-%
-%%-------------------------------------------------	
-%\noindent\fbox{%
-%	\parbox{\textwidth}{%
-%\begin{enumerate}
-%\item Objek Penelitian: Analisis perbandingan efektivitas dan efisiensi antara sistem manajemen proyek tradisional dan sistem manajemen proyek berbasis teknologi informasi. 
-%\item Metode Penelitian: Penelitian kualitatif dengan menggunakan wawancara dan 
-%survei terhadap para pelaku proyek di berbagai perusahaan. 
-%\item Waktu dan Tempat Penelitian: Waktu penelitian adalah Januari-Juni 2022 di 
-%perusahaan-perusahaan di wilayah Bantul. 
-%\item Populasi dan Sampel: Populasi nya adalah perusahaan yang melakukan proyek, dan sampel diambil sebanyak 10 perusahaan yang menerapkan sistem manajemen 
-%proyek tradisional dan 10 perusahaan yang menggunakan sistem manajemen 
-%proyek berbasis teknologi informasi. 
-%\item Variabel: Variabel bebasnya adalah sistem manajemen proyek, dan variabel 
-%terikatnya adalah efektivitas dan efisiensi. 
-%\item Hipotesis: bahwa sistem manajemen proyek berbasis teknologi informasi lebih efektif dan efisien dibandingkan dengan sistem manajemen proyek tradisional.
-%\item Keterbatasan Penelitian: Keterbatasan penelitian adalah penelitian hanya dilakukan pada perusahaan di wilayah Bantul dan hanya melibatkan wawancara dan survei sebagai metode pengumpulan data.
-%\end{enumerate}
-%		
-%	}%
-%}
 
 \section{Manfaat Penelitian}
-
-Manfaat penelitian didefinisikan sebagai manfaat yang diperoleh apabila 
-skripsi telah selesai dilakukan. Manfaat skripsi pada umumnya berbentuk daftar. 
-Manfaat penelitian dapat berupa manfaat bagi dunia akademik dan atau masyarakat.
+Penelitian ini diharapkan memberikan kontribusi pada pengembangan arsitektur \textit{chatbot} yang lebih andal dan terpercaya, khususnya dalam domain yang memerlukan informasi berbasis bukti seperti layanan kesehatan mental.
+Selain itu, penelitian ini juga diharapkan memberikan wawasan mengenai efektivitas arsitektur \textit{chatbot} menggunakan RAG berbasis \textit{Knowledge Graph} dalam memberikan respons yang akurat.
+Dari sisi praktis, \textit{chatbot} ini dapat diimplementasikan dan memberikan dampak positif dengan membantu pengguna dalam membuat keputusan terkait dengan kesejahteraan mental mereka, dengan tetap menekankan pentingnya konsultasi profesional untuk diagnosis dan perawatan.
+\section{Sistematika Penulisan}
+Sistematika penulisan berisi hal yang akan dibahas dalam penelitian ini yang akan disusun menjadi 5 bab, sebagai berikut,
 
 \begin{enumerate}
-	\item Enum 1
-	\begin{itemize}
-		\item Coba 1
-		\item Coba 2
-	\end{itemize}
-	\item Enum 2
+	\item \textbf{Bab I Pendahuluan} menjelaskan hal yang melatarbelakangi adanya penelitian ini, rumusan masalah yang akan coba dicari solusinya, tujuan yang ingin dicapai, serta manfaat bagi pihak-pihak terkait.
+	\item \textbf{Bab II Tinjauan Pustaka dan Dasar Teori} berisi ulasan literatur penelitian yang sudah pernah dilakukan sebelumnya mengenai topik-topik yang relevan dengan pengembangan chatbot.
+	      Bab ini akan menguraikan beberapa metode yang pernah dilakukan untuk meningkatkan performa \textit{chatbot} pada aplikasi tertentu khususnya pada bidang layanan kesehatan mental.
+	      Setiap metode tersebut akan diulas potensi untuk pengembangan lebih lanjut, peningkatan yang telah dicapai, dan tantangan yang mungkin dihadapi.
+	      Selain itu, bab ini juga akan disertai dengan penjelasan mengenai teori-teori yang berkaitan dengan pengembangan \textit{chatbot}, arsitektur RAG, dan penggunaan \textit{Knowledge Graph}.
+	\item \textbf{Bab III Metode Penelitian} membahas langkah-langkah detail yang akan ditempuh dalam penelitian seperti mulai dari identifikasi masalah, studi literatur, proses pengumpulan data, perancangan dan pengembangan model, hingga metode evaluasi dan analisis hasil.
+	      Bab ini juga akan menjelaskan metode penelitian eksperimen dan kuantitatif yang akan dilakukan dalam penelitian ini.
+	\item \textbf{Bab IV Hasil dan Pembahasan} menyajikan hasil dari implementasi dan pengujian model \textit{chatbot} yang telah dikembangkan.
+	      Pada bab ini akan membahas mengenai kualitas respons dari \textit{chatbot} yang mengimplementasikan arsitektur RAG berbasis \textit{Knowledge Graph} dan dibandingkan dengan yang tidak menggunakan arsitektur tersebut.
+	      Hasil temuan tersebut akan dianalisis secara mendalam dan dibandingkan dengan hipotesis serta penelitian sebelumnya.
+	      \vspace{5cm}
+	\item \textbf{Bab V Kesimpulan dan Saran}  berisi kesimpulan yang ditarik dari keseluruhan hasil penelitian dan pembahasan.
+	      Bagian ini akan memberikan gambaran mengenai kontribusi penelitian ini dalam pengembangan teknologi \textit{chatbot} pada layanan kesehatan mental.
+	      Selain itu, akan disampaikan pula saran-saran untuk pengembangan lebih lanjut dari sistem yang dibangun atau untuk penelitian terkait di masa mendatang
 \end{enumerate}
-
-
-
-\section{Sistematika Penulisan}
-
-Sistematika penulisan berisi pembahasan apa yang akan ditulis di setiap bab. 
-Sistematika pada umumnya berupa paragraf yang setiap paragraf mencerminkan 
-bahasan setiap Bab. Contoh:
-
-\noindent Bab I membahas tentang pendahuluan yang berisi latar belakang, perumusan masalah 
-dan tujuan penelitian. 
-
-\noindent Bab II berisi tentang metodologi penelitian yang terdiri dari desain penelitian, sumber data, Teknik pengumpulan data dan Teknik analisis data.
-
-\noindent Dan seterusnya.
-
