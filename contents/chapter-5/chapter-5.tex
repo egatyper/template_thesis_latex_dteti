@@ -1,15 +1,15 @@
 \chapter{Kesimpulan dan Saran}
 \section{Kesimpulan}
-Berdasarkan penelitian yang telah dilakukan, secara umum metode RAG berbasis \textit{Knowledge Graph} mengungguli Naive RAG yang berbasis potongan dokumen pada mayoritas metrik uji.
+Berdasarkan penelitian yang telah dilakukan, metode RAG berbasis \textit{Knowledge Graph} secara umum mengungguli Naive RAG yang berbasis potongan dokumen pada mayoritas metrik uji.
 Hasil evaluasi terhadap beberapa metode pengambilan konteks dari \textit{Knowledge Graph} serta analisis kualitas jawaban akhir menghasilkan beberapa kesimpulan utama sebagai berikut:
 
 \begin{enumerate}
       \item Arsitektur RAG Berbasis \textit{Knowledge Graph} terbukti mampu meningkatkan akurasi dan konsistensi respons.
-            Penelitian ini berhasil merancang dan mengimplementasikan arsitektur \textit{chatbot} yang mengintegrasikan RAG dengan Knowledge Graph.
-            Hasil evaluasi menunjukkan bahwa arsitektur ini secara konsisten mengungguli pendekatan Naive RAG yang hanya berbasis potongan dokumen.
-            Keunggulan signifikan pada metrik \textit{correctness} dan \textit{faithfulness} membuktikan bahwa arsitektur yang diusulkan mampu menghasilkan respons yang tidak hanya lebih akurat secara faktual, tetapi juga lebih konsisten dengan basis pengetahuannya, sehingga menjawab masalah fundamental terkait risiko misinformasi.
+            Penelitian ini berhasil merancang dan mengimplementasikan arsitektur \textit{chatbot} yang mengintegrasikan RAG dengan KG.
+            Hasil evaluasi menunjukkan bahwa arsitektur ini secara konsisten mengungguli pendekatan Naive RAG, yang dibuktikan dengan peningkatan \textlatin{correctness} sebesar 8\%, \textit{relevancy} sebesar 17\%, dan \textit{faithfulness} sebesar 4\%.
+            Keunggulan tersebut menegaskan bahwa arsitektur yang diusulkan mampu menghasilkan respons yang lebih akurat secara faktual, relevan, dan konsisten dengan basis pengetahuannya, sehingga meminimalkan masalah fundamental terkait risiko misinformasi.
 
-      \item Metode \textit{Knowledge Extraction} berhasil mengonstruksi \textit{Knowledge Graph} yang efektif untuk proses \textit{retrieval}.
+      \item Metode \textit{Knowledge Extraction} berhasil mengonstruksi KG yang efektif untuk proses \textit{retrieval}.
             Struktur relasi yang terbentuk melalui proses ekstraksi terbukti kaya dan terorganisir, sehingga memungkinkan proses penelusuran informasi yang lebih menyeluruh.
             Hal ini tercermin dari performa \textit{retrieval} yang unggul pada strategi berbasis penelusuran graf, menunjukkan bahwa fondasi pengetahuan yang dibangun cukup kuat untuk mendukung pemanggilan informasi secara komprehensif.
 
@@ -28,7 +28,7 @@ Berdasarkan penelitian yang telah dilakukan, berikut adalah beberapa saran untuk
       \item Pada penelitian ini \textit{dataset} evaluasi masih diperoleh berupa data sintetis hasil \textit{prompting} menggunakan LLM.
             Penelitian selanjutnya disarankan menggunakan \textit{dataset} pertanyaan dan jawaban yang telah divalidasi oleh ahli atau bersumber langsung dari sumber terpercaya agar evaluasi mencerminkan performa saat digunakan dalam kasus yang sebenarnya.
 
-      \item Mengingat belum adanya standar baku untuk struktur \textit{Knowledge Graph} dan cara mengevaluasinya, penelitian mendatang dapat berfokus pada evaluasi dampak dari berbagai desain \textit{Knowledge Graph} terhadap kualitas jawaban akhir.
+      \item Mengingat belum adanya standar baku untuk struktur \textit{Knowledge Graph} dan cara mengevaluasinya, penelitian mendatang dapat berfokus pada evaluasi dampak dari berbagai desain KG terhadap kualitas jawaban akhir.
             Evaluasi ini akan melengkapi fokus penelitian saat ini yang lebih terpusat pada metrik \textit{retrieval} dan kualitas jawaban.
 
       \item Perlu dilakukan eksplorasi lebih lanjut terhadap \textit{tuning} parameter, seperti nilai top-k dan \textit{max hop} pada proses \textit{retrieval}, untuk menemukan konfigurasi optimal yang dapat menyeimbangkan antara kelengkapan dan relevansi konteks yang diambil.

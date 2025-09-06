@@ -38,14 +38,14 @@ Berikut merupakan bahan yang akan digunakan dalam tugas akhir.
 	\item Buku "Panduan Kesehatan Jiwa pada Masa Pandemi COVID-19" yang diakses dari \textit{website} \href{https://pusatkrisis.kemkes.go.id/panduan-kesehatan-jiwa-pada-masa-pandemi-covid-19}{Kementerian Kesehatan}
 	\item Buku "Panduan Pertolongan Pertama Psikologis Pada Upaya Bunuh Diri" yang diakses dari \textit{website} \href{https://cpmh.psikologi.ugm.ac.id/wp-content/uploads/sites/39/2021/11/Panduan-Pertolongan-Pertama-Pencegahan-Bunuh-Diri_v1.pdf}{CPMH}
 	\item Artikel dari \textit{website} \href{https://cpmh.psikologi.ugm.ac.id/}{CPMH}
-	\item Artikel dari \textit{website} \href{https://ugm.ac.id}{UGM}
+	\item Artikel dari \textit{website} \href{https://hpu.ugm.ac.id}{HPU UGM}
 \end{enumerate}
 
 \section{Metode yang Digunakan}
-Penelitian ini menerapkan pendekatan hibrida yang mengintegrasikan kekuatan \textit{Large Language Models} (LLM) untuk pemahaman bahasa alami dengan representasi pengetahuan terstruktur dari \textit{Knowledge Graph} (KG).
+Penelitian ini menerapkan pendekatan hibrida yang mengintegrasikan kekuatan \textit{Large Language Models} (LLM) untuk pemahaman bahasa alami dengan representasi pengetahuan terstruktur dari \textit{Knowledge Graph}.
 Metode yang digunakan berfokus pada dua area utama yaitu ekstraksi pengetahuan berbasis \textit{few-shot learning} dan mekanisme pengambilan pengetahuan yang adaptif.
 
-Bagian ekstraksi pengetahuan, berbeda dengan metode supervised learning yang memerlukan \textit{dataset} beranotasi skala besar, penelitian ini menggunakan pendekatan \textit{few-shot learning}.
+Bagian ekstraksi pengetahuan, berbeda dengan metode \textit{supervised learning} yang memerlukan \textit{dataset} beranotasi skala besar, penelitian ini menggunakan pendekatan \textit{few-shot learning}.
 Sebuah \textit{pre-trained} LLM diberi beberapa contoh (\textit{shots}) untuk mengekstrak entitas dan relasi dari teks sumber secara langsung.
 Informasi yang diekstrak kemudian tidak disimpan dalam format vektor mentah, melainkan direpresentasikan sebagai \textit{node} dan \textit{edge} dalam tipe data graf yang disebut \textit{Knowledge Graph}.
 Setiap entitas yang diekstrak juga akan memiliki representasi vektor yang memungkinkan pencarian semantik.
@@ -85,14 +85,27 @@ Studi literatur dilakukan secara sistematis, komprehensif, dan berkelanjutan.
 Hal tersebut bertujuan membangun landasan teoritis yang kokoh, memahami tren dan perkembangan terkini \textit{state-of-the-art} dalam bidang terkait, mengidentifikasi celah penelitian (\textit{research gap}) yang dapat diisi, serta mempelajari berbagai metode dan alat bantu yang relevan.
 Proses ini melibatkan pencarian, pengumpulan, analisis, dan sintesis informasi dari berbagai sumber ilmiah jurnal internasional seperti IEEE, ArXiv, JMIR, dll.
 Fokus utama area studi literatur meliputi aplikasi teknologi AI pada kesehatan mental, RAG dan \textit{Knowledge Graph}.
-Setelah itu, dilakukan analisis mendalam mengenai metode \textit{Knowledge Extraxtion} dan \textit{Knowledge Retrieval} yang digunakan.
+Setelah itu, dilakukan analisis mendalam mengenai metode \textit{Knowledge Extraction} dan \textit{Knowledge Retrieval} yang digunakan.
 
 \subsection{Pengumpulan Data}
-Sebuah sistem \textit{chatbot} berbasis RAG memerlukan data sebagai sumber pengetahuan tambahan bagi \textit{base model}.
-Data yang diperlukan berupa informasi mengenai topik-topik tertentu, dalam hal ini layanan kesehatan mental.
-Tahapan ini mencakup pengumpulan korpus data dari berbagai sumber terpercaya di Indonesia.
-Sumber data utama meliputi publikasi resmi dari Kementerian Kesehatan (dalam format PDF) dan Artikel terkait dari \textit{website} terpercaya seperti UGM, CPMH, dan HPU UGM.
-Data yang terkumpul kemudian akan melalui tahap pra-pemrosesan untuk membersihkan teks dan menyiapkannya untuk fase pengembangan arsitektur.
+Pemilihan sumber data didasarkan pada serangkaian kriteria validasi yang telah ditetapkan demi menjaga kualitas sumber pengetahuan.
+Kriteria ini bertujuan untuk menyaring informasi dan memastikan hanya konten yang berkualitas tinggi yang akan diintegrasikan ke dalam sistem.
+Prinsip utama pemilihan data meliputi kredibilitas dan otoritas lembaga penyusun serta relevansinya terhadap isu kesehatan mental.
+Sumber data harus berasal dari lembaga atau institusi yang memiliki otoritas dan rekam jejak yang diakui secara nasional dalam bidang kesehatan dan psikologi, seperti Kementerian Kesehatan, universitas, psikolog, dan lembaga lain.
+Selain itu, konten yang terkandung harus relevan dengan permasalah kesehatan mental yang ada, berikut dengan fasilitas yang tersedia, pencegahan, edukasi, dsb.
+Mengingat target implementasi sistem ini adalah untuk civitas akademika UGM, maka prioritas diberikan pada sumber data yang tidak hanya relevan untuk konteks kesehatan mental secara umum, tetapi juga spesifik dan dekat dengan lingkungan UGM.
+Penggunaan sumber internal ini bertujuan untuk meningkatkan kepercayaan, kedekatan, dan relevansi informasi bagi pengguna akhir.
+
+Berdasarkan kriteria yang ditetapkan, korpus data untuk penelitian ini dikumpulkan dari beberapa sumber, antara lain:
+
+\begin{enumerate}
+	\item \textbf{Kementerian Kesehatan (Kemenkes) RI}: Dokumen yang dipublikasikan oleh Kemenkes digunakan sebagai pedoman dasar yang berlaku secara nasional, memberikan pengetahuan mengengai kesehatan mental secara umum di Indonesia.
+	\item \textbf{\textit{Center for Public Mental Health} (CPMH) Fakultas Psikologi UGM}: Sebagai pusat studi kesehatan mental, publikasi dari CPMH tidak hanya valid secara akademis, tetapi juga sangat relevan bagi civitas akademika UGM.
+	\item \textbf{\textit{Health Promoting University} (HPU) UGM}: Materi dari HPU UGM dipilih karena secara spesifik dirancang untuk mempromosikan kesehatan di lingkungan kampus UGM. Informasi dari sumber ini, seperti mengenai layanan dukungan yang tersedia di UGM, akan sangat praktis dan langsung dapat dimanfaatkan oleh pengguna.
+\end{enumerate}
+
+Data yang terkumpul akan melalui proses kurasi untuk memastikan kesesuaian konten dan konsistensi informasi.
+Setelah divalidasi, data kemudian akan melalui tahap prapemrosesan untuk membersihkan teks dan menyiapkannya untuk fase pengembangan arsitektur.
 
 \subsection{Pengembangan Arsitektur Ekstraksi dan Penyerapan Pengetahuan}
 
@@ -105,39 +118,40 @@ Data yang terkumpul kemudian akan melalui tahap pra-pemrosesan untuk membersihka
 	\label{fig:knowledge-extraction-pipeline}
 \end{figure}
 
-Pengembangan model akan berfokus pada optimalisasi dua komponen krusial pada RAG berbasis \textit{Knowledge Graph} yaitu \textit{Knowledge Extraction} dan \textit{Knowledge Retrieval}.
+Pengembangan model akan berfokus pada optimalisasi dua komponen krusial pada RAG berbasis \textit{Knowledge Graph}, yaitu \textit{Knowledge Extraction} dan \textit{Knowledge Retrieval}.
 Tahap ini bertujuan untuk membangun \textit{Knowledge Graph} yang bersih, konsisten, dan kaya informasi dari berbagai sumber data yang mayoritas tidak terstruktur seperti PDF, DOCX, dan situs web.
 Proses ekstraksi pengetahuan diimplementasikan melalui sebuah \textit{pipeline} seperti pada Gambar \ref{fig:knowledge-extraction-pipeline}.
 Berikut merupakan penjelasan detail setiap langkah dalam \textit{pipeline}.
 
 \subsubsection{Ekstraksi Teks dari Dokumen}
 Hampir semua \textit{language model} dapat memahami informasi dalam bentuk teks.
-Untuk itu, langkah awal membangun sebuah \textit{knowledge graph} adalah mengekstrak teks mentah dari berbagai sumber data.
-Banyak data memiliki format baik ekstensi maupun struktur yang beragam karena berasal dari banyak sumber.
-Setiap tipe dokumen miliki cara mengekstraknya masing-masing, misalnya dokumen HTML dapat dikenali strukturnya melalui tagar HTML seperti \texttt{<h1>} untuk menyatakan judul dan \texttt{<p>} untuk menyatakan paragraf.
+Untuk itu, langkah awal membangun sebuah \textit{Knowledge Graph} adalah mengekstrak teks mentah dari berbagai sumber data.
+Banyak data memiliki format, baik ekstensi, maupun struktur yang beragam karena berasal dari banyak sumber.
+Setiap tipe dokumen memiliki cara mengekstraknya masing-masing, misalnya dokumen HTML dapat dikenali strukturnya melalui tagar HTML seperti \texttt{<h1>} untuk menyatakan judul dan \texttt{<p>} untuk menyatakan paragraf.
 Dokumen bertipe DOCX terdiri dari kumpulan \textit{file} ZIP yang harus diekstrak untuk mengambil isi dokumen.
-Setiap dokumen tersebut juga memiliki struktur penulisan yang beragam seperti pada dokumen HTML belum tentu terdapat tagar \textit{headline} (\texttt{<h1>}, \texttt{<h2>}, sampai \texttt{<h6>}) untuk menulis judul melainkan memakai tagar \texttt{<div>}.
-Hal tersebut menjadi tantangan tersendiri dalam mengekstrak teks dari dokumen yang beragam.
+Setiap dokumen tersebut juga memiliki struktur penulisan yang tidak seragam, seperti pada dokumen HTML belum tentu mengandung tagar \textit{headline} (\texttt{<h1>}, \texttt{<h2>}, sampai \texttt{<h6>}) untuk menulis, melainkan memakai tagar \texttt{<div>}.
+Ketakseragaman format tersebut menjadi tantangan tersendiri dalam mengekstrak teks dari dokumen yang beragam.
 
-Dokumen yang digunakan dalam membangun \textit{Knowledge graph} meliputi.
+Dokumen yang digunakan dalam membangun KG meliputi.
 \begin{enumerate}
 	\item Buku "Petunjuk Teknis Pencegahan dan Pengendalian Gangguan Mental Emosional" dari Kementerian Kesehatan.
 	\item Buku "Panduan Kesehatan Jiwa pada Masa Pandemi COVID-19" dari Kementerian Kesehatan.
 	\item Buku "Panduan Pertolongan Pertama Psikologis Pada Upaya Bunuh Diri" dari CPMH.
 	\item Artikel dari situs web CPMH
-	\item Artikel dari situs web UGM
+	\item Artikel dari situs web HPU UGM
 \end{enumerate}
-Sebagian besar dokumen tersebut berada dalam format PDF, sedangkan artikel dari situs web CPMH dan UGM berada dalam format HTML.
+
+Sebagian besar dokumen tersebut berada dalam format PDF, sedangkan artikel dari situs web CPMH dan HPU UGM berada dalam format HTML.
 Mengekstrak \textit{file} PDF dengan mempertahankan struktur dokumen cukup sulit untuk dilakukan secara langsung karena PDF merupakan tipe dokumen berbasis halaman (\textit{page}) yang mengabaikan struktur keseluruhan seperti judul, paragraf, atau tabel.
 Informasi mengenai struktur dokumen penting dijaga untuk langkah selanjutnya.
 Untuk itu, dilakukan strategi konversi \textit{file} PDF ke dalam bentuk dokumen yang lebih terstruktur seperti DOCX dan HTML.
 Konversi dilakukan menggunakan layanan konversi file online \href{https://www.freeconvert.com/}{FreeConvert}.
 Setelah dilakukan konversi dokumen PDF menjadi DOCX barulah isi dari dokumen dapat diambil.
 Ekstraksi teks mentah dari dokumen dilakukan menggunakan pustaka python-docx dengan mengambil semua teks yang ada beserta dengan tabel.
-Di sisi lain, dokumen artikel dari situs web (seperti dari CPMH dan UGM) berformat HTML, yang penanganannya lebih langsung.
+Sementara itu, dokumen artikel dari situs web CPMH dan HPU UGM berformat HTML, sehingga proses ekstraksinya lebih sederhana.
 Ekstraksi dari HTML lebih mudah karena format ini sudah memiliki struktur bawaan melalui penggunaan tag.
 Misalnya, tag \texttt{<h1>} digunakan untuk judul, \texttt{<p>} untuk paragraf, dan \texttt{<table>} untuk tabel.
-Untuk merepresentasikan tabel dalam bentuk teks mentah digunakan format tabel markdown mengingat cukup intuitif dan terbaca oleh sebagian besar LLM.
+Untuk merepresentasikan tabel dalam bentuk teks mentah, digunakan format tabel markdown yang intuitif dan mudah dipahami oleh sebagian besar LLM.
 
 \subsubsection{\textit{Structural Chunking}}
 Teks yang diekstrak dari dokumen pada langkah selanjutnya akan diekstrak lagi entitas dan relasi yang terkandung di dalamnya.
@@ -162,12 +176,13 @@ Penggunaan LLM untuk mengekstrak entitas dan relasi didasarkan pada kemampuannya
 Kapasitas ini memungkinkan LLM untuk menangkap pola linguistik, semantik, dan hubungan antar entitas secara lebih mendalam.
 LLM yang digunakan sebagai basis ekstraksi entitas dan relasi adalah Google Gemini 2.5 Flash.
 Pemilihan model tersebut didasarkan pada performanya yang sangat baik dan masuk dalam \textit{leaderboard} paling atas pada \href{https://llm-stats.com/}{LLM Stats} setidaknya saat penelitian ini dilakukan dengan skor GPQA (\textit{Graduate-Level Google-Proof Question and Answer}) sebesar 82,8\%.
-Faktor krusial lainnya yang tidak kalah penting adalah Gemini 2.5 Flash memiliki ukuran \textit{context window} yang sangat besar hingga 1 juta dibandingkan model LLM lain seperti Claude 3.7 Sonet , Grok-3, dan GPT o3.
+Faktor krusial lainnya yang tidak kalah penting adalah Gemini 2.5 Flash memiliki ukuran \textit{context window} yang sangat besar hingga 1 juta dibandingkan model LLM lain seperti Claude 3.7 Sonet, Grok-3, dan GPT o3.
+Perbandingan performa dan kapasitas LLM tersebut dapat dilihat pada Tabel \ref{tab:llm-comparison}.
 
 \begin{table}[ht]
 	\centering
-	\label{tab:llm-comparison}
 	\caption{Perbandingan performa dan kapasitas LLM modern}
+	\label{tab:llm-comparison}
 	\begin{tabular}{|l|c|c|}
 		\hline
 		\textbf{Model}   & \textbf{GPQA} & \textbf{\textit{Context Window}} \\
@@ -183,11 +198,12 @@ Faktor krusial lainnya yang tidak kalah penting adalah Gemini 2.5 Flash memiliki
 	\end{tabular}
 \end{table}
 
+\pagebreak
 Setiap \textit{chunk} teks dari dokumen kemudian diproses oleh Gemini 2.5 Flash untuk mengekstrak entitas dan relasi yang terkandung di dalamnya.
 Proses ini memanfaatkan teknik \textit{few-shot prompting}, di mana LLM diberikan beberapa contoh konkret untuk memandunya dalam melakukan ekstraksi sesuai dengan ontologi yang telah didefinisikan.
 \textit{Prompt} dirancang sejelas mungkin untuk menjelaskan apa yang seharusnya dilakukan oleh LLM dalam proses ekstraksi.
 Untuk menjaga jenis entitas yang ditemukan dalam dokumen tidak keluar dari tujuan layanan kesehatan mental maka beberapa istilah yang berkaitan telah didefinisikan terlebih dahulu dalam \textit{prompt}.
-Format respons dari LLM juga didefinisikan berupa tipe data JSON yang memudahkan dalam pemrosesan selanjutnya. Format instruksi \textit{prompt} dapat dilihat pada \ref{fig:prompt-extraction-instruction}.
+Format respons dari LLM juga didefinisikan berupa tipe data JSON yang memudahkan dalam pemrosesan selanjutnya. Format instruksi \textit{prompt} dapat dilihat pada Gambar \ref{fig:prompt-extraction-instruction}.
 
 \begin{figure}[H]
 	\centering
@@ -215,8 +231,8 @@ Contoh masukkan dan keluaran pada \textit{prompt} dapat dilihat pada Gambar \ref
 
 % \vspace{5cm}
 \textit{Prompt} pada Gambar \ref{fig:prompt-extraction-instruction} dan Gambar \ref{fig:prompt-extraction-few-shot} kemudian dieksekusi menggunakan pustaka google genai.
-Eksekusi \textit{prompt} diikuti dengan data \textit{chunk} dokumen ditambah dengan konfigurasi struktur JSON yang diinginkan untuk mendapatkan respon berupa bukan dalam bentuk teks, melainkan dalam bentuk JSON yang dapat direpresentasikan dalam bentuk objek pydantic.
-Struktur Dari respons terbagi menjadi 2 bagian yaitu \texttt{entities} yang berisi \textit{list} entitas dan \texttt{relations} yang berisi \textit{list} relasi.
+Eksekusi \textit{prompt} diikuti dengan data \textit{chunk} dokumen ditambah dengan konfigurasi struktur JSON yang diinginkan untuk mendapatkan respons bukan dalam bentuk teks, melainkan dalam bentuk JSON yang dapat direpresentasikan dalam bentuk objek pydantic.
+Struktur dari respons terbagi menjadi 2 bagian yaitu \texttt{entities} yang berisi daftar entitas dan \texttt{relations} yang berisi daftar relasi.
 Setiap entitas memiliki atribut \texttt{name}, \texttt{type}, dan \texttt{description}, sedangkan relasi memiliki atribut \texttt{source\_entity}, \texttt{target\_entity}, \texttt{name}, dan \texttt{type} seperti pada Gambar \ref{fig:entity-relation-structure}.
 
 \begin{figure}[H]
@@ -329,18 +345,18 @@ Setiap komponen ini berkontribusi terhadap ketepatan dan relevansi hasil yang di
 
 \begin{figure}[h]
 	\includegraphics[width=1\textwidth]{images/knowledge-retrieval-pipeline.png}
-	\caption{\textit{Pipeline Konwledge Retrieval}.}
+	\caption{\textit{Pipeline Knowledge Retrieval}.}
 	\label{fig:knowledge-retrieval-pipeline}
 \end{figure}
 
 \subsubsection{Klasifikasi Kueri dan Ekstraksi Entitas}
 Langkah pertama dalam pengambilan pengetahuan adalah klasifikasi kueri terhadap input pengguna.
-Proses ini bertujuan untuk mengidentifikasi intensi semantik dari kueri, yang nantinya akan dijadikan sebagai variabel penentu strategi pencarian dalam \textit{knowledge graph} yang paling sesuai.
+Proses ini bertujuan untuk mengidentifikasi intensi semantik dari kueri, yang nantinya akan dijadikan sebagai variabel penentu strategi pencarian dalam \textit{Knowledge Graph} yang paling sesuai.
 Kueri akan diklasifikasikan menjadi dua kategori seperti pada Tabel \ref{tab:query-classification}
 
 \begin{table}[H]
 	\centering
-	\caption{Klasifikasi kueri menjadi dua kategori yaitu \texttt{entity\_query} dan \texttt{path\_query}}
+	\caption{Klasifikasi kueri menjadi dua kategori, yaitu \texttt{entity\_query} dan \texttt{path\_query}}
 	\label{tab:query-classification}
 	\begin{tabular}{|l|p{8cm}|}
 		\hline
@@ -359,12 +375,12 @@ Kueri akan diklasifikasikan menjadi dua kategori seperti pada Tabel \ref{tab:que
 
 Klasifikasi kueri ini sangat berkaitan dengan strategi pencarian yang akan dilakukan pada basis data graf.
 Sebuah kueri diklasifikasikan sebagai \texttt{entity\_query} jika intensi utamanya adalah untuk mendeskripsikan atau melihat lebih detail pada satu atau beberapa konsep sentral.
-Pertanyaan dari pengguna seperti \textit{"Apa itu kesehatan mental"} atau \textit{"Di manakah pusat layanan kesehatan mental di UGM"} termasuk dalam kategori ini karena memiliki intensi untuk tahu lebih dalam pada suatu konsep yaitu
+Pertanyaan dari pengguna seperti \textit{"Apa itu kesehatan mental?"} atau \textit{"Di manakah pusat layanan kesehatan mental di UGM?"} termasuk dalam kategori ini karena memiliki intensi untuk tahu lebih dalam pada suatu konsep yaitu
 Untuk menjawab pertanyaan tersebut, sistem hanya perlu menemukan \textit{node} \textit{"Kesehatan Mental"} dan \textit{"Pusat Layanan Kesehatan Mental UGM"} di dalam graf dan mengambil informasi yang melekat langsung padanya (deskripsi) beserta tetangga-tetangga terdekat yang berfungsi sebagai atribut.
 Penelusuran ini bersifat melebar dari satu atau beberapa titik pusat.
 
 Sebuah kueri diklasifikasikan sebagai \texttt{path\_query} apabila intensi utamanya adalah memahami relasi, interaksi, atau alur proses antara dua atau lebih konsep yang berbeda.
-Pertanyaan dari pengguna seperti \textit{"Bagaimana Terapi Kognitif Perilaku membantu mengatasi Gangguan Kecemasan?"} dan \textit{"Apakah stres dapat mengakibatkan penyakit jantung?"}.
+Pertanyaan dari pengguna seperti \textit{"Bagaimana terapi kognitif Perilaku membantu mengatasi gangguan kecemasan?"} dan \textit{"Apakah stres dapat mengakibatkan penyakit jantung?"}.
 Untuk menjawab pertanyaan tersebut, sistem tidak bisa hanya melihat masing-masing \textit{nodes} dan tetangganya.
 Sistem harus bisa menemukan hubungan antara beberapa \textit{nodes} lalu menelusuri jalur (\textit{path}) yang menghubungkannya.
 
@@ -391,8 +407,8 @@ Selain itu, \textit{few-shot prompt} digunakan untuk memberikan contoh input dan
 \subsubsection{\textit{Hybrid Search}}
 Setelah diekstrak dari kueri pengguna pada proses sebelumnya, kandidat entitas menjadi basis untuk melakukan pencarian entitas dalam graf.
 Proses pencarian ini bertujuan untuk mencari \textit{nodes} pada basis data graf yang berkaitan dengan kueri pengguna.
-Pencarian didasarkan pada dua variabel utama yaitu kandidat entitas yang telah diekstrak pada proses sebelumnya dan kueri pengguna itu sendiri.
-Tahap pencarian dalam arsitektur ini menggunakan pendekatan \textit{hybrid search}, yaitu kombinasi dua strategi pencarian \textit{full-text search} dan \textit{semantic search} berbasis vektor.
+Pencarian didasarkan pada dua variabel utama, yaitu kandidat entitas yang telah diekstrak pada proses sebelumnya dan kueri pengguna itu sendiri.
+Tahap pencarian dalam arsitektur ini menggunakan pendekatan \textit{hybrid search} yang merupakan kombinasi dua strategi pencarian, yaitu \textit{full-text search} dan \textit{semantic search} berbasis vektor.
 Kedua metode ini dijalankan secara berurutan dengan strategi \textit{fallback} untuk meningkatkan efektivitas pencarian entitas dalam basis data graf.
 
 Proses dimulai dengan melakukan pencarian entitas menggunakan \textit{full-text search} di Neo4j.
@@ -401,10 +417,10 @@ Kata kunci yang digunakan berasal dari hasil ekstraksi entitas kandidat pada tah
 Pendekatan ini efektif untuk kueri yang mengandung istilah eksplisit yang cocok dengan nama entitas.
 
 Apabila pencarian berbasis teks tidak menghasilkan entitas yang relevan, misalnya karena variasi bahasa, sinonim, atau struktur kalimat yang tidak eksplisit, maka sistem akan secara otomatis melakukan \textit{fallback} ke pencarian semantik.
-Pada tahap ini, sistem mengubah kueri pengguna menjadi vektor \textit{embedding}, kemudian mencari entitas dengan representasi vektor yang paling mirip menggunakan algoritma \textit{Approximate Nearest Neighbor} (ANN) yang didukung secara \textit{native} di Neo4j yaitu HNSW (\textit{Hierarchical Navigable Small World}).
+Pada tahap ini, sistem mengubah kueri pengguna menjadi vektor \textit{embedding}, kemudian mencari entitas dengan representasi vektor yang paling mirip menggunakan algoritma \textit{Approximate Nearest Neighbor} (ANN) yang didukung secara \textit{native} di Neo4j, yaitu HNSW (\textit{Hierarchical Navigable Small World}).
 
 Dari kedua metode tersebut, sistem akan memperoleh sejumlah entitas paling relevan, yaitu Top-K entitas, yang kemudian digunakan sebagai titik awal untuk proses penelusuran graf.
-Pendekatan \textit{hybrid} ini memungkinkan sistem menangani berbagai variasi bentuk pertanyaan, baik yang eksplisit maupun implisit, serta meningkatkan cakupan pencarian dalam skenario real yang tidak dapat diprediksi.
+Pendekatan \textit{hybrid} ini memungkinkan sistem menangani berbagai variasi bentuk pertanyaan, baik yang eksplisit, maupun implisit, serta meningkatkan cakupan pencarian dalam skenario real yang tidak dapat diprediksi.
 
 \subsubsection{Penelusuran Graf}
 Setelah diperoleh dari pencarian pada tahap sebelumnya, entitas dan jenis kueri digunakan untuk melakukan penelusuran graf (\textit{graph traversal}) untuk mengumpulkan informasi kontekstual yang lebih komprehensif dari struktur graf.
@@ -414,7 +430,7 @@ Algoritma n-hop neighbor expansion akan digunakan untuk menelusuri graf pada tip
 Penjelasan lebih lanjut mengenai dua jenis penelusuran graf terdapat pada Tabel \ref{tab:graph-traversal-strategy}.
 
 \begin{longtable}{|p{0.3\textwidth}|p{0.65\textwidth}|}
-	\caption{Klasifikasi kueri menjadi dua kategori yaitu \texttt{entity\_query} dan \texttt{path\_query}}
+	\caption{Klasifikasi kueri menjadi dua kategori, yaitu \texttt{entity\_query} dan \texttt{path\_query}}
 	\label{tab:graph-traversal-strategy}                                                                                                                     \\
 	\hline
 	\textbf{Graph Traversal}          & \textbf{Keterangan}                                                                                                  \\
@@ -452,7 +468,7 @@ Untuk memungkinkan LLM memproses informasi ini dengan baik, sistem mengubahnya m
 Format ini mempertahankan struktur semantik penting, seperti tipe entitas, arah relasi, dan deskripsi yang menyertainya.
 
 Alasan utama transformasi ini diperlukan adalah karena LLM bekerja optimal dengan masukan berbasis teks.
-Di samping itu, apabila hasil penelusuran graf digunakan secara langsung akan banyak \textit{overhead} informasi yang tidak relevan seperti nama atribut yang akan membebani LLM.
+Di samping itu, apabila hasil penelusuran graf digunakan secara langsung, akan banyak \textit{overhead} informasi yang sama sekali tidak diperlukan seperti nama atribut yang justru membebani LLM karena \textit{prompt} yang lebih panjang.
 Representasi berbentuk teks yang kaya konteks memungkinkan LLM untuk memahami hubungan antar entitas secara utuh, berbeda dengan daftar kalimat terpisah atau output tabel sederhana.
 Dengan struktur yang jelas dan eksplisit, LLM dapat melakukan \textit{reasoning} dan menjawab pertanyaan pengguna secara lebih akurat.
 
@@ -464,15 +480,15 @@ Tahap akhir dari arsitektur pengambilan pengetahuan adalah penyusunan jawaban ak
 Pada tahap ini, representasi kontekstual yang telah ditransformasikan dari subgraf sebelumnya diproses oleh LLM untuk membentuk jawaban dalam bentuk teks alami yang informatif, ringkas, dan relevan terhadap kueri pengguna.
 
 LLM digunakan sebagai komponen generatif yang memanfaatkan informasi terstruktur yang telah diformat menjadi teks.
-Dengan input yang kaya konteks termasuk anotasi entitas, deskripsi, dan relasi antar \textit{node}-LLM dapat melakukan \textit{reasoning} semantik untuk menghasilkan jawaban yang tidak hanya berbasis fakta, tetapi juga disampaikan dalam bahasa yang mudah dipahami.
+Dengan input yang kaya konteks, termasuk anotasi entitas, deskripsi, dan relasi antar \textit{node}-LLM dapat melakukan \textit{reasoning} semantik untuk menghasilkan jawaban yang tidak hanya berbasis fakta, tetapi juga disampaikan dalam bahasa yang mudah dipahami.
 
-Sistem dapat mengatur gaya dan format jawaban yang dihasilkan, seperti bahasa formal atau santai sesuai kebutuhan aplikasi, panjang jawaban (ringkas vs. naratif), penyisipan kutipan entitas atau sumber dari graf, jika diperlukan.
+Sistem dapat mengatur gaya dan format jawaban yang dihasilkan, seperti bahasa formal atau santai sesuai kebutuhan aplikasi, panjang jawaban (ringkas vs. naratif), dan penyisipan kutipan entitas atau sumber dari graf, jika diperlukan.
 Proses ini dilakukan secara deterministik (menggunakan \textit{prompt engineering} dengan temperatur rendah) untuk memastikan konsistensi dan menghindari halusinasi jawaban yang tidak berdasarkan pada data yang tersedia dalam graf.
 Dengan pendekatan ini, sistem tidak hanya berfungsi sebagai pencari informasi (\textit{retriever}), tetapi juga sebagai penyaji pengetahuan yang mampu menyusun informasi menjadi jawaban utuh yang siap dikonsumsi pengguna.
 
 \subsection{Evaluasi dan Analisis}
 Tahapan evaluasi dan analisis merupakan fase krusial untuk mengukur performa sistem \textit{Retrieval-Augmented Generation} (RAG) berbasis \textit{Knowledge Graph} yang telah dibangun.
-Sistem RAG ini terdiri dari dua komponen utama yaitu sistem \textit{retrieval} yang bertugas mengambil konteks yang relevan dengan pertanyaan dan sistem \textit{generation} yang menghasilkan respons akhir.
+Sistem RAG ini terdiri dari dua komponen utama, yaitu sistem \textit{retrieval} yang bertugas mengambil konteks yang relevan dengan pertanyaan dan sistem \textit{generation} yang menghasilkan respons akhir.
 Untuk itu, evaluasi dilakukan pada kedua komponen tersebut.
 
 \subsubsection{Penyiapan \textit{Dataset} Evaluasi}
@@ -481,9 +497,9 @@ Tidak seperti metode \textit{fine-tuning} yang sejak awal menggunakan data perca
 Untuk menjawab tantangan tersebut, dilakukan pembuatan \textit{dataset} evaluasi sintesis mandiri yang seolah-olah meniru tanya jawab dengan pengguna.
 Pendekatan ini dimaksudkan agar evaluasi cukup akurat mengukur kemampuan sistem dalam menjawab pertanyaan berdasarkan korpus pengetahuan yang telah diindeks.
 
-Data percakapan untuk evaluasi dibuat berdasarkan dokumen yang dipakai untuk membangun \textit{knowledge graph} yang berupa potongan-potongan dokumen (\textit{document chunks}).
+Data percakapan untuk evaluasi dibuat berdasarkan dokumen yang dipakai untuk membangun \textit{Knowledge Graph} yang berupa potongan-potongan dokumen (\textit{document chunks}).
 Setiap potongan dokumen tersebut dianggap sebagai dasar kebenaran (\textit{ground truth}) untuk menghasilkan beberapa \textit{dataset} evaluasi.
-Selain potongan dokumen, \textit{Knowledge Graph} juga berperan dalam membentuk \textit{dataset} evaluasi khususnya untuk evaluasi bagian sistem \textit{retrieval}.
+Selain potongan dokumen, \textit{Knowledge Graph} juga berperan dalam membentuk \textit{dataset} evaluasi, khususnya untuk evaluasi bagian sistem \textit{retrieval}.
 
 Sistem akan melakukan iterasi pada setiap potongan dokumen yang telah diindeks disertai dengan \textit{nodes} dari subgraf yang berasosiasi sebagai konteks.
 Konteks tersebut kemudian dimasukkan ke dalam \textit{Large Language Model} (LLM) dengan instruksi atau \textit{prompt} yang telah dirancang.
@@ -514,7 +530,7 @@ Konteks tersebut kemudian dimasukkan ke dalam \textit{Large Language Model} (LLM
 
 Selain itu, teknik \textit{few-shot} digunakan pada \textit{prompt} untuk memberikan beberapa contoh data evaluasi yang diharapkan.
 Dalam setiap potongan dokumen akan dihasilkan pertanyaan setidaknya setengah dari jumlah \textit{nodes} yang tersedia.
-Jumlah tersebut dipilih guna memberikan keleluasaan LLM untuk memberikan variasi pertanyaan dan tidak terpaku bahwa setiap \textit{nodes} harus memiliki satu pertanyaan.
+Jumlah tersebut dipilih guna memberikan keleluasaan LLM untuk memberikan variasi pertanyaan dan tidak terpaku bahwa setiap \textit{node} harus memiliki satu pertanyaan.
 
 \textit{Prompt} yang sudah dirancang kemudian dieksekusi dengan model OpenAI \texttt{o4-mini}.
 Pemilihan model dari OpenAI didasarkan pada model yang digunakan dalam proses evaluasi harus berbeda dengan model yang digunakan pada operasional.
@@ -526,17 +542,17 @@ Kelebihan tersebut sangat sesuai dengan kebutuhan membuat \textit{dataset} evalu
 Evaluasi sistem \textit{retrieval} bertujuan untuk mencari tahu seberapa efektif komponen \textit{retriever} dalam menghasilkan konteks yang bersesuaian.
 Konteks memiliki peranan yang krusial bagi komponen generatif dalam menghasilkan jawaban akhir yang memiliki landasan informasi akurat.
 Kualitas jawaban akhir yang dihasilkan secara signifikan dipengaruhi oleh relevansi dan kelengkapan konteks yang disediakan.
-Apabila \textit{retriever} gagal menemukan konteks yang tepat maka jawaban akhir akan berisiko tidak akurat bahkan cenderung menghasilkan "halusinasi", yaitu informasi yang tidak didasarkan data aktual.
+Apabila \textit{retriever} gagal menemukan konteks yang tepat, maka jawaban akhir akan berisiko tidak akurat bahkan cenderung menghasilkan "halusinasi", yaitu informasi yang tidak didasarkan pada data faktual.
 Halusinasi ini menjadi masalah besar terlebih apabila sistem ini akan diterapkan sebagai \textit{chatbot} layanan kesehatan mental yang penggunanya sering berhubungan langsung dengan pasien yang memiliki risiko mental.
 Kesalahan informasi dapat mengakibatkan dampak yang fatal baik bagi penderita kesehatan mental ataupun bagi pengguna pada umumnya.
 
 Dalam kasus RAG berbasis \textit{Knowledge Graph}, konteks berarti subgraf yang dihasilkan oleh \textit{retriever}.
 Setiap kali sistem menjawab pertanyaan, subgraf yang berkaitan dengan pertanyaan akan diambil dari basis data.
-Subgraf tersebut terdiri dari dua komponen yaitu \textit{node} yang berisi informasi entitas dan \textit{vertex} yang berupa relasi antar entitas.
+Subgraf tersebut terdiri dari dua komponen yaitu \textit{node} yang berisi informasi entitas dan \textit{edge} yang berupa relasi antar entitas.
 Dalam proses evaluasi ini, hanya komponen nama  \textit{node} yang digunakan dengan asumsi bahwa \textit{nodes} yang dihasilkan sudah mewakili konteks informasi.
 Hal tersebut dilakukan untuk menyederhanakan evaluasi dengan membandingkan \textit{nodes} yang dihasilkan dengan \textit{golden nodes} pada \textit{dataset} evaluasi sebagai \textit{ground truth}.
 Untuk setiap pertanyaan, sistem \textit{retrieval} akan diminta untuk mengambil n subgraf yang relevan dengan pertanyaan.
-Bentuk dari subgraf terbagi menjadi dua kategori berdasarkan jenis pertanyaannya yaitu \textit{neighbor expansion} dan n \textit{shortest path}.
+Bentuk dari subgraf terbagi menjadi dua kategori berdasarkan jenis pertanyaannya, yaitu \textit{neighbor expansion} dan n \textit{shortest path}.
 Masing-masing jenis subgraf tersebut memiliki struktur yang berbeda, tetapi tidak menjadi masalah karena hanya diambil nama \textit{nodes} yang terkandung di dalamnya.
 \textit{Nodes} tersebut kemudian dibandingkan dengan \textit{golden nodes} untuk menghasilkan sejumlah metrik kuantitatif seperti pada Tabel \ref{tab:retrieval-evaluation-metrics} yang digunakan untuk mengukur efektivitas sistem \textit{retrieval}.
 
@@ -564,12 +580,12 @@ Masing-masing jenis subgraf tersebut memiliki struktur yang berbeda, tetapi tida
 \end{table}
 
 \subsubsection{Evaluasi Respons Akhir}
-Evaluasi respons akhir berfokus pada penilaian terhadap kualitas jawaban akhir yang dihasilkan sistem khususnya pada bagian generatif setelah menerima konteks dari komponen \textit{retrieval}.
+Evaluasi respons akhir berfokus pada penilaian terhadap kualitas jawaban akhir yang dihasilkan sistem, khususnya pada bagian generatif setelah menerima konteks dari komponen \textit{retrieval}.
 Evaluasi ini mempertimbangkan beberapa parameter penting, antara lain faktualitas, relevansi, dan kebenaran jawaban, guna memastikan bahwa respons akhir yang diberikan kepada pengguna memiliki nilai informatif yang tinggi dan sesuai dengan pertanyaan yang diajukan.
 
 Keberhasilan sistem RAG tidak hanya ditentukan oleh kemampuan dalam mengambil konteks yang relevan, tetapi juga oleh kemampuan LLM dalam menghasilkan jawaban yang benar dan relevan berdasarkan konteks tersebut.
 Dalam beberapa kasus, bahkan jika konteks yang diambil sudah tepat, model generatif dapat tetap menghasilkan jawaban yang tidak faktual, tidak tepat sasaran, atau terlalu umum.
-Oleh karena itu, evaluasi terhadap respons akhir menjadi sangat penting untuk, menilai efektivitas akhir sistem RAG secara holistik, mendeteksi adanya halusinasi, dan menjamin bahwa jawaban benar-benar menjawab pertanyaan pengguna secara akurat.
+Oleh karena itu, evaluasi terhadap respons akhir menjadi sangat penting untuk menilai efektivitas akhir sistem RAG secara holistik, mendeteksi adanya halusinasi, dan menjamin bahwa jawaban benar-benar menjawab pertanyaan pengguna secara akurat.
 
 \vspace{1cm}
 Evaluasi dilakukan dengan menggunakan \textit{framework} RAGAS (Retrieval-Augmented Generation Assessment), yaitu sebuah kerangka kerja modern dan terstandardisasi yang dirancang khusus untuk mengevaluasi \textit{pipeline} RAG secara menyeluruh.

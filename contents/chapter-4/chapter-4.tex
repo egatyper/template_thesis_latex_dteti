@@ -1,18 +1,18 @@
 \chapter{Hasil dan Pembahasan}
 
 Bab ini menyajikan hasil dan analisis mendalam terhadap sistem RAG berbasis \textit{Knowledge Graph} yang telah dirancang dan diimplementasikan.
-Penyajian dimulai dari tahap \textit{knowledge extraction} dari korpus dokumen.
-Selanjutnya dipaparkan hasil evaluasi kuantitatif dari rancangan arsitektur RAG baik pada komponen \textit{retriever} maupun jawaban final yang dihasilkan oleh sistem secara keseluruhan.
+Penyajian dimulai dari tahap ekstraksi dan penyerapan pengetahuan dari korpus dokumen.
+Selanjutnya dipaparkan hasil evaluasi kuantitatif dari rancangan arsitektur RAG, baik pada komponen \textit{retriever}, maupun jawaban final yang dihasilkan oleh sistem secara keseluruhan.
 Setiap hasil akan diikuti dengan pembahasan untuk menginterpretasikan data, menganalisis kekuatan dan kelemahan sistem, serta menyajikan studi kasus untuk memberikan gambaran yang lebih jelas.
 
 \section{Hasil \textit{Knowledge Extraction}}
 Proses \textit{knowledge extraction} dimulai dengan ekstraksi teks dari dokumen.
 Dokumen yang dalam format HTML atau DOCX kemudian diambil teks yang terkandung di dalamnya sekaligus dilakukan \textit{structural chunking} untuk membaginya ke dalam beberapa potongan berdasarkan tingkatan hierarki tertentu.
-Proses \textit{chunking} hanya dilakukan pada dokumen buku "Petunjuk Teknis Pencegahan dan Pengendalian Gangguan Mental Emosional" karena berukuran cukup besar yaitu sekitar 15.000 kata dibandingkan dengan dokumen lainnya yang kurang dari 6.000 kata.
+Proses \textit{chunking} hanya dilakukan pada dokumen buku "Petunjuk Teknis Pencegahan dan Pengendalian Gangguan Mental Emosional" karena berukuran cukup besar, yaitu sekitar 15.000 kata, dibandingkan dengan dokumen lainnya yang kurang dari 6.000 kata.
 Hal tersebut dilakukan mengingat LLM kesulitan untuk secara detail memahami isi dari dokumen tersebut.
 Dari proses \textit{chunking} tersebut menghasilkan total 17 potongan dokumen yang disimpan dalam format TXT.
 
-Sejumlah 17 potongan dokumen tersebut kemudian dimasukkan ke dalam LLM untuk diekstrak entitas dan relasi secara berurutan.
+Sejumlah 17 potongan dokumen tersebut kemudian dimasukkan ke dalam LLM untuk diekstrak entitas dan relasi yang terkandung secara berurutan.
 Dari proses ekstraksi tersebut menghasilkan 1.119 entitas dan 1.078 relasi secara keseluruhan.
 Tabel \ref{tab:knowledge-graph-stats} menunjukkan statistik \textit{Knowledge Graph} yang dihasilkan dari dokumen secara keseluruhan
 
@@ -89,7 +89,7 @@ Berdasarkan potongan dokumen tersebut, sistem ekstraksi menghasilkan beberapa tr
 
 \section{Hasil Pengembangan Arsitektur RAG Berbasis \textit{Knowledge Graph}}
 
-Sistem yang dikembangkan berupa AI \textit{service} berbasis arsitektur RAG dengan \textit{Knowledge Graph}.
+Sistem yang dikembangkan berupa AI \textit{service} berbasis arsitektur RAG-KG.
 Layanan AI tersebut disediakan dalam bentuk REST API sehingga memudahkan dalam integrasi dengan platform lain.
 Antarmuka aplikasi REST juga memudahkan dalam pengujian dan menyimulasikan sistem ketika diimplementasikan pada skenario penggunaan sebenarnya.
 Arsitektur dirancang untuk mendukung proses penjawaban pertanyaan yang memprioritaskan jawaban berbasis konteks.
@@ -233,11 +233,11 @@ Jawaban akhir secara langsung merefleksikan dan menyintesis informasi yang ada d
 
 \section{Hasil Pengembangan \textit{Dataset} Evaluasi Sitetis}
 \textit{Dataset} evaluasi diperoleh secara sintesis melalui proses \textit{prompting} pada model OpenAI o4-mini.
-Data yang dihasilkan berupa pasangan \textit{query} atau pertanyaan dan \textit{golden aswer} atau jawaban yang dianggap sebagai acuan jawaban yang diharapkan.
+Data yang dihasilkan berupa pasangan \textit{query} atau pertanyaan dan \textit{golden answer} atau jawaban yang dianggap sebagai acuan jawaban yang diharapkan.
 Selain itu dibubuhkan juga \textit{golden nodes} yang merujuk pada \textit{nodes} yang relevan untuk menjawab pertanyaan dan \texttt{query\_lable} untuk menandai jenis pertanyaan.
 Dari proses \textit{prompting} diperoleh hasil berupa 433 data evaluasi yang terdiri dari 266 \texttt{entity\_query} dan 167 \texttt{path\_query} seperti pada Tabel \ref{tab:evaluation-dataset-result}.
 Setiap pertanyaan tersebut dijamin memiliki referensi ke setidaknya satu \textit{node} dalam \textit{Knowledge Graph}.
-Contoh dataset sintesis yang dihasilkan dapat dilihat pada Gambar \ref{fig:evaluation-dataset-example}.
+Contoh \textit{dataset} sintesis yang dihasilkan dapat dilihat pada Gambar \ref{fig:evaluation-dataset-example}.
 
 \begin{table}[H]
 	\centering
@@ -271,17 +271,17 @@ Gambar \ref{fig:evaluation-dataset-example} menunjukkan contoh \textit{dataset} 
 Setiap data sintetis terdiri dari 4 \textit{field} yaitu \textit{query}, \textit{query lable}, \textit{golden nodes}, dan \textit{golden answer}.
 \textit{Query} merupakan pertanyaan yang jawabannya dapat diketahui dari informasi pada \textit{Knowledge Graph}.
 Setiap kueri memiliki kategori yaitu \textit{entity query} atau \textit{path query} yang terdapat pada \textit{query lable}.
-\textit{Golden nodes} berisi nodes yang diperlukan untuk menjawab pertanyaan pada \textit{field query}, sedangkan \textit{golden answer} merupakan jawaban yang dianggap benar untuk menjawab pertanyaan.
+\textit{Golden nodes} berisi \textit{nodes} yang diperlukan untuk menjawab pertanyaan pada \textit{field query}, sedangkan \textit{golden answer} merupakan jawaban yang dianggap benar untuk menjawab pertanyaan.
 
 Pertanyaan \textit{"Apa yang dimaksud Gangguan Mental Emosional (GME)?"} termasuk ke dalam \texttt{entity\_query} karena menanyakan definisi dari suatu entitas yaitu Gangguan Mental Emosional (GME).
 Jawaban dari pertanyaan tersebut seharusnya dapat ditemukan pada \textit{node} Gangguan Mental Emosional (GME) atau \textit{nodes} tetangganya.
-\textit{Golden nodes} yang digunakan sebagai konteks untuk menjawab pertanyaan ini adalah Gangguan Mental Emosional (GME) sesuai dengan pertanyaan yang spesifik menanyakan GME.
+\textit{Golden nodes} yang digunakan sebagai konteks untuk menjawab pertanyaan ini adalah Gangguan Mental Emosional (GME), sesuai dengan pertanyaan yang spesifik menanyakan GME.
 \textit{Golden answer} yang dihasilkan secara langsung menjawab pertanyaan sesuai konteks yang diberikan yaitu dengan memberikan definisi dari GME.
 
-Pada pertanyaan \textit{"Bagaimana CPMH memfasilitasi sivitas akademika Fakultas Psikologi UGM?"} terlihat ada dua entitas yang terkandung yaitu CPMH dan sivitas akademika Fakultas Psikologi.
+Pada pertanyaan \textit{"Bagaimana CPMH memfasilitasi sivitas akademika Fakultas Psikologi UGM?"} terlihat ada dua entitas yang terkandung, yaitu CPMH dan sivitas akademika Fakultas Psikologi.
 Pertanyaan tersebut termasuk dalam \texttt{path\_query} karena jawabannya seharusnya dapat diperoleh dengan melihat hubungan antar entitas yang terkandung di dalamnya.
-Untuk menjawab pertanyaan tersebut diperlukan dua \textit{nodes} yaitu CPMH dan Sivitas Akademika Fakultas Psikologi UGM seperti yang ada pada \textit{golden nodes} beserta \textit{nodes} lain yang berada di antara keduanya.
-Jawaban yang terdapat pada \textit{golden answer} menjawab pertanyaan dengan memberikan hubungan antara CPMH dan sivitas akademika Fakultas Psikologi UGM yaitu sebagai fasilitator dilengkapi dengan contohnya.
+Untuk menjawab pertanyaan tersebut diperlukan dua \textit{nodes}, yaitu CPMH dan Sivitas Akademika Fakultas Psikologi UGM seperti yang ada pada \textit{golden nodes} beserta \textit{nodes} lain yang berada di antara keduanya.
+Jawaban yang terdapat pada \textit{golden answer} menjawab pertanyaan dengan memberikan hubungan antara CPMH dan sivitas akademika Fakultas Psikologi UGM, yaitu sebagai fasilitator, dilengkapi dengan contohnya.
 
 \section{Analisis RAG Berbasis \textit{Knowledge Graph}}
 Evaluasi sistem dilakukan pada dua keluaran utama RAG berbasis \textit{Knowledge Graph} yaitu konteks yang dikeluarkan oleh komponen \textit{retrieval} dan jawaban final yang dihasilkan.
@@ -290,7 +290,7 @@ Jawaban final akan diukur kualitas keluaran LLM setelah diberikan konteks dari \
 Selain itu, dilakukan juga analisis kesalahan untuk mengidentifikasi penyebab kegagalan sistem dalam menjawab pertanyaan.
 
 Evaluasi dilakukan dengan konfigurasi perlakuan seperti pada Tabel \ref{tab:evaluation-treatment} dengan mengatur parameter pada \textit{body} API.
-Perlakuan dilakukan dengan mengatur dua parameter penentu algoritma yang digunakan oleh \textit{retriever} yaitu algoritma pencarian dan algoritma penelusuran graf.
+Perlakuan dilakukan dengan mengatur dua parameter penentu algoritma yang digunakan oleh \textit{retriever}, yaitu algoritma pencarian dan algoritma penelusuran graf.
 Setiap pertanyaan pada \textit{dataset} evaluasi akan ditanyakan pada sistem dengan konfigurasi parameter menurut masing-masing perlakuan.
 Naive RAG atau RAG berbasis potongan dokumen digunakan sebagai \textit{baseline} yang akan dibandingkan dengan RAG berbasis \textit{Knowledge Graph} terutama dalam hal kemampuannya menghasilkan jawaban final.
 
@@ -345,11 +345,11 @@ Latensi dari masing-masing perlakuan dapat dilihat pada Gambar \ref{fig:latency-
 	\label{fig:latency-per-treatment}
 \end{figure}
 
-Secara umum pendekatan Naive RAG memiliki rerata latensi yang lebih singkat yaitu 4,19 detik.
-Angka ini lebih unggul dari RAG berbasis \textit{Knowledge Graph} yang memiliki latensi lebih dari 6 detik.
-Hal tersebut dapat dipahami karena pada pendekatan berbasis \textit{Knowledge Graph} menggunakan pemanggilan LLM melalui API setidaknya sebanyak dua kali yaitu pada proses ekstraksi dan klasifikasi pada kueri serta pada tahap \textit{answer generation}.
+Secara umum pendekatan Naive RAG memiliki rerata latensi yang lebih singkat, yaitu 4,19 detik.
+Angka ini lebih unggul dari RAG-KG yang memiliki latensi lebih dari 6 detik.
+Hal tersebut dapat dipahami karena pada pendekatan berbasis \textit{Knowledge Graph} menggunakan pemanggilan LLM melalui API setidaknya sebanyak dua kali, yaitu pada proses ekstraksi dan klasifikasi pada kueri serta pada tahap \textit{answer generation}.
 Sebaliknya, Naive RAG hanya memerlukan satu kali pemanggilan LLM.
-Selain itu komponen \textit{retriever} pada Naive RAG hanya perlu mencari dan mengambil potongan-potongan dokumen berdasarkan kemiripan teks, yang merupakan operasi yang lebih cepat dan tidak memerlukan proses penelusuran kompleks.
+Selain itu, komponen \textit{retriever} pada Naive RAG hanya perlu mencari dan mengambil potongan-potongan dokumen berdasarkan kemiripan teks, yang merupakan operasi yang lebih cepat dan tidak memerlukan proses penelusuran kompleks.
 
 \textit{Knowledge} atau konteks yang dihasilkan oleh komponen \textit{retriever} akan dipakai sebagai konteks tambahan bagi LLM untuk menjawab pertanyaan.
 Rerata panjang konteks dari masing-masing perlakukan dapat dilihat pada Gambar \ref{fig:context-length-per-treatment}.
@@ -362,13 +362,13 @@ Rerata panjang konteks dari masing-masing perlakukan dapat dilihat pada Gambar \
 \end{figure}
 
 Dari Gambar \ref{fig:context-length-per-treatment} dapat dilihat pendekatan berbasis \textit{Knowledge Graph} secara umum memiliki panjang konteks yang lebih sedikit dari Naive RAG kecuali pada Vector Search.
-Pendekatan N-Shortest Path menghasilkan rerata panjang konteks paling sedikit sebanyak 1907,42 kemudian diikuti oleh Default (3144,55), Neighbor Expansion (4871,46), Naive RAG (4985,88), dan Ventor Search (6187,48).
+Pendekatan N-Shortest Path menghasilkan rerata panjang konteks paling sedikit sebesar 1907,42 kemudian diikuti oleh Default (3144,55), Neighbor Expansion (4871,46), Naive RAG (4985,88), dan Vector Search (6187,48).
 Hal tersebut dapat dipahami karena pendekatan dengan pencarian jalur menghasilkan lebih sedikit entitas dibandingkan dengan pendekatan ekspansi tetangga.
 Pendekatan Default terlihat sebagai titik tengah antara N-Shortest Path dan Neighbor Expansion karena secara dinamis menentukan algoritma penelusuran graf yang sesuai.
-Pendekatan berbasis vektor seperti pada Naive RAG dan Vector Search cenderung menghasilkan konteks yang lebih panjang karena menggunakan $k$ dokumen atau \textit{node} teratas berdasarkan kemiripan (dengan $k=5$ dalam kasus ini) yang secara inheren cenderung menarik lebih banyak teks dibandingkan pencarian dengan \textit{full-text search}.
+Pendekatan berbasis vektor seperti pada Naive RAG dan Vector Search cenderung menghasilkan konteks yang lebih panjang karena menggunakan $k$ dokumen atau \textit{node} teratas berdasarkan kemiripan (dengan $k=5$ dalam kasus ini), yang secara inheren cenderung menarik lebih banyak teks dibandingkan pencarian dengan \textit{full-text search}.
 
 Konteks yang lebih panjang secara intuitif akan membuat LLM memerlukan waktu pemrosesan lebih lama yang akan memengaruhi latensi respons sistem secara keseluruhan.
-Hal tersebut dapat dilihat pada Gambar \ref{fig:context-length-vs-latency} yang menunjukkan adanya hubungan positif.
+Hal tersebut dapat dilihat pada Gambar \ref{fig:context-length-vs-latency} yang menunjukkan adanya hubungan positif antara panjang konteks dengan latensi sistem.
 Semakin banyak konteks yang diberikan pada LLM akan menghasilkan latensi respons yang lebih lama.
 
 \begin{figure}[H]
@@ -380,10 +380,11 @@ Semakin banyak konteks yang diberikan pada LLM akan menghasilkan latensi respons
 \subsection{Analisis Kinerja Komponen \textit{Retriever}}
 
 Pengujian komponen \textit{retriever} dilakukan untuk mengukur kualitas informasi atau konteks yang diambil dari \textit{Knowledge Graph}.
-Informasi yang terdapat pada \textit{Knowledge Graph} berupa kumpulan \textit{nodes} yang dihubungkan oleh \textit{vertex} tertentu.
+Informasi yang terdapat pada KG adalah kumpulan subgraf yang terdiri atas \textit{nodes} yang dihubungkan oleh \textit{edge} tertentu.
+Kumpulan subgraf tersebut yang kemudian disusun dalam bentuk tekstual yang memiliki makna semantik.
 Alih-alih mengevaluasi konteks yang sudah berupa teks panjang yang memerlukan alat seperti LLM yang kurang pasti dalam menguji, pengujian dilakukan pada \textit{nodes} yang dihasilkan sehingga evaluasi lebih terkontrol dan akurat.
-Terdapat empat metrik uji untuk mengevaluasi kinerja komponen \textit{retriever} yaitu \textit{precision}, \textit{recall}, \textit{Mean Reciprocal Rank} (MRR), dan \textit{hit ratio}.
-Tabel \ref{tab:retrieval-evaluation-result} menunjukkan hasil pengujian empat metrik uji tersebut terhadap empat perlakukan pada Tabel \ref{tab:evaluation-treatment}.
+Terdapat empat metrik uji untuk mengevaluasi kinerja komponen \textit{retriever}, yaitu \textit{precision}, \textit{recall}, \textit{Mean Reciprocal Rank} (MRR), dan \textit{hit ratio}.
+Tabel \ref{tab:retrieval-evaluation-result} menunjukkan hasil pengujian empat metrik uji tersebut terhadap empat perlakukan RAG-KG pada Tabel \ref{tab:evaluation-treatment}.
 
 \begin{table}[H]
 	\centering
@@ -391,49 +392,57 @@ Tabel \ref{tab:retrieval-evaluation-result} menunjukkan hasil pengujian empat me
 	\label{tab:retrieval-evaluation-result}
 	\begin{tabular}{|l|c|c|c|c|}
 		\hline
-		\textbf{Perlakuan}          & \textbf{Precision} & \textbf{Recall} & \textbf{MRR} & \textbf{Hit Ratio} \\
+		\textbf{Perlakuan}          & \textbf{Precision} & \textbf{Recall} & \textbf{MRR}    & \textbf{Hit Ratio} \\
 		\hline \hline
-		\textbf{Default}            & 0,1530             & 0,8203          & 0,3758       & 0,9053             \\
+		\textbf{Default}            & \textbf{0,1530}    & 0,8203          & \textbf{0,3758} & 0,9053             \\
 		\hline
-		\textbf{Vector Search}      & 0,0603             & 0,5929          & 0,1737       & 0,6744             \\
+		\textbf{Vector Search}      & 0,0603             & 0,5929          & 0,1737          & 0,6744             \\
 		\hline
-		\textbf{Neighbor Expansion} & 0,1123             & 0,8868          & 0,3191       & 0,9584             \\
+		\textbf{Neighbor Expansion} & 0,1123             & \textbf{0,8868} & 0,3191          & \textbf{0,9584}    \\
 		\hline
-		\textbf{N-Shortest Path}    & 0,1245             & 0,5370          & 0,2788       & 0,6097             \\
+		\textbf{N-Shortest Path}    & 0,1245             & 0,5370          & 0,2788          & 0,6097             \\
 		\hline
 	\end{tabular}
 \end{table}
+\pagebreak
 
-Berdasarkan hasil pada Tabel \ref{tab:retrieval-evaluation-result}, terlihat bahwa nilai \textit{precision} tertinggi dicapai oleh perlakuan Default (0,1530), yang menunjukkan bahwa metode ini mampu menghasilkan proporsi konteks relevan tertinggi dibandingkan dengan total konteks yang diambil.
-Sebaliknya, metode Vector Search memiliki \textit{precision} terendah (0,0603), mengindikasikan banyaknya informasi yang tidak relevan diambil.
-Pada metrik \textit{Recall}, nilai tertinggi diperoleh oleh Neighbor Expansion (0,8868), yang berarti metode ini paling mampu mengambil informasi relevan sebanyak mungkin dari \textit{Knowledge Graph}.
-Namun, metode N-Shortest Path mencatat nilai \textit{recall} terendah (0,5370), menandakan adanya keterbatasan dalam menjangkau konteks relevan.
+Berdasarkan hasil pada Tabel \ref{tab:retrieval-evaluation-result}, terlihat bahwa nilai rerata \textit{precision} tertinggi dicapai oleh perlakuan Default (0,1530), menunjukkan bahwa dari subgraf yang dihasilkan metode ini memiliki relevansi paling tinggi.
+Meskipun demikian, nilai presisi 0,1530 masih tergolong rendah karena hanya sekitar 15.3\% dari total node yang diambil benar-benar relevan.
+Dengan kata lain, mayoritas \textit{node}, sekitar 85\% dari konteks yang dihasilkan oleh metode ini, merupakan \textit{noise}.
+Sebaliknya, metode Vector Search memiliki \textit{precision} terendah (0,0603), mengindikasikan lebih banyak informasi yang tidak relevan diambil secara proporsional.
 
-Metrik \textit{Mean Reciprocal Rank} tertinggi juga dicapai oleh Default (0,3758), mengindikasikan bahwa konteks relevan cenderung berada pada urutan teratas hasil pencarian.
-Sebaliknya, Vector Search menempati posisi terendah (0,1737) yang mengindikasikan konteks relevan sering berada pada urutan bawah.
-Untuk \textit{Hit Ratio}, nilai tertinggi kembali diraih oleh Neighbor Expansion (0,9584), menandakan bahwa metode ini hampir selalu berhasil menemukan setidaknya satu konteks relevan dalam hasil pencarian.
-Sebaliknya, N-Shortest Path mencatat \textit{hit ratio} terendah (0,6097), menunjukkan probabilitas yang lebih rendah untuk menemukan konteks relevan pada setiap kueri.
+Pada metrik \textit{Recall}, nilai tertinggi diperoleh oleh Neighbor Expansion (0,8868), yang berarti mampu mengambil hampir seluruh informasi relevan dari \textit{Knowledge Graph}.
+Di sisi lain, metode N-Shortest Path mencatat nilai \textit{recall} terendah (0,5370), menandakan adanya keterbatasan dalam menjangkau konteks relevan.
 
-Dari keempat metrik, terlihat adanya \textit{trade-off} antara \textit{precision} dan \textit{recall}.
-Metode Default unggul pada \textit{precision} dan MRR, namun \textit{recall}-nya lebih rendah dibandingkan Neighbor Expansion.
+Metrik \textit{Mean Reciprocal Rank} tertinggi juga dicapai oleh Default (0,3758), diikuti Neighbor Expansion (0,3191), mengindikasikan bahwa konteks yang relevan cenderung berada pada urutan atas hasil pencarian (sekitar urutan 2 hingga 3 secara rata-rata).
+Sebaliknya, Vector Search (0,1737) dan N-Shortest Path (0,2788) menempati posisi bawah  yang mengindikasikan konteks relevan sering berada pada urutan bawah (sekitar urutan 5 sampai 6 secara rata-rata).
+Untuk \textit{Hit Ratio}, nilai tertinggi diraih oleh Neighbor Expansion (0,9584), diikuti Default (0,9053), menandakan bahwa metode tersebut hampir selalu berhasil menemukan setidaknya satu konteks relevan dalam hasil pencarian.
+Sebaliknya, N-Shortest Path dan Vector Search mencatat \textit{hit ratio} yang rendah 0,6097 dan 0,6744, menunjukkan probabilitas yang lebih rendah untuk menemukan konteks relevan pada setiap kueri.
+
+Dari keempat metrik uji \textit{retriever}, terlihat perlakuan Neighbor Expansion dan Default memperoleh masing-masing dua metrik dengan nilai tertinggi.
+Metode Default unggul pada \textit{precision} dan MRR, sedangkan Neighbor Expansion unggul pada \textit{recall} dan \textit{hit ratio}.
 Hal ini mengindikasikan bahwa Default lebih selektif dalam mengambil konteks, sedangkan Neighbor Expansion lebih agresif dan luas cakupannya, sehingga \textit{recall}-nya tinggi tetapi precision-nya moderat.
-Vector Search cenderung kurang optimal di semua metrik, menunjukkan bahwa pendekatan berbasis vektor saja kurang efektif jika tidak dipadukan dengan strategi traversal pada \textit{Knowledge Graph}.
-Sementara itu, N-Shortest Path memberikan hasil yang seimbang namun tidak menonjol pada metrik \textit{precision}, tetapi kurang optimal untuk metrik lainnya.
-Secara keseluruhan, Neighbor Expansion menjadi metode yang paling konsisten untuk memaksimalkan jangkauan informasi (\textit{recall} dan \textit{hit ratio} tinggi), sedangkan Default unggul dalam mempertahankan relevansi pada hasil teratas (\textit{precision} dan MRR tinggi).
+Neighbor Expansion cenderung menghasilkan data yang lebih lengkap tetapi mengandung lebih banyak noise dibandingkan dengan Default.
+Hal tersebut dapat dipahami karena metode ini mengambil \textit{node} yang relevan dan \textit{nodes} tetangganya yang jumlahnya cukup banyak.
+Di sisi lain, Default memilih algoritma penelusuran graf secara adaptif, sesuai dengan klasifikasi kueri, yang lebih sesuai dengan kebutuhan meskipun kalah dalam hal kelengkapan informasi.
+Vector Search cenderung kurang optimal di semua metrik, menunjukkan bahwa pendekatan berbasis vektor saja kurang efektif dalam melakukan pencarian dalam graf.
+Sementara itu, N-Shortest Path memberikan hasil yang kurang optimal untuk menangani sebagian besar kueri.
+Secara keseluruhan, Neighbor Expansion dan Default menjadi opsi utama \textit{retriever} dalam menghadapi mayoritas pertanyaan.
+
 
 \subsection{Analisis Respons Final}
 Pengujian respons final dilakukan untuk mengukur kualitas jawaban akhir yang dihasilkan oleh RAG berbasis \textit{Knowledge Graph} setelah diberikan konteks tambahan oleh komponen \textit{retriever}.
-Informasi berupa subgraf yang terdiri dari kumpulan \textit{nodes} dan \textit{edges} yang terhubung ditransformasikan ke dalam bentuk tekstual yang lebih makna semantik.
+Informasi berupa subgraf yang terdiri dari kumpulan \textit{nodes} dan \textit{edges} yang terhubung ditransformasikan ke dalam bentuk tekstual yang lebih bermakna secara semantik.
 Bentuk tekstual tersebut kemudian dijadikan sebagai konteks untuk memberikan informasi tambahan dalam menghasilkan jawaban.
-Jawaban akhir dievaluasi dengan memperhatikan empat parameter yaitu pertanyaan, jawaban yang dihasilkan, konteks, dan jawaban seharusnya sebagai \textit{ground truth}.
+Jawaban akhir dievaluasi dengan memperhatikan empat parameter, yaitu pertanyaan, jawaban yang dihasilkan, konteks, dan jawaban seharusnya sebagai \textit{ground truth}.
 
-Evaluasi dilakukan dengan pustaka \textit{framework} RAGAS (Retrieval-Augmented Generation Assessment) yang merupakan evaluator RAG dengan salah satu alat ujinya menggunakan LLM.
+Evaluasi dilakukan dengan \textit{framework} RAGAS (Retrieval-Augmented Generation Assessment) yang merupakan evaluator RAG dengan salah satu alat ujinya menggunakan LLM.
 Metrik uji untuk mengevaluasi jawaban adalah \textit{similarity}, \textit{correctness}, \textit{relevancy}, dan \textit{faithfulness} yang merupakan metrik bawaan RAGAS.
-Tabel \ref{tab:final-answer-evaluation-result} menunjukkan hasil evaluasi RAGAS pada masing-masing perlakukan termasuk dengan \textit{baseline Naive} RAG.
+Tabel \ref{tab:final-answer-evaluation-result} menunjukkan hasil evaluasi RAGAS pada masing-masing perlakukan, termasuk dengan \textit{baseline} Naive RAG.
 
 \begin{table}[H]
 	\centering
-	\caption{Hasil evaluasi jawaban final pada RAG berbasis \textit{Knowledge Graph} untuk masing-masing perlakuan dan dibandingkan dengan \textit{baseline naive} RAG}
+	\caption{Hasil evaluasi jawaban final pada RAG berbasis \textit{Knowledge Graph} untuk masing-masing perlakuan dan dibandingkan dengan \textit{baseline} Naive RAG}
 	\label{tab:final-answer-evaluation-result}
 	\begin{tabular}{|l|c|c|c|c|}
 		\hline
@@ -441,11 +450,11 @@ Tabel \ref{tab:final-answer-evaluation-result} menunjukkan hasil evaluasi RAGAS 
 		\hline \hline
 		\textbf{Naive RAG}          & 0,9048              & 0,3391               & 0,6996             & 0,8993                \\
 		\hline
-		\textbf{Default}            & 0,9242              & 0,4155               & 0,8624             & 0,9435                \\
+		\textbf{Default}            & 0,9242              & 0,4155               & 0,8624             & \textbf{0,9435}       \\
 		\hline
 		\textbf{Vector Search}      & 0,9115              & 0,3895               & 0,7387             & 0,8902                \\
 		\hline
-		\textbf{Neighbor Expansion} & 0,9248              & 0,4246               & 0,8723             & 0,9428                \\
+		\textbf{Neighbor Expansion} & \textbf{0,9248}     & \textbf{0,4246}      & \textbf{0,8723}    & 0,9428                \\
 		\hline
 		\textbf{N-Shortest Path}    & 0,9033              & 0,3936               & 0,7900             & 0,4614                \\
 		\hline
@@ -457,25 +466,25 @@ Hasil menunjukkan bahwa semua perlakuan, termasuk \textit{baseline} Naive RAG, m
 Nilai tertinggi dicapai oleh perlakuan Neighbor Expansion (0,9248) dan Default (0,9242), yang mengindikasikan bahwa perluasan konteks berbasis \textit{Knowledge Graph} secara umum sama efektifnya dalam menjaga kesamaan makna dibandingkan dengan \textit{baseline}.
 
 Metrik \textit{correctness} menilai kebenaran faktual dari jawaban yang dihasilkan.
-Hasil menunjukkan peningkatan hingga sebesar 8,55\% pada perlakuan yang memanfaatkan \textit{Knowledge Graph} traversal khususnya pada perlakikan Neighbor Expansion (0,4246) dan  Default (0,4155) dibanding \textit{baseline} Naive RAG (0.3391).
+Hasil menunjukkan peningkatan hingga sebesar 8,55\% pada perlakuan yang memanfaatkan \textit{Knowledge Graph} khususnya pada perlakuan Neighbor Expansion (0,4246) dan  Default (0,4155) dibanding \textit{baseline} Naive RAG (0,3391).
 Hal ini mengindikasikan bahwa penelusuran graf yang tepat dapat membantu sistem menemukan konteks yang lebih faktual.
 
 Relevansi menunjukkan sejauh mana jawaban sesuai dengan pertanyaan yang diajukan.
 Neighbor Expansion (0,8723) dan Default (0,8624) lebih unggul sekitar 17\% dari Naive RAG (0,6996) pada metrik ini.
-Peningkatan tersebut menunjukkan bahwa konteks yang dihasilkan dari \textit{Knowledge Graph} tidak hanya  jawaban lebih faktual, tetapi juga lebih tepat sasaran.
+Peningkatan tersebut menunjukkan bahwa konteks yang dihasilkan dari \textit{Knowledge Graph} tidak hanya memberikan jawaban yang lebih faktual, tetapi juga lebih tepat sasaran.
 Konteks yang lebih tepat sasaran akan membuat jawaban yang dihasilkan lebih relevan dengan pertanyaan.
 
 \textit{Faithfulness} mengukur kesesuaian informasi dalam jawaban dengan konteks yang diberikan.
 Hampir semua metode memiliki nilai di atas 0,89, kecuali N-Shortest Path yang sangat rendah (0,4614), menandakan bahwa metode ini sering menghasilkan jawaban yang tidak konsisten atau tidak sepenuhnya didukung oleh konteks.
 Nilai tinggi pada Default (0,9435) dan Neighbor Expansion (0,9428) menunjukkan bahwa strategi ini paling konsisten dalam menggunakan informasi yang tersedia.
-RAG \textit{Knowledge Graph} dengan strategi tersebut tetap lebih tinggi sekitar 4\% dibandingkan dengan \textit{baseline} Naive RAG menghasilkan skor (0,8993).
+RAG-KG dengan strategi tersebut tetap lebih tinggi sekitar 4\% dibandingkan dengan \textit{baseline} Naive RAG menghasilkan skor (0,8993).
 Ini adalah bukti bahwa konteks yang diperkaya oleh \textit{Knowledge Graph} secara efektif mengurangi LLM dari halusinasi atau mengarang informasi.
 
 Hasil evaluasi jawaban final secara umum menunjukkan bahwa penggunaan \textit{Knowledge Graph} yang tepat dapat meningkatkan kualitas jawaban akhir secara signifikan.
 Neighbor Expansion menjadi strategi terbaik karena konsisten unggul di semua metrik kecuali \textit{faithfulness}, yang tetap sangat tinggi.
 Perlakuan Default juga menjadi alternatif yang andal dengan kinerja mendekati Neighbor Expansion tanpa konfigurasi khusus.
 Penggunaan metode pencarian Vector Search secara langsung tidak mampu mengungguli metode pencarian dengan \textit{full-text} dalam hal relevansi dan \textit{correctness}.
-Sementara itu, penggunaan N-Shortest Path dalam melakukan penelusuran graf secara umum berpotensi menghasilkan jawaban yang tidak optimal ditandai dengan skor \textit{faithfulness} yang sangat rendah bahkan lebih rendah dibandingkan dengan \textit{baseline}.
+Sementara itu, penggunaan N-Shortest Path dalam melakukan penelusuran graf secara umum berpotensi menghasilkan jawaban yang tidak optimal ditandai dengan skor \textit{faithfulness} yang sangat rendah, bahkan lebih rendah dibandingkan dengan \textit{baseline}.
 
 \subsection{Analisis Kesalahan dan Studi Kasus}
 
@@ -522,7 +531,7 @@ Jawaban tersebut menunjukkan bahwa meskipun \textit{retriever} memberikan kontek
 Untuk pertanyaan yang spesifik menyebutkan suatu istilah atau pun menanyakan definisi mengenai suatu hal, pencarian menggunakan vektor terkadang kesulitan untuk menghasilkan hasil yang dimaksud.
 Hal serupa juga dapat dilihat pada strategi Vector Search pada \textit{Knowledge Graph}.
 Vector Search menunjukkan jawaban yang mengaku tidak menemukan informasi spesifik dan malah memaparkan topik terkait keluhan fisik, faktor biologis, dan tanda bahaya kecenderungan bunuh diri, yang hanya sedikit relevan dengan kueri.
-Hal tersebut mengindikasikan representasi vektor dari data terkadang mengalami kesulitan untuk menangkap makna semantik dari kueri yang berbentuk definisi singkat atau mengandung istilah khusus.
+Hal tersebut mengindikasikan representasi vektor dari data terkadang mengalami kesulitan untuk menangkap makna semantik dari kueri yang berbentuk definisi singkat atau mengandung istilah khusus sehingga sistem tidak dapat menemukan entitas dan relasi yang berkaitan dengan kueri.
 
 Sebaliknya, Default dan Neighbor Expansion berhasil mendekati topik yang benar, menyebutkan bahwa gejala psikotik dapat memengaruhi keinginan bunuh diri dan memberikan contoh seperti mendengar suara-suara.
 Namun, kedua metode ini cenderung menggunakan istilah "OKBD" atau "Orang dengan Kondisi Biologis dan Diagnosa" yang tidak disebutkan dalam jawaban seharusnya, sehingga relevansi dan kesesuaian makna hanya sebagian terpenuhi.
