@@ -48,13 +48,13 @@ Pada umumnya, arsitektur RAG merepresentasikan basis pengetahuannya dalam bentuk
 Kumpulan dokumen yang relevan diambil oleh sistem sebagai konteks tambahan dalam menjawab pertanyaan.
 
 Meskipun efektif dalam mengurangi halusinasi, arsitektur RAG konvensional ini memiliki keterbatasan fundamental yang berasal dari representasi datanya yang datar (\textit{flat}).
-Struktur ini, menghadapi kesulitan saat sistem mencoba mengambil informasi berdasarkan hubungan antar entitas.
+Struktur ini menghadapi kesulitan saat sistem mencoba mengambil informasi berdasarkan hubungan antar entitas.
 Sistem ini seringkali kurang memiliki \textit{ contextual awareness} yang dibutuhkan untuk menjaga koherensi di berbagai entitas dan interelasinya, sehingga respons yang dihasilkan mungkin tidak sepenuhnya menjawab pertanyaan pengguna.
 Sebagai contoh, dalam domain kesehatan mental, sebuah sistem mungkin dapat mengambil potongan teks tentang "Hiperaktivitas" dan potongan lain tentang "Gangguan Mental Emosional", tetapi ia kesulitan untuk secara konsisten memanfaatkan hubungan eksplisit bahwa yang satu adalah gejala untuk yang lain karena informasi tersebut berada dalam dokumen yang terpisah.
 Akibatnya, jawaban yang dihasilkan bisa jadi terfragmentasi dan gagal menyajikan jawaban yang koheren.
 
 Untuk mengatasi limitasi tersebut, penelitian terbaru mulai mengusulkan pendekatan graph-based RAG, yang mengorganisir basis pengetahuan ke dalam sebuah struktur graf.
-Dalam model ini, informasi direpresentasikan sebagai\textit{node} yang melambangkan entitas (misalnya, gangguan, gejala, obat) dan \textit{edge} yang menandai hubungan semantik di antara mereka \cite{Chen2020ReviewKnowldgeReasoningOverKnowledgeGraph}.
+Dalam model ini, informasi direpresentasikan sebagai \textit{node} yang melambangkan entitas (misalnya, gangguan, gejala, obat) dan \textit{edge} yang menandai hubungan semantik di antara mereka \cite{Chen2020ReviewKnowldgeReasoningOverKnowledgeGraph}.
 Sebagai contoh, "Depresi Mayor" memiliki gejala "Kehilangan Minat", "Terapi Kognitif Perilaku" digunakan untuk mengobati "Gangguan Panik".
 Representasi terstruktur ini, yang dikenal sebagai \textit{Knowledge Graph} (KG), memungkinkan pencarian informasi yang lebih presisi, penarikan kesimpulan (\textit{reasoning}), dan pemahaman konteks yang lebih luas dan mendalam \cite{Chen2020ReviewKnowldgeReasoningOverKnowledgeGraph}.
 Adopsi basis pengetahuan berupa KG ke dalam RAG berpotensi meningkatkan kemampuan \textit{chatbot} kesehatan mental untuk memberikan penjelasan yang kaya, jawaban yang akurat atas pertanyaan-pertanyaan spesifik, dan bahkan membantu pengguna memahami hubungan antara berbagai aspek kondisi mental mereka.
@@ -64,7 +64,7 @@ KE adalah proses mengidentifikasi dan mengekstrak informasi terstruktur (entitas
 Dalam domain kesehatan mental, proses ini dihadapkan pada tantangan seperti variasi terminologi, sinonim, polisemi, dan kebutuhan krusial akan akurasi serta validitas informasi.
 Ekstraksi yang tidak optimal akan menghasilkan KG yang tidak lengkap, tidak akurat, atau bias, yang pada akhirnya akan menurunkan kualitas informasi yang dapat diakses oleh sistem RAG.
 
-Selanjutnya, \textit{Knowledge Retrieval}, yaitu proses untuk menemukan informasi yang paling relevan dengan kueri pengguna untuk diumpankan ke model generatif dalam RAG juga merupakan aspek krusial.
+Selanjutnya, \textit{Knowledge Retrieval}, yaitu proses untuk menemukan informasi yang paling relevan dengan kueri pengguna untuk diumpankan ke model generatif dalam RAG, juga merupakan aspek krusial.
 Ketika pengguna berinteraksi dengan \textit{chatbot} menggunakan bahasa alami, \textit{retriever} harus mampu menyediakan informasi dari basis data yang dimiliki agar cukup untuk menjawab pertanyaan.
 Proses ini harus mampu menangani ambiguitas bahasa, memahami intensi pengguna secara akurat, dan mengambil informasi yang relevan tanpa membebani model generatif dengan informasi yang berlebihan atau tidak perlu.
 Metode \textit{retrieval} yang suboptimal akan menghasilkan respons yang kurang relevan, tidak lengkap, atau bahkan menyesatkan \cite{Edge2025LocalGlobalGraphRAG}.

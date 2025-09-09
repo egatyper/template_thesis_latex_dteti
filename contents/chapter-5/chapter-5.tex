@@ -7,15 +7,15 @@ Hasil evaluasi terhadap beberapa metode pengambilan konteks dari \textit{Knowled
       \item Arsitektur RAG Berbasis \textit{Knowledge Graph} terbukti mampu meningkatkan akurasi dan konsistensi respons.
             Penelitian ini berhasil merancang dan mengimplementasikan arsitektur \textit{chatbot} yang mengintegrasikan RAG dengan KG.
             Hasil evaluasi menunjukkan bahwa arsitektur ini secara konsisten mengungguli pendekatan Naive RAG, yang dibuktikan dengan peningkatan \textlatin{correctness} sebesar 8\%, \textit{relevancy} sebesar 17\%, dan \textit{faithfulness} sebesar 4\%.
-            Keunggulan tersebut menegaskan bahwa arsitektur yang diusulkan mampu menghasilkan respons yang lebih akurat secara faktual, relevan, dan konsisten dengan basis pengetahuannya, sehingga meminimalkan masalah fundamental terkait risiko misinformasi.
+            Paningkatan ini menegaskan bahwa integrasi struktur graf mampu menghasilkan respons yang lebih akurat secara faktual, relevan, dan konsisten dengan basis pengetahuannya, sehingga meminimalkan masalah fundamental terkait risiko misinformasi.
 
-      \item Metode \textit{Knowledge Extraction} berhasil mengonstruksi KG yang efektif untuk proses \textit{retrieval}.
-            Struktur relasi yang terbentuk melalui proses ekstraksi terbukti kaya dan terorganisir, sehingga memungkinkan proses penelusuran informasi yang lebih menyeluruh.
-            Hal ini tercermin dari performa \textit{retrieval} yang unggul pada strategi berbasis penelusuran graf, menunjukkan bahwa fondasi pengetahuan yang dibangun cukup kuat untuk mendukung pemanggilan informasi secara komprehensif.
+      \item Metode \textit{Knowledge Extraction} yang dirancang berhasil mengonstruksi sebuah \textit{Knowledge Graph} yang koheren dan kaya, terdiri dari 1.119 entitas unik dan 1.078 relasi yang diekstraksi dari korpus literatur.
+            Efektivitas proses KE dalam memetakan hubungan kompleks dari literatur tervalidasi secara fungsional, yang dibuktikan oleh nilai \textit{recall} (0,8868) dan \textit{hit ratio} (0,9584) yang tinggi pada proses retrieval.
+            Hal ini secara tidak langsung mengindikasikan bahwa struktur relasi yang diekstraksi cukup logis dan terorganisir dengan baik untuk memungkinkan penelusuran informasi yang mendalam dan menyeluruh.
 
-      \item Strategi \textit{Neighbor Expansion} menjadi pendekatan \textit{retrieval} paling efektif.
-            Dari berbagai strategi yang diuji, metode \textit{Neighbor Expansion} secara konsisten menghasilkan kualitas jawaban terbaik meskipun terdapat \textit{trade-off} antara presisi dan \textit{recall}.
-            Pendekatan ini mampu menjangkau informasi yang lebih luas tanpa mengorbankan relevansi jawaban akhir, sekaligus menegaskan keunggulan penelusuran berbasis struktur graf dibandingkan pencarian berbasis vektor murni.
+      \item Metode \textit{retrieval} Default dan \textit{Neighbor Expansion} menunjukkan performa paling konsisten dan unggul di antara seluruh strategi RAG-KG yang diuji.
+            Keduanya terbukti mampu menemukan informasi relevan dari \textit{Knowledge Graph} dan menghasilkan kualitas jawaban yang relatif lebih baik.
+            Oleh karena itu, penelitian ini merekomendasikan kedua pendekatan tersebut sebagai pilihan utama untuk \textit{Knowledge Retrieval} dalam arsitektur RAG berbasis KG.
 \end{enumerate}
 
 Secara keseluruhan, penelitian ini menegaskan bahwa penggunaan \textit{Knowledge Graph} sebagai fondasi pengetahuan dalam RAG dapat meningkatkan relevansi, akurasi, dan faktualitas respons \textit{chatbot}.

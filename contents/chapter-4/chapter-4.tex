@@ -290,9 +290,9 @@ Jawaban final akan diukur kualitas keluaran LLM setelah diberikan konteks dari \
 Selain itu, dilakukan juga analisis kesalahan untuk mengidentifikasi penyebab kegagalan sistem dalam menjawab pertanyaan.
 
 Evaluasi dilakukan dengan konfigurasi perlakuan seperti pada Tabel \ref{tab:evaluation-treatment} dengan mengatur parameter pada \textit{body} API.
-Perlakuan dilakukan dengan mengatur dua parameter penentu algoritma yang digunakan oleh \textit{retriever}, yaitu algoritma pencarian dan algoritma penelusuran graf.
+Perlakuan dilakukan dengan mengatur parameter \texttt{search\_method} dan \texttt{graph\_traversal} untuk mengatur algoritma pencarian dan penelusuran graf yang digunakan oleh \textit{retriever}.
 Setiap pertanyaan pada \textit{dataset} evaluasi akan ditanyakan pada sistem dengan konfigurasi parameter menurut masing-masing perlakuan.
-Naive RAG atau RAG berbasis potongan dokumen digunakan sebagai \textit{baseline} yang akan dibandingkan dengan RAG berbasis \textit{Knowledge Graph} terutama dalam hal kemampuannya menghasilkan jawaban final.
+Naive RAG atau RAG berbasis potongan dokumen digunakan sebagai \textit{baseline} yang akan dibandingkan dengan RAG berbasis \textit{Knowledge Graph}, terutama dalam hal kemampuannya menghasilkan jawaban final.
 
 \begin{table}[H]
 	\centering
@@ -300,35 +300,37 @@ Naive RAG atau RAG berbasis potongan dokumen digunakan sebagai \textit{baseline}
 	\label{tab:evaluation-treatment}
 	\begin{tabular}{|l|p{9cm}|}
 		\hline
-		\textbf{Perlakuan}            & \textbf{Keterangan}                                                    \\
+		\textbf{Perlakuan}            & \textbf{Keterangan}                                 \\
 		\hline \hline
 		\textbf{Naive RAG (Baseline)} &
 		RAG dengan basis \textit{document chunk} menggunakan pencarian vektor sebagai \textit{retriever}.
 		\textit{Document chunk} berukuran 1.200 karakter dengan overlap 400 karakter.
-		Perlakuan ini digunakan sebagai \textit{baseline} evaluasi.                                            \\
+		Perlakuan ini digunakan sebagai \textit{baseline} evaluasi.                         \\
 		\hline
 		\textbf{Default}              &
 		\textit{Search method}: auto, \textit{graph traversal}: auto.
 
 		Sistem otomatis memilih metode pencarian terbaik.
 		Awalnya mencoba \textit{full-text search}, jika tidak ditemukan hasil, baru menggunakan pencarian vektor.
-		Algoritma penelusuran graf ditentukan oleh modul klasifikasi kueri secara otomatis.                    \\
+		Algoritma penelusuran graf ditentukan oleh modul klasifikasi kueri secara otomatis. \\
 		\hline
 		\textbf{Vector Search}        &
 		\textit{Search method}: vector, \textit{graph traversal}: auto.
 
 		Menggunakan pencarian node berbasis vektor (HNSW) dengan \textit{cosine similarity}.
-		Algoritma penelusuran graf tetap otomatis.                                                             \\
+		Algoritma penelusuran graf ditentukan oleh modul klasifikasi kueri secara otomatis. \\
 		\hline
 		\textbf{Neighbor Expansion}   &
 		\textit{Search method}: auto, \textit{graph traversal}: neighbor\_expansion.
 
-		Sistem menelusuri graf dengan algoritma \textit{one-hop neighbor expansion}, pencarian tetap otomatis. \\
+		Sistem menelusuri graf dengan algoritma \textit{one-hop neighbor expansion}.
+		Algoritma pencarian ditentukan secara otomatis.                                     \\
 		\hline
 		\textbf{N-Shortest Path}      &
 		\textit{Search method}: auto, \textit{graph traversal}: n-shortest\_path.
 
-		Sistem menelusuri graf menggunakan algoritma \textit{n-shortest path}, pencarian tetap otomatis.       \\
+		Sistem menelusuri graf menggunakan algoritma \textit{n-shortest path}.
+		Algoritma pencarian ditentukan secara otomatis.                                     \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -347,7 +349,7 @@ Latensi dari masing-masing perlakuan dapat dilihat pada Gambar \ref{fig:latency-
 
 Secara umum pendekatan Naive RAG memiliki rerata latensi yang lebih singkat, yaitu 4,19 detik.
 Angka ini lebih unggul dari RAG-KG yang memiliki latensi lebih dari 6 detik.
-Hal tersebut dapat dipahami karena pada pendekatan berbasis \textit{Knowledge Graph} menggunakan pemanggilan LLM melalui API setidaknya sebanyak dua kali, yaitu pada proses ekstraksi dan klasifikasi pada kueri serta pada tahap \textit{answer generation}.
+Hal tersebut dapat dipahami karena pendekatan berbasis \textit{Knowledge Graph} menggunakan pemanggilan LLM melalui API setidaknya sebanyak dua kali, yaitu pada proses ekstraksi dan klasifikasi pada kueri serta pada tahap \textit{answer generation}.
 Sebaliknya, Naive RAG hanya memerlukan satu kali pemanggilan LLM.
 Selain itu, komponen \textit{retriever} pada Naive RAG hanya perlu mencari dan mengambil potongan-potongan dokumen berdasarkan kemiripan teks, yang merupakan operasi yang lebih cepat dan tidak memerlukan proses penelusuran kompleks.
 
@@ -365,7 +367,7 @@ Dari Gambar \ref{fig:context-length-per-treatment} dapat dilihat pendekatan berb
 Pendekatan N-Shortest Path menghasilkan rerata panjang konteks paling sedikit sebesar 1907,42 kemudian diikuti oleh Default (3144,55), Neighbor Expansion (4871,46), Naive RAG (4985,88), dan Vector Search (6187,48).
 Hal tersebut dapat dipahami karena pendekatan dengan pencarian jalur menghasilkan lebih sedikit entitas dibandingkan dengan pendekatan ekspansi tetangga.
 Pendekatan Default terlihat sebagai titik tengah antara N-Shortest Path dan Neighbor Expansion karena secara dinamis menentukan algoritma penelusuran graf yang sesuai.
-Pendekatan berbasis vektor seperti pada Naive RAG dan Vector Search cenderung menghasilkan konteks yang lebih panjang karena menggunakan $k$ dokumen atau \textit{node} teratas berdasarkan kemiripan (dengan $k=5$ dalam kasus ini), yang secara inheren cenderung menarik lebih banyak teks dibandingkan pencarian dengan \textit{full-text search}.
+Di sisi lain, pendekatan berbasis vektor seperti pada Naive RAG dan Vector Search cenderung menghasilkan konteks yang lebih panjang karena menggunakan $k$ dokumen atau \textit{node} teratas berdasarkan kemiripan (dengan $k=5$ dalam kasus ini), yang secara inheren cenderung menarik lebih banyak teks dibandingkan pencarian dengan \textit{full-text search}.
 
 Konteks yang lebih panjang secara intuitif akan membuat LLM memerlukan waktu pemrosesan lebih lama yang akan memengaruhi latensi respons sistem secara keseluruhan.
 Hal tersebut dapat dilihat pada Gambar \ref{fig:context-length-vs-latency} yang menunjukkan adanya hubungan positif antara panjang konteks dengan latensi sistem.
@@ -382,7 +384,7 @@ Semakin banyak konteks yang diberikan pada LLM akan menghasilkan latensi respons
 Pengujian komponen \textit{retriever} dilakukan untuk mengukur kualitas informasi atau konteks yang diambil dari \textit{Knowledge Graph}.
 Informasi yang terdapat pada KG adalah kumpulan subgraf yang terdiri atas \textit{nodes} yang dihubungkan oleh \textit{edge} tertentu.
 Kumpulan subgraf tersebut yang kemudian disusun dalam bentuk tekstual yang memiliki makna semantik.
-Alih-alih mengevaluasi konteks yang sudah berupa teks panjang yang memerlukan alat seperti LLM yang kurang pasti dalam menguji, pengujian dilakukan pada \textit{nodes} yang dihasilkan sehingga evaluasi lebih terkontrol dan akurat.
+Alih-alih mengevaluasi konteks yang sudah berupa teks panjang yang memerlukan alat yang dapat memahami bahasa alami seperti LLM yang kurang pasti dalam menguji, pengujian dilakukan pada \textit{nodes} yang dihasilkan sehingga evaluasi lebih terkontrol dan akurat.
 Terdapat empat metrik uji untuk mengevaluasi kinerja komponen \textit{retriever}, yaitu \textit{precision}, \textit{recall}, \textit{Mean Reciprocal Rank} (MRR), dan \textit{hit ratio}.
 Tabel \ref{tab:retrieval-evaluation-result} menunjukkan hasil pengujian empat metrik uji tersebut terhadap empat perlakukan RAG-KG pada Tabel \ref{tab:evaluation-treatment}.
 
@@ -406,20 +408,21 @@ Tabel \ref{tab:retrieval-evaluation-result} menunjukkan hasil pengujian empat me
 \end{table}
 \pagebreak
 
-Berdasarkan hasil pada Tabel \ref{tab:retrieval-evaluation-result}, terlihat bahwa nilai rerata \textit{precision} tertinggi dicapai oleh perlakuan Default (0,1530), menunjukkan bahwa dari subgraf yang dihasilkan metode ini memiliki relevansi paling tinggi.
-Meskipun demikian, nilai presisi 0,1530 masih tergolong rendah karena hanya sekitar 15.3\% dari total node yang diambil benar-benar relevan.
-Dengan kata lain, mayoritas \textit{node}, sekitar 85\% dari konteks yang dihasilkan oleh metode ini, merupakan \textit{noise}.
-Sebaliknya, metode Vector Search memiliki \textit{precision} terendah (0,0603), mengindikasikan lebih banyak informasi yang tidak relevan diambil secara proporsional.
+Berdasarkan hasil pada Tabel \ref{tab:retrieval-evaluation-result}, terlihat bahwa nilai rerata \textit{precision} tertinggi dicapai oleh perlakuan Default (0,1530), menunjukkan bahwa dari subgraf yang dihasilkan, metode ini memiliki relevansi paling tinggi.
+Meskipun demikian, nilai presisi 0,1530 masih tergolong rendah karena hanya sekitar 15.3\% dari total \textit{node} yang diambil benar-benar relevan.
+Dengan kata lain, mayoritas \textit{node}, yaitu sekitar 85\% dari konteks yang dihasilkan oleh metode ini merupakan \textit{noise}.
+Metode Vector Search memiliki \textit{precision} terendah (0,0603), mengindikasikan lebih banyak informasi yang tidak relevan diambil secara proporsional.
 
-Pada metrik \textit{Recall}, nilai tertinggi diperoleh oleh Neighbor Expansion (0,8868), yang berarti mampu mengambil hampir seluruh informasi relevan dari \textit{Knowledge Graph}.
-Di sisi lain, metode N-Shortest Path mencatat nilai \textit{recall} terendah (0,5370), menandakan adanya keterbatasan dalam menjangkau konteks relevan.
+Pada metrik \textit{Recall}, hasil yang sangat baik diperoleh oleh Neighbor Expansion (0,8868) dan Default (0,8203), yang berarti metode ini mampu mengambil hampir seluruh informasi relevan dari \textit{Knowledge Graph}.
+Di sisi lain, metode N-Shortest Path dan Vector Search mencatat nilai \textit{recall} yang relatif rendah (0,5370 dan 0,5929), menandakan adanya keterbatasan dalam menjangkau konteks relevan.
 
-Metrik \textit{Mean Reciprocal Rank} tertinggi juga dicapai oleh Default (0,3758), diikuti Neighbor Expansion (0,3191), mengindikasikan bahwa konteks yang relevan cenderung berada pada urutan atas hasil pencarian (sekitar urutan 2 hingga 3 secara rata-rata).
-Sebaliknya, Vector Search (0,1737) dan N-Shortest Path (0,2788) menempati posisi bawah  yang mengindikasikan konteks relevan sering berada pada urutan bawah (sekitar urutan 5 sampai 6 secara rata-rata).
+
+Metrik \textit{Mean Reciprocal Rank} tertinggi dicapai oleh Default (0,3758) dan diikuti Neighbor Expansion (0,3191), mengindikasikan bahwa konteks yang relevan cenderung berada pada urutan atas hasil pencarian (urutan 2 hingga 3 secara rata-rata).
+Sebaliknya, Vector Search (0,1737) dan N-Shortest Path (0,2788) menempati posisi bawah  yang mengindikasikan konteks relevan sering berada pada urutan bawah (urutan 5 sampai 6 secara rata-rata).
 Untuk \textit{Hit Ratio}, nilai tertinggi diraih oleh Neighbor Expansion (0,9584), diikuti Default (0,9053), menandakan bahwa metode tersebut hampir selalu berhasil menemukan setidaknya satu konteks relevan dalam hasil pencarian.
-Sebaliknya, N-Shortest Path dan Vector Search mencatat \textit{hit ratio} yang rendah 0,6097 dan 0,6744, menunjukkan probabilitas yang lebih rendah untuk menemukan konteks relevan pada setiap kueri.
+Sebaliknya, N-Shortest Path dan Vector Search mencatat \textit{hit ratio} yang rendah 0,6097 dan 0,6744, menunjukkan bahwa masih ada kemungkinan yang cukup besar (30\% hingga 40\%) informasi gagal ditemukan.
 
-Dari keempat metrik uji \textit{retriever}, terlihat perlakuan Neighbor Expansion dan Default memperoleh masing-masing dua metrik dengan nilai tertinggi.
+Dari keempat metrik uji \textit{retriever}, terlihat perlakuan Neighbor Expansion dan Default memperoleh masing-masing dua metrik dengan nilai tertinggi dalam pengujian.
 Metode Default unggul pada \textit{precision} dan MRR, sedangkan Neighbor Expansion unggul pada \textit{recall} dan \textit{hit ratio}.
 Hal ini mengindikasikan bahwa Default lebih selektif dalam mengambil konteks, sedangkan Neighbor Expansion lebih agresif dan luas cakupannya, sehingga \textit{recall}-nya tinggi tetapi precision-nya moderat.
 Neighbor Expansion cenderung menghasilkan data yang lebih lengkap tetapi mengandung lebih banyak noise dibandingkan dengan Default.
@@ -436,7 +439,7 @@ Informasi berupa subgraf yang terdiri dari kumpulan \textit{nodes} dan \textit{e
 Bentuk tekstual tersebut kemudian dijadikan sebagai konteks untuk memberikan informasi tambahan dalam menghasilkan jawaban.
 Jawaban akhir dievaluasi dengan memperhatikan empat parameter, yaitu pertanyaan, jawaban yang dihasilkan, konteks, dan jawaban seharusnya sebagai \textit{ground truth}.
 
-Evaluasi dilakukan dengan \textit{framework} RAGAS (Retrieval-Augmented Generation Assessment) yang merupakan evaluator RAG dengan salah satu alat ujinya menggunakan LLM.
+Evaluasi dilakukan dengan \textit{framework} RAGAS (Retrieval-Augmented Generation Assessment), yang merupakan evaluator RAG dengan salah satu alat ujinya menggunakan LLM.
 Metrik uji untuk mengevaluasi jawaban adalah \textit{similarity}, \textit{correctness}, \textit{relevancy}, dan \textit{faithfulness} yang merupakan metrik bawaan RAGAS.
 Tabel \ref{tab:final-answer-evaluation-result} menunjukkan hasil evaluasi RAGAS pada masing-masing perlakukan, termasuk dengan \textit{baseline} Naive RAG.
 
@@ -462,33 +465,33 @@ Tabel \ref{tab:final-answer-evaluation-result} menunjukkan hasil evaluasi RAGAS 
 \end{table}
 
 Metrik \textit{similarity} mengukur kesamaan semantik dengan membandingkan bentuk vektor (\textit{embedding}) antara jawaban yang dihasilkan sistem dan jawaban \textit{ground truth}.
-Hasil menunjukkan bahwa semua perlakuan, termasuk \textit{baseline} Naive RAG, memiliki skor \textit{similarity} yang relatif tinggi di atas 0,9, menandakan bahwa sistem mampu menghasilkan jawaban yang secara umum memiliki kedekatan makna dengan jawaban seharusnya.
-Nilai tertinggi dicapai oleh perlakuan Neighbor Expansion (0,9248) dan Default (0,9242), yang mengindikasikan bahwa perluasan konteks berbasis \textit{Knowledge Graph} secara umum sama efektifnya dalam menjaga kesamaan makna dibandingkan dengan \textit{baseline}.
+Hasil menunjukkan bahwa semua perlakuan, termasuk \textit{baseline} Naive RAG, memiliki skor \textit{similarity} yang relatif tinggi di atas 90\%, yang menandakan bahwa sistem mampu menghasilkan jawaban yang secara umum memiliki kedekatan makna dengan jawaban seharusnya.
+Nilai tertinggi dicapai oleh perlakuan Neighbor Expansion (0,9248) diikuti dengan Default (0,9242), yang mengindikasikan bahwa perluasan konteks berbasis \textit{Knowledge Graph} secara umum sama efektifnya dalam menjaga kesamaan makna dibandingkan dengan \textit{baseline}.
 
 Metrik \textit{correctness} menilai kebenaran faktual dari jawaban yang dihasilkan.
 Hasil menunjukkan peningkatan hingga sebesar 8,55\% pada perlakuan yang memanfaatkan \textit{Knowledge Graph} khususnya pada perlakuan Neighbor Expansion (0,4246) dan  Default (0,4155) dibanding \textit{baseline} Naive RAG (0,3391).
-Hal ini mengindikasikan bahwa penelusuran graf yang tepat dapat membantu sistem menemukan konteks yang lebih faktual.
+Pada metrik ini, semua metode RAG-KG menunjukkan adanya peningkatan akurasi faktual dibandingkan dengan Naive RAG.
+Peningkatan ini secara langsung mengatribusikan kemampuan RAG-KG dalam menyajikan konteks faktual dari KG sebagai faktor yang berhasil meningkatkan akurasi kebenaran dari jawaban akhir.
 
-Relevansi menunjukkan sejauh mana jawaban sesuai dengan pertanyaan yang diajukan.
-Neighbor Expansion (0,8723) dan Default (0,8624) lebih unggul sekitar 17\% dari Naive RAG (0,6996) pada metrik ini.
+Relevansi menunjukkan sejauh mana jawaban yang dihasilkan sistem tetap fokus dan sesuai dengan pertanyaan yang diajukan.
+Neighbor Expansion (0,8723) dan Default (0,8624) menunjukkan peningkatan sebesar 17\% dari Naive RAG (0,6996) pada metrik ini.
 Peningkatan tersebut menunjukkan bahwa konteks yang dihasilkan dari \textit{Knowledge Graph} tidak hanya memberikan jawaban yang lebih faktual, tetapi juga lebih tepat sasaran.
-Konteks yang lebih tepat sasaran akan membuat jawaban yang dihasilkan lebih relevan dengan pertanyaan.
+Konteks yang lebih tepat sasaran akan membuat LLM lebih mudah dalam menghasilkan jawaban yang lebih relevan dengan pertanyaan.
 
-\textit{Faithfulness} mengukur kesesuaian informasi dalam jawaban dengan konteks yang diberikan.
-Hampir semua metode memiliki nilai di atas 0,89, kecuali N-Shortest Path yang sangat rendah (0,4614), menandakan bahwa metode ini sering menghasilkan jawaban yang tidak konsisten atau tidak sepenuhnya didukung oleh konteks.
+\textit{Faithfulness} mengukur kesesuaian informasi dalam jawaban terhadap konteks yang diberikan oleh \textit{retriever}.
+Hampir semua metode menghasilkan skor di atas 0,89, kecuali pada metode N-Shortest Path yang memiliki skor sangat rendah (0,4614), menandakan bahwa metode ini lebih sering menghasilkan jawaban yang tidak konsisten atau tidak sepenuhnya didukung oleh konteks.
 Nilai tinggi pada Default (0,9435) dan Neighbor Expansion (0,9428) menunjukkan bahwa strategi ini paling konsisten dalam menggunakan informasi yang tersedia.
 RAG-KG dengan strategi tersebut tetap lebih tinggi sekitar 4\% dibandingkan dengan \textit{baseline} Naive RAG menghasilkan skor (0,8993).
-Ini adalah bukti bahwa konteks yang diperkaya oleh \textit{Knowledge Graph} secara efektif mengurangi LLM dari halusinasi atau mengarang informasi.
+Ini adalah bukti bahwa konteks yang diperkaya oleh \textit{Knowledge Graph} dengan pemilihan metode yang tepat secara efektif dapat mengurangi LLM dari halusinasi atau mengarang informasi.
 
 Hasil evaluasi jawaban final secara umum menunjukkan bahwa penggunaan \textit{Knowledge Graph} yang tepat dapat meningkatkan kualitas jawaban akhir secara signifikan.
-Neighbor Expansion menjadi strategi terbaik karena konsisten unggul di semua metrik kecuali \textit{faithfulness}, yang tetap sangat tinggi.
-Perlakuan Default juga menjadi alternatif yang andal dengan kinerja mendekati Neighbor Expansion tanpa konfigurasi khusus.
-Penggunaan metode pencarian Vector Search secara langsung tidak mampu mengungguli metode pencarian dengan \textit{full-text} dalam hal relevansi dan \textit{correctness}.
-Sementara itu, penggunaan N-Shortest Path dalam melakukan penelusuran graf secara umum berpotensi menghasilkan jawaban yang tidak optimal ditandai dengan skor \textit{faithfulness} yang sangat rendah, bahkan lebih rendah dibandingkan dengan \textit{baseline}.
+Peningkatan tertinggi dari \textit{baseline} dapat diperoleh sistem RAG-KG yang mengimplementasikan metode Default dan Neighbor Expansion hingga 8\% secara rata-rata.
+Penggunaan metode Vector Search secara umum menunjukkan peningkatan dibandingkan dengan Naive RAG meskipun tertinggal dari RAG-KG dengan metode pencarian \textit{full-text} (Default dan Neighbor Expansion) dalam hal relevansi dan \textit{correctness}.
+Sementara itu, penggunaan N-Shortest Path dalam melakukan penelusuran graf secara umum berpotensi menghasilkan jawaban yang tidak akurat ditandai dengan skor \textit{faithfulness} yang sangat rendah, bahkan lebih rendah dibandingkan dengan \textit{baseline}.
 
 \subsection{Analisis Kesalahan dan Studi Kasus}
 
-Analisis terakhir adalah meninjau secara langsung jawaban yang di hasilkan oleh masing-masing metode.
+Analisis terakhir adalah meninjau secara langsung jawaban yang dihasilkan oleh masing-masing metode.
 Pada studi kasus kueri \textit{"Apa yang dimaksud dengan gejala psikotik?"}, terlihat perbedaan kualitas jawaban yang dihasilkan oleh berbagai metode RAG berbasis \textit{Knowledge Graph}.
 Jawaban yang diharapkan (\textit{golden answer}) memuat penjelasan singkat bahwa gejala psikotik meliputi halusinasi atau delusi seperti mendengar suara, yang dapat memengaruhi pola pikir dan berisiko terkait pikiran bunuh diri.
 Hasil jawaban secara lengkap dapat dilihat pada Tabel \ref{tab:final-answer-case-1}.
@@ -526,27 +529,26 @@ Hasil jawaban secara lengkap dapat dilihat pada Tabel \ref{tab:final-answer-case
 	\hline
 \end{longtable}
 
-Metode Naive RAG gagal memberikan definisi langsung, hanya menyampaikan bahwa konteks tidak menjelaskan gejala psikotik dan sekadar menyinggung individu berisiko tinggi psikotik serta pencegahan transisi menjadi gangguan psikotik.
-Jawaban tersebut menunjukkan bahwa meskipun \textit{retriever} memberikan konteks, isi dari konteks tersebut belum tentu relevan dan sesuai untuk menjawab pertanyaan.
-Untuk pertanyaan yang spesifik menyebutkan suatu istilah atau pun menanyakan definisi mengenai suatu hal, pencarian menggunakan vektor terkadang kesulitan untuk menghasilkan hasil yang dimaksud.
-Hal serupa juga dapat dilihat pada strategi Vector Search pada \textit{Knowledge Graph}.
-Vector Search menunjukkan jawaban yang mengaku tidak menemukan informasi spesifik dan malah memaparkan topik terkait keluhan fisik, faktor biologis, dan tanda bahaya kecenderungan bunuh diri, yang hanya sedikit relevan dengan kueri.
-Hal tersebut mengindikasikan representasi vektor dari data terkadang mengalami kesulitan untuk menangkap makna semantik dari kueri yang berbentuk definisi singkat atau mengandung istilah khusus sehingga sistem tidak dapat menemukan entitas dan relasi yang berkaitan dengan kueri.
+Metode Naive RAG gagal memberikan jawaban yang diharapkan, yaitu definisi gejala psikotik, hanya menyampaikan bahwa konteks tidak menjelaskan gejala psikotik dan sekadar menyinggung individu berisiko tinggi psikotik serta pencegahan transisi menjadi gangguan psikotik.
+Jawaban tersebut menunjukkan bahwa \textit{retriever} gagal dalam memberikan konteks yang relevan dan sesuai untuk menjawab pertanyaan.
+Hal serupa juga dapat dilihat pada metode Vector Search, yang menunjukkan jawaban yang mengaku tidak menemukan informasi spesifik dan malah memaparkan topik terkait keluhan fisik, faktor biologis, dan tanda bahaya kecenderungan bunuh diri, yang kurang relevan dengan pertanyaan.
+Hal ini membuktikan bahwa untuk kueri yang menuntut definisi istilah khusus, pencarian semantik berbasis vektor masih memiliki potensi kegagalan dalam mengambil konteks.
+
 
 Sebaliknya, Default dan Neighbor Expansion berhasil mendekati topik yang benar, menyebutkan bahwa gejala psikotik dapat memengaruhi keinginan bunuh diri dan memberikan contoh seperti mendengar suara-suara.
-Namun, kedua metode ini cenderung menggunakan istilah "OKBD" atau "Orang dengan Kondisi Biologis dan Diagnosa" yang tidak disebutkan dalam jawaban seharusnya, sehingga relevansi dan kesesuaian makna hanya sebagian terpenuhi.
+Munculnya istilah "OKBD" yang tidak sepenuhnya relevan dapat dilihat sebagai efek samping dari penelusuran graf, di mana sistem mengambil node tetangga yang terhubung namun berada di luar konteks jawaban yang ideal.
+Meskipun demikian, hal ini menunjukkan pendekatan yang jauh lebih efektif daripada pencarian berbasis vektor seperti pada Naive RAG dan Vector Search.
 
-Di sisi lain Metode N-Shortest Path menghasilkan jawaban yang secara definisi umum sangat lengkap dan mencakup empat gejala utama (halusinasi, delusi, pemikiran/bicara tidak terorganisir, dan perilaku tidak terorganisir atau katatonik).
+Di sisi lain metode N-Shortest Path menghasilkan jawaban yang secara definisi umum sangat lengkap dan mencakup empat gejala utama (halusinasi, delusi, pemikiran/bicara tidak terorganisir, dan perilaku tidak terorganisir atau katatonik).
 Meskipun tampak informatif, jawaban ini merupakan bentuk halusinasi karena tidak bersumber dari konteks yang diambil oleh \textit{retriever}.
 \textit{Retriever} gagal untuk mengambil konteks dari \textit{Knowledge Graph} yang menyebabkan LLM memanfaatkan pengetahuan internalnya untuk mengisi kekosongan informasi.
 Kegagalan tersebut dapat dipicu oleh algoritma \textit{shortest path} di mana tidak ditemukannya jalur di antara \textit{nodes} yang terdeteksi.
-Hal tersebut dapat terjadi apa bila memaksakan pertanyaan yang termasuk ke dalam \textit{entity query} dalam kasus ini \textit{"Apa yang dimaksud dengan gejala psikotik?"} yang menanyakan definisi akan suatu hal.
+Hal tersebut dapat terjadi apabila memaksakan pertanyaan yang termasuk ke dalam \textit{entity query} dalam kasus ini \textit{"Apa yang dimaksud dengan gejala psikotik?"} yang menanyakan definisi akan suatu hal.
 
 Dari kasus ini dapat disimpulkan bahwa kelengkapan jawaban tidak selalu berarti kualitas RAG yang baik.
-Metode yang terlihat "pintar" seperti N-Shortest Path bisa saja menyalurkan halusinasi jika \textit{retrieval} tidak relevan.
-Sebaliknya, metode seperti Default dan Neighbor Expansion yang memanfaatkan konteks dengan benar cenderung lebih \textit{faithful}, walau informasi yang dihasilkan mungkin lebih terbatas.
-Temuan ini memperkuat pentingnya mengukur metrik seperti \textit{faithfulness} secara terpisah dari \textit{similarity}, karena keduanya bisa menunjukkan arah evaluasi yang berbeda.
-
+Metode yang terlihat "pintar" seperti N-Shortest Path memiliki kemungkinan untuk berhalusinasi jika gagal mengambil konteks yang relevan.
+Di sisi lain, metode Default dan Neighbor Expansion berhasil mengambil konteks relevan sehingga mampu memanfaatkannya untuk menghasilkan jawaban yang akurat dan terpercaya.
+Kedua metode tersebut menunjukkan kejujuran sistem, berlandaskan konteks, dan cenderung lebih \textit{faithful} dan dapat dipercaya.
 
 % Berikut ini adalah yang perlu diperhatikan untuk mengisi bab hasil dan pembahasan:
 
