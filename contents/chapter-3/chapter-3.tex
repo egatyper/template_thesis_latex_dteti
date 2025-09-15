@@ -10,7 +10,7 @@ Selanjutnya akan dijelaskan mengenai rancangan serta langkah-langkah metodologis
 Alat-alat yang digunakan dalam penelitian berupa perangkat keras dan perangkat lunak antara lain.
 \subsubsection{Perangkat Keras}
 \begin{enumerate}
-	\item Laptop Lenovo Ideapad Slim 5i dengan spesifikasi sistem operasi Windows 11, processor Intel Core i5 1135G7, memori 8 GB LPDDR4X, grafis NVIDIA MX 450 2GB, SSD M.2 NVME 512 GB.
+	\item Laptop Lenovo Ideapad Slim 5i dengan spesifikasi sistem operasi Windows 11, \textit{processor} Intel Core i5 1135G7, RAM 8 GB LPDDR4X, grafis NVIDIA MX 450 2GB, SSD M.2 NVME 512 GB.
 	\item Neo4j Aura console Free Tier
 	\item Pinecone Free Tier
 \end{enumerate}
@@ -233,7 +233,8 @@ Contoh masukkan dan keluaran pada \textit{prompt} dapat dilihat pada Gambar \ref
 \textit{Prompt} pada Gambar \ref{fig:prompt-extraction-instruction} dan Gambar \ref{fig:prompt-extraction-few-shot} kemudian dieksekusi menggunakan pustaka google genai.
 Eksekusi \textit{prompt} diikuti dengan data \textit{chunk} dokumen ditambah dengan konfigurasi struktur JSON yang diinginkan untuk mendapatkan respons bukan dalam bentuk teks, melainkan dalam bentuk JSON yang dapat direpresentasikan dalam bentuk objek pydantic.
 Struktur dari respons terbagi menjadi 2 bagian yaitu \texttt{entities} yang berisi daftar entitas dan \texttt{relations} yang berisi daftar relasi.
-Setiap entitas memiliki atribut \texttt{name}, \texttt{type}, dan \texttt{description}, sedangkan relasi memiliki atribut \texttt{source\_entity}, \texttt{target\_entity}, \texttt{name}, dan \texttt{type} seperti pada Gambar \ref{fig:entity-relation-structure}.
+Setiap entitas memiliki atribut \texttt{name}, \texttt{type}, dan \texttt{description}, sedangkan relasi memiliki atribut \\
+\texttt{source\_entity}, \texttt{target\_entity}, \texttt{name}, dan \texttt{type} seperti pada Gambar \ref{fig:entity-relation-structure}.
 
 \begin{figure}[H]
 	\centering
@@ -588,7 +589,7 @@ Dalam beberapa kasus, bahkan jika konteks yang diambil sudah tepat, model genera
 Oleh karena itu, evaluasi terhadap respons akhir menjadi sangat penting untuk menilai efektivitas akhir sistem RAG secara holistik, mendeteksi adanya halusinasi, dan menjamin bahwa jawaban benar-benar menjawab pertanyaan pengguna secara akurat.
 
 \vspace{1cm}
-Evaluasi dilakukan dengan menggunakan \textit{framework} RAGAS (Retrieval-Augmented Generation Assessment), yaitu sebuah kerangka kerja modern dan terstandardisasi yang dirancang khusus untuk mengevaluasi \textit{pipeline} RAG secara menyeluruh.
+Evaluasi dilakukan dengan menggunakan \textit{framework} RAGAS (\textit{Retrieval-Augmented Generation Assessment}), yaitu sebuah kerangka kerja modern dan terstandardisasi yang dirancang khusus untuk mengevaluasi \textit{pipeline} RAG secara menyeluruh.
 RAGAS akan menghitung sejumlah metrik evaluasi terhadap jawaban yang dihasilkan dengan membandingkannya terhadap \textit{golden answer} dan konteks. Pendekatan ini memungkinkan evaluasi yang kuantitatif, objektif, dan replikatif.
 Metrik yang digunakan untuk menilai kualitas jawaban akhir terdapat pada Tabel \ref{tab:generation-evaluation-metrics}.
 
