@@ -272,7 +272,7 @@
 				\includegraphics[width=0.5\textwidth]{#1}
 				\vfill
 				\iftoggle{lang}{\textit{\textbf{\MakeUppercase{The Sustainable Development Goals}}}}{\textbf{\MakeUppercase{The Sustainable Development Goals}}}\\
-				\iftoggle{lang}{\textit{\textbf{Good Health and Well-being}}}{\textbf{Good Health and Well-being}}\\
+				\iftoggle{lang}{\textit{\textbf{Good Health and Well-Being}}}{\textbf{Good Health and Well-Being}}\\
 				\iftoggle{lang}{\textit{\textbf{Industry, Innovation, and Infrastructure}}}{\textbf{Industry, Innovation, and Infrastructure}}\\
 				\iftoggle{lang}{\textit{\textbf{Reduced Inequalities}}}{\textbf{Reduced Inequalities}}
 				\vfill
