@@ -75,8 +75,8 @@ Tahapan-tahapan fundamental tersebut secara terperinci adalah sebagai berikut.
 
 \subsection{Identifikasi Masalah}
 Tahap awal ini merupakan fondasi dari keseluruhan penelitian. Proses ini dimulai dengan identifikasi masalah umum mengenai adanya kesenjangan akses terhadap informasi kesehatan mental yang akurat dan terstruktur di Indonesia.
-Dari masalah umum tersebut, dirumuskan masalah teknis yang spesifik: bagaimana teknologi RAG dapat dioptimalkan untuk mengatasi tantangan ini.
-Identifikasi masalah mencakup analisis kelemahan RAG berbasis vektor standar, yang cenderung kesulitan dalam melakukan penalaran atas hubungan kompleks.
+Dari masalah umum tersebut, dirumuskan masalah teknis yang spesifik, yaitu bagaimana teknologi RAG dapat dioptimalkan untuk mengatasi tantangan ini.
+Identifikasi masalah mencakup analisis kelemahan RAG berbasis potongan dokumen, yang cenderung kesulitan dalam melakukan penalaran atas hubungan kompleks.
 Berdasarkan analisis ini, diajukan hipotesis bahwa penggunaan \textit{Knowledge Graph} dapat memberikan konteks yang lebih kaya dan terstruktur.
 Tahapan ini menghasilkan rumusan masalah utama yang berfokus pada optimalisasi ekstraksi pengetahuan untuk membangun KG yang konsisten dan optimalisasi pengambilan pengetahuan dari KG untuk menjawab kueri pengguna secara akurat.
 
@@ -84,7 +84,7 @@ Tahapan ini menghasilkan rumusan masalah utama yang berfokus pada optimalisasi e
 Studi literatur dilakukan secara sistematis, komprehensif, dan berkelanjutan.
 Hal tersebut bertujuan membangun landasan teoritis yang kokoh, memahami tren dan perkembangan terkini \textit{state-of-the-art} dalam bidang terkait, mengidentifikasi celah penelitian (\textit{research gap}) yang dapat diisi, serta mempelajari berbagai metode dan alat bantu yang relevan.
 Proses ini melibatkan pencarian, pengumpulan, analisis, dan sintesis informasi dari berbagai sumber ilmiah jurnal internasional seperti IEEE, ArXiv, JMIR, dll.
-Fokus utama area studi literatur meliputi aplikasi teknologi AI pada kesehatan mental, RAG dan \textit{Knowledge Graph}.
+Fokus utama area studi literatur meliputi aplikasi teknologi AI pada kesehatan mental, RAG, dan \textit{Knowledge Graph}.
 Setelah itu, dilakukan analisis mendalam mengenai metode \textit{Knowledge Extraction} dan \textit{Knowledge Retrieval} yang digunakan.
 
 \subsection{Pengumpulan Data}
@@ -113,7 +113,7 @@ Setelah divalidasi, data kemudian akan melalui tahap prapemrosesan untuk members
 	\centering
 	\includegraphics[width=1\textwidth]{images/knowledge-extraction-flow.png}
 	\caption{
-		\textit{knowledge extraction pipeline}
+		\textit{Knowledge Extraction Pipeline}
 	}
 	\label{fig:knowledge-extraction-pipeline}
 \end{figure}
@@ -218,7 +218,7 @@ Selain pembatasan istilah dan pemberian instruksi, teknik \textit{few-shot promp
 \textit{Few-shot prompting} telah teruji memberikan peningkatan yang signifikan terhadap performa LLM dibandingkan dengan \textit{zero-shot prompting} yang hanya memberikan instruksi saja tanpa contoh \cite{LLMisFewShot2020}.
 Teknik ini dilakukan dengan memberikan beberapa contoh (\textit{shot}) input yang akan dihadapi beserta respons yang diharapkan.
 Sebuah potongan dari dokumen ditambahkan sebagai contoh input dokumen yang akan diekstrak diikuti dengan keluaran yang diharapkan menggunakan format JSON.
-Contoh masukkan dan keluaran pada \textit{prompt} dapat dilihat pada Gambar \ref{fig:prompt-extraction-few-shot}
+Contoh masukkan dan keluaran pada \textit{prompt} dapat dilihat pada Gambar \ref{fig:prompt-extraction-few-shot}.
 
 \begin{figure}[H]
 	\centering
@@ -353,7 +353,7 @@ Setiap komponen ini berkontribusi terhadap ketepatan dan relevansi hasil yang di
 \subsubsection{Klasifikasi Kueri dan Ekstraksi Entitas}
 Langkah pertama dalam pengambilan pengetahuan adalah klasifikasi kueri terhadap input pengguna.
 Proses ini bertujuan untuk mengidentifikasi intensi semantik dari kueri, yang nantinya akan dijadikan sebagai variabel penentu strategi pencarian dalam \textit{Knowledge Graph} yang paling sesuai.
-Kueri akan diklasifikasikan menjadi dua kategori seperti pada Tabel \ref{tab:query-classification}
+Kueri akan diklasifikasikan menjadi dua kategori seperti pada Tabel \ref{tab:query-classification}.
 
 \begin{table}[H]
 	\centering
@@ -559,7 +559,7 @@ Masing-masing jenis subgraf tersebut memiliki struktur yang berbeda, tetapi tida
 
 \begin{table}[H]
 	\centering
-	\caption{Metrik evaluasi sistem \textit{retrieval} }
+	\caption{Metrik evaluasi sistem \textit{Retrieval} }
 	\label{tab:retrieval-evaluation-metrics}
 	\begin{tabular}{|p{0.2\textwidth}|p{0.7\textwidth}|}
 		\hline
