@@ -48,7 +48,7 @@ Metode yang digunakan berfokus pada dua area utama yaitu ekstraksi pengetahuan b
 Bagian ekstraksi pengetahuan, berbeda dengan metode \textit{supervised learning} yang memerlukan \textit{dataset} beranotasi skala besar, penelitian ini menggunakan pendekatan \textit{few-shot learning}.
 Sebuah \textit{pre-trained} LLM diberi beberapa contoh (\textit{shots}) untuk mengekstrak entitas dan relasi dari teks sumber secara langsung.
 Informasi yang diekstrak kemudian tidak disimpan dalam format vektor mentah, melainkan direpresentasikan sebagai \textit{node} dan \textit{edge} dalam tipe data graf yang disebut \textit{Knowledge Graph}.
-Setiap entitas yang diekstrak juga akan memiliki representasi vektor yang memungkinkan pencarian semantik.
+Setiap entitas yang diekstrak juga akan memiliki representasi vektor yang memungkinkan penuplarian semantik.
 Metode ini memungkinkan representasi pengetahuan yang kaya secara semantik dan terstruktur, yang menjadi dasar untuk penalaran relasional.
 Proses penyerapan data diperkuat dengan mekanisme resolusi entitas untuk memastikan konsistensi dan meminimalkan redundansi dalam KG.
 
@@ -58,12 +58,10 @@ Berdasarkan klasifikasi ini, sistem akan menjalankan strategi \textit{graph trav
 Pencarian \textit{node} awal di dalam \textit{graph} juga menggunakan pendekatan \textit{hybrid search}, yang menggabungkan kecepatan \textit{full-text search} untuk pencocokan kata kunci yang tepat dengan fleksibilitas \textit{dense vector search} untuk pemahaman makna semantik.
 
 \section{Alur Tugas Akhir}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.3\textwidth]{images/alur-penelitian.png}
-	\caption{
-		Alur Penelitian
-	}
+	\caption{Alur Penelitian}
 	\label{fig:research-flow}
 \end{figure}
 
@@ -181,7 +179,7 @@ Perbandingan performa dan kapasitas LLM tersebut dapat dilihat pada Tabel \ref{t
 
 \begin{table}[ht]
 	\centering
-	\caption{Perbandingan performa dan kapasitas LLM modern}
+	\caption{Perbandingan performa dan kapasitas LLM modern \cite{LLMStats}}
 	\label{tab:llm-comparison}
 	\begin{tabular}{|l|c|c|}
 		\hline
@@ -224,7 +222,7 @@ Contoh masukkan dan keluaran pada \textit{prompt} dapat dilihat pada Gambar \ref
 	\centering
 	\fbox{\includegraphics[width=1\textwidth]{images/prompt-extraction-few-shot.png}}
 	\caption{
-		Penggunaan \textit{few-shot prompting} dengan memberikan potongan dokumen dan keluaran yang diharapkan.
+		Penggunaan \textit{few-shot prompting} dengan memberikan potongan dokumen dan keluaran yang diharapkan
 	}
 	\label{fig:prompt-extraction-few-shot}
 \end{figure}
@@ -258,7 +256,7 @@ Gambar \ref{fig:entity-relation-response} menunjukkan entitas dan relasi yang di
 
 \begin{figure}[H]
 	\centering
-	\fbox{\includegraphics[width=0.8\textwidth]{images/entity-relation-response.png}}
+	\fbox{\includegraphics[width=1\textwidth]{images/entity-relation-response.png}}
 	\caption{
 		Respons LLM berupa entitas dan relasi yang diekstrak dari potongan dokumen
 	}
@@ -334,7 +332,7 @@ Hal ini juga mendukung berbagai analisis struktur data seperti pencarian pola hu
 	\centering
 	\fbox{\includegraphics[width=0.8\textwidth]{images/cypher-insert-entities.png}}
 	\caption{
-		Kode Cypher untuk pemuatan entitas yang berupa \textit{nodes} di basis data Neo4j.
+		Kode Cypher untuk pemuatan entitas yang berupa \textit{nodes} di basis data Neo4j
 	}
 	\label{fig:cypher-insert-entities}
 \end{figure}
@@ -345,8 +343,9 @@ Pengambilan Pengetahuan (\textit{Knowledge Retrieval}) merupakan proses penting 
 Setiap komponen ini berkontribusi terhadap ketepatan dan relevansi hasil yang diberikan oleh sistem.
 
 \begin{figure}[h]
+	\centering
 	\includegraphics[width=1\textwidth]{images/knowledge-retrieval-pipeline.png}
-	\caption{\textit{Pipeline Knowledge Retrieval}.}
+	\caption{\textit{Knowledge Retrieval Pipeline}}
 	\label{fig:knowledge-retrieval-pipeline}
 \end{figure}
 
@@ -400,6 +399,7 @@ Proses klasifikasi kueri dan ekstraksi entitas dilakukan secara simultan menggun
 Selain itu, \textit{few-shot prompt} digunakan untuk memberikan contoh input dan keluaran yang diharapkan pada LLM untuk mendapatkan respons yang diinginkan seperti pada Gambar \ref{fig:prompt-query-classification-entity-extraction}.
 
 \begin{figure}[H]
+	\centering
 	\fbox{\includegraphics[width=1\textwidth]{images/prompt-query-classification-entity-extraction.png}}
 	\caption{\textit{Prompt} yang digunakan untuk memberikan instruksi LLM dalam tugas klasifikasi kueri dan ekstraksi entitas}
 	\label{fig:prompt-query-classification-entity-extraction}

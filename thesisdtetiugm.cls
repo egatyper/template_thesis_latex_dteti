@@ -70,6 +70,8 @@
 \usepackage{tabularx}   % Defines the 'X' column type for tables
 \usepackage{tabularx}      % Tabel yang lebih fleksibel
 \usepackage{array}
+\usepackage{rotating}
+\usepackage{tabularx}
 % \usepackage{hyperref}% hyperlink
 \usepackage{subcaption} % subfigure
 \usepackage[figurewithin=none]{caption}
@@ -109,74 +111,74 @@
 %% Localise the Strings
 %======================================
 \iftoggle{lang}{
-	% define new commands in bahasa
-	\newcommand{\listappendixname}{DAFTAR LAMPIRAN}%
-	\newcommand{\nomenclaturename}{DAFTAR SINGKATAN}%
-	\newcommand{\acknowledgmentname}{HALAMAN PERSEMBAHAN}%
-	\newcommand{\approvalpage}{HALAMAN PENGESAHAN}
-	\newcommand{\statementname}{PERNYATAAN BEBAS PLAGIASI}
-	\newcommand{\dedicationpage}{HALAMAN PERSEMBAHAN}
-	\AtBeginDocument{% select the language
-		\selectlanguage{bahasa}
-	}
+  % define new commands in bahasa
+  \newcommand{\listappendixname}{DAFTAR LAMPIRAN}%
+  \newcommand{\nomenclaturename}{DAFTAR SINGKATAN}%
+  \newcommand{\acknowledgmentname}{HALAMAN PERSEMBAHAN}%
+  \newcommand{\approvalpage}{HALAMAN PENGESAHAN}
+  \newcommand{\statementname}{PERNYATAAN BEBAS PLAGIASI}
+  \newcommand{\dedicationpage}{HALAMAN PERSEMBAHAN}
+  \AtBeginDocument{% select the language
+    \selectlanguage{bahasa}
+  }
 }{
-	% define new commands in english
-	\newcommand{\listappendixname}{LIST OF APPENDICES}%
-	\newcommand{\nomenclaturename}{NOMENCLATURE AND ABBREVIATION}%
-	\newcommand{\approvalpage}{ENDORSEMENT PAGE}
-	\newcommand{\statementname}{STATEMENT}
-	\newcommand{\dedicationpage}{PAGE OF DEDICATION}
-	\AtBeginDocument{% select the language
-		\selectlanguage{english}
-	}
+  % define new commands in english
+  \newcommand{\listappendixname}{LIST OF APPENDICES}%
+  \newcommand{\nomenclaturename}{NOMENCLATURE AND ABBREVIATION}%
+  \newcommand{\approvalpage}{ENDORSEMENT PAGE}
+  \newcommand{\statementname}{STATEMENT}
+  \newcommand{\dedicationpage}{PAGE OF DEDICATION}
+  \AtBeginDocument{% select the language
+    \selectlanguage{english}
+  }
 }
 
 % redefine commands in babel bahasa
 \addto\captionsbahasa{%
-	\renewcommand{\prefacename}{KATA PENGANTAR}%
-	\renewcommand{\contentsname}{DAFTAR ISI}%
-	\renewcommand{\listfigurename}{DAFTAR GAMBAR}%
-	\renewcommand{\listtablename}{DAFTAR TABEL}%
-	\renewcommand{\abstractname}{INTISARI}%
-	\renewcommand{\partname}{BAGIAN}%
-	\renewcommand{\chaptername}{BAB}%
-	\renewcommand{\appendixname}{LAMPIRAN}%
-	\renewcommand{\refname}{DAFTAR PUSTAKA}%
-	\renewcommand{\bibname}{DAFTAR PUSTAKA}%
-	\renewcommand{\indexname}{Indek}%
-	\renewcommand{\figurename}{Gambar}%
-	\renewcommand{\tablename}{Tabel}%
-	\renewcommand{\pagename}{Halaman}%
+  \renewcommand{\prefacename}{KATA PENGANTAR}%
+  \renewcommand{\contentsname}{DAFTAR ISI}%
+  \renewcommand{\listfigurename}{DAFTAR GAMBAR}%
+  \renewcommand{\listtablename}{DAFTAR TABEL}%
+  \renewcommand{\abstractname}{INTISARI}%
+  \renewcommand{\partname}{BAGIAN}%
+  \renewcommand{\chaptername}{BAB}%
+  \renewcommand{\appendixname}{LAMPIRAN}%
+  \renewcommand{\refname}{DAFTAR PUSTAKA}%
+  \renewcommand{\bibname}{DAFTAR PUSTAKA}%
+  \renewcommand{\indexname}{Indek}%
+  \renewcommand{\figurename}{Gambar}%
+  \renewcommand{\tablename}{Tabel}%
+  \renewcommand{\pagename}{Halaman}%
 }
 
 % redefine commands in babel english
 \addto\captionsenglish{%
-	\renewcommand{\prefacename}{PREFACE}%
-	\renewcommand{\contentsname}{CONTENTS}%
-	\renewcommand{\listfigurename}{LIST OF FIGURES}%
-	\renewcommand{\listtablename}{LIST OF TABLES}%
-	\renewcommand{\abstractname}{\emph{Abstract}}%
-	\renewcommand{\partname}{PART}%
-	\renewcommand{\chaptername}{CHAPTER}%
-	\renewcommand{\appendixname}{APPENDIX}%
-	\renewcommand{\refname}{REFERENCES}%
-	\renewcommand{\bibname}{REFERENCES}%
-	\renewcommand{\indexname}{Index}%
-	\renewcommand{\figurename}{Figure}%
-	\renewcommand{\tablename}{Table}%
-	\renewcommand{\pagename}{Page}%
+  \renewcommand{\prefacename}{PREFACE}%
+  \renewcommand{\contentsname}{CONTENTS}%
+  \renewcommand{\listfigurename}{LIST OF FIGURES}%
+  \renewcommand{\listtablename}{LIST OF TABLES}%
+  \renewcommand{\abstractname}{\emph{Abstract}}%
+  \renewcommand{\partname}{PART}%
+  \renewcommand{\chaptername}{CHAPTER}%
+  \renewcommand{\appendixname}{APPENDIX}%
+  \renewcommand{\refname}{REFERENCES}%
+  \renewcommand{\bibname}{REFERENCES}%
+  \renewcommand{\indexname}{Index}%
+  \renewcommand{\figurename}{Figure}%
+  \renewcommand{\tablename}{Table}%
+  \renewcommand{\pagename}{Page}%
 }
 
 %======================================
 %% General Page Layout
 %======================================
 \geometry{
-	a4paper,
-	papersize={21cm,29.7cm},
-	top=2.54cm,
-	left=3.54cm,
-	right=2.54cm,
-	bottom=2.54cm
+  a4paper,
+  papersize={21cm,29.7cm},
+  top=2.54cm,
+  left=3.54cm,
+  right=2.54cm,
+  bottom=2.54cm
 }
 \setlength{\parindent}{1.25cm}
 \setlength{\parskip}{6pt}
@@ -189,17 +191,17 @@
 %======================================
 % Author info
 \renewcommand*{\author}[2]{
-	\newcommand{\@authorName}{#1}
-	\newcommand{\@authorID}{#2}
+  \newcommand{\@authorName}{#1}
+  \newcommand{\@authorID}{#2}
 }
 % Thesis info
 \renewcommand*{\title}[1]{\renewcommand{\@title}{#1}}
 % Exam info
 \newcommand*{\degree}[1]{\newcommand{\@degree}{#1}}
 \newcommand*{\program}[3]{
-	\newcommand{\@program}{#1}
-	\newcommand{\@programcoorName}{#2}
-	\newcommand{\@programcoorNIP}{#3}
+  \newcommand{\@program}{#1}
+  \newcommand{\@programcoorName}{#2}
+  \newcommand{\@programcoorNIP}{#3}
 }
 % Exam info
 \newcommand*{\examdate}[1]{\newcommand{\@examdate}{#1}}
@@ -210,30 +212,30 @@
 % Examiners
 \newcounter{exm}
 \newcommand\addexaminer[2]{%
-	\stepcounter{exm}%
-	\csdef{exmname\theexm}{#1}
-	\csdef{exmnip\theexm}{#2}
+  \stepcounter{exm}%
+  \csdef{exmname\theexm}{#1}
+  \csdef{exmnip\theexm}{#2}
 }
 \newcommand\getexaminer[2]{%
-	% if second option = 1, get name
-	% if second option = 2, get nip
-	\ifthenelse{\equal{\detokenize{#2}}{\detokenize{1}}}
-	{\csuse{exmname#1}}
-	{\csuse{exmnip#1}}
+  % if second option = 1, get name
+  % if second option = 2, get nip
+  \ifthenelse{\equal{\detokenize{#2}}{\detokenize{1}}}
+  {\csuse{exmname#1}}
+  {\csuse{exmnip#1}}
 }
 % Supervisors/Promotors info
 \newcounter{spv}
 \newcommand\addsupervisor[2]{%
-	\stepcounter{spv}%
-	\csdef{spvname\thespv}{#1}
-	\csdef{spvnip\thespv}{#2}
+  \stepcounter{spv}%
+  \csdef{spvname\thespv}{#1}
+  \csdef{spvnip\thespv}{#2}
 }
 \newcommand\getsupervisor[2]{%
-	% if second option = 1, get name
-	% if second option = 2, get nip
-	\ifthenelse{\equal{\detokenize{#2}}{\detokenize{1}}}
-	{\csuse{spvname#1}}
-	{\csuse{spvnip#1}}
+  % if second option = 1, get name
+  % if second option = 2, get nip
+  \ifthenelse{\equal{\detokenize{#2}}{\detokenize{1}}}
+  {\csuse{spvname#1}}
+  {\csuse{spvnip#1}}
 }
 
 % Department info
@@ -246,8 +248,8 @@
 \newcommand{\@graduateEng}{Graduate Program}
 \newcommand*{\major}[1]{\newcommand{\@major}{#1}}
 \newcommand*{\departmenthead}[2]{
-	\newcommand{\@depheadName}{#1}
-	\newcommand{\@depheadNIP}{#2}
+  \newcommand{\@depheadName}{#1}
+  \newcommand{\@depheadNIP}{#2}
 }
 \newcommand{\@city}{Yogyakarta}
 
@@ -257,125 +259,125 @@
 %======================================
 % If Bachelor
 \iftoggle{bachelor}{
-	\newcommand{\printcover}[2]{
-		\newgeometry{top=2.54cm,bottom=2.54cm,left=3.54cm,right=2.54cm}
-		\thispagestyle{empty}
-		\setcounter{page}{1}
-		\pagenumbering{roman}
-		\begin{center}
-			\begin{singlespacing}
-				\MakeUppercase{\fontsize{14pt}{16pt}\selectfont\textbf{\@title}}\\
-				\vspace{1.5cm}
-				%\textbf{#2}\\
-				\fontsize{14pt}{16pt}SKRIPSI\\
-				\vfill
-				\includegraphics[width=0.5\textwidth]{#1}
-				\vfill
-				\iftoggle{lang}{\textit{\textbf{\MakeUppercase{The Sustainable Development Goals}}}}{\textbf{\MakeUppercase{The Sustainable Development Goals}}}\\
-				\iftoggle{lang}{\textit{\textbf{Good Health and Well-Being}}}{\textbf{Good Health and Well-Being}}\\
-				\iftoggle{lang}{\textit{\textbf{Industry, Innovation, and Infrastructure}}}{\textbf{Industry, Innovation, and Infrastructure}}\\
-				\iftoggle{lang}{\textit{\textbf{Reduced Inequalities}}}{\textbf{Reduced Inequalities}}
-				\vfill
-				\iftoggle{lang}{\textbf{Disusun oleh:}}{Written by:}\\
-				\vspace{0.4em}
-				\textbf{\underline{\@authorName} \\ \@authorID \\}
-				\vfill
-				\textbf{
-					\iftoggle{lang}
-					{\scalebox{1}{\MakeUppercase{Program Sarjana Program Studi \@program}}}
-					{\MakeUppercase{\@program \vspace{1em} Program}}\\
-					\iftoggle{lang}{\scalebox{1.0}[1.0]{\MakeUppercase{\@departmentIna}}}{\MakeUppercase{\@departmentEng}} \\
-					\iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}}
-					\MakeUppercase{\@university} \\
-					\MakeUppercase{\@city} \\
-					\@yearsubmit
-				}
-			\end{singlespacing}
-		\end{center}
-	}
+  \newcommand{\printcover}[2]{
+    \newgeometry{top=2.54cm,bottom=2.54cm,left=3.54cm,right=2.54cm}
+    \thispagestyle{empty}
+    \setcounter{page}{1}
+    \pagenumbering{roman}
+    \begin{center}
+      \begin{singlespacing}
+        \MakeUppercase{\fontsize{14pt}{16pt}\selectfont\textbf{\@title}}\\
+        \vspace{1.5cm}
+        %\textbf{#2}\\
+        \fontsize{14pt}{16pt}SKRIPSI\\
+        \vfill
+        \includegraphics[width=0.5\textwidth]{#1}
+        \vfill
+        \iftoggle{lang}{\textit{\textbf{\MakeUppercase{The Sustainable Development Goals}}}}{\textbf{\MakeUppercase{The Sustainable Development Goals}}}\\
+        \iftoggle{lang}{\textit{\textbf{Good Health and Well-Being}}}{\textbf{Good Health and Well-Being}}\\
+        \iftoggle{lang}{\textit{\textbf{Industry, Innovation, and Infrastructure}}}{\textbf{Industry, Innovation, and Infrastructure}}\\
+        \iftoggle{lang}{\textit{\textbf{Reduced Inequalities}}}{\textbf{Reduced Inequalities}}
+        \vfill
+        \iftoggle{lang}{\textbf{Disusun oleh:}}{Written by:}\\
+        \vspace{0.4em}
+        \textbf{\underline{\@authorName} \\ \@authorID \\}
+        \vfill
+        \textbf{
+          \iftoggle{lang}
+          {\scalebox{1}{\MakeUppercase{Program Sarjana Program Studi \@program}}}
+          {\MakeUppercase{\@program \vspace{1em} Program}}\\
+          \iftoggle{lang}{\scalebox{1.0}[1.0]{\MakeUppercase{\@departmentIna}}}{\MakeUppercase{\@departmentEng}} \\
+          \iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}}
+          \MakeUppercase{\@university} \\
+          \MakeUppercase{\@city} \\
+          \@yearsubmit
+        }
+      \end{singlespacing}
+    \end{center}
+  }
 }
 
 % If Master
 \iftoggle{master}{
-	\newcommand{\printcover}[2]{
-		\newgeometry{left=3cm,top=3cm,bottom=3cm,right=3cm}
-		\thispagestyle{empty}%
-		\setcounter{page}{1}
-		\pagenumbering{roman}
-		\begin{center}
-			\begin{singlespacing}
-				\MakeUppercase{\fontsize{14pt}{16pt}\selectfont\@title}\\
-				\vspace{1.5cm}
-				\textbf{#2}\\
-				\vspace{1cm}
-				\iftoggle{lang}
-				{untuk memenuhi bagian persyaratan \\ mencapai derajat Sarjana S-2}
-				{submitted in partial fulfillment of the requirements \\ for the degree of master}\\
-				\vspace{12pt}
-				\iftoggle{lang}
-				{Program Studi \@program}
-				{\@program \vspace{1em} Program}\\
-				\@major \\
-				\iftoggle{lang}{\@departmentIna}{\@departmentEng} \\
-				\vspace{1cm}
-				\vfill
-				\includegraphics[width=0.5\textwidth]{#1}
-				\vfill
-				\iftoggle{lang}
-				{diajukan oleh}
-				{proposed by}\\\vspace{0.4em}
-				\textbf{\@authorName \\ \@authorID \\}
-				\vspace{1cm}
-				\vfill
-				\iftoggle{lang}{Kepada}{To}\\
-				\vspace{0.4em}
-				\textbf{
-					\iftoggle{lang}{\MakeUppercase{\@graduateIna}}{\MakeUppercase{\@graduateEng}} \\
-					\iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}} \\
-					\MakeUppercase{\@university} \\
-					\MakeUppercase{\@city} \\
-					\@yearsubmit
-				}
-			\end{singlespacing}
-		\end{center}
-	}
+  \newcommand{\printcover}[2]{
+    \newgeometry{left=3cm,top=3cm,bottom=3cm,right=3cm}
+    \thispagestyle{empty}%
+    \setcounter{page}{1}
+    \pagenumbering{roman}
+    \begin{center}
+      \begin{singlespacing}
+        \MakeUppercase{\fontsize{14pt}{16pt}\selectfont\@title}\\
+        \vspace{1.5cm}
+        \textbf{#2}\\
+        \vspace{1cm}
+        \iftoggle{lang}
+        {untuk memenuhi bagian persyaratan \\ mencapai derajat Sarjana S-2}
+        {submitted in partial fulfillment of the requirements \\ for the degree of master}\\
+        \vspace{12pt}
+        \iftoggle{lang}
+        {Program Studi \@program}
+        {\@program \vspace{1em} Program}\\
+        \@major \\
+        \iftoggle{lang}{\@departmentIna}{\@departmentEng} \\
+        \vspace{1cm}
+        \vfill
+        \includegraphics[width=0.5\textwidth]{#1}
+        \vfill
+        \iftoggle{lang}
+        {diajukan oleh}
+        {proposed by}\\\vspace{0.4em}
+        \textbf{\@authorName \\ \@authorID \\}
+        \vspace{1cm}
+        \vfill
+        \iftoggle{lang}{Kepada}{To}\\
+        \vspace{0.4em}
+        \textbf{
+          \iftoggle{lang}{\MakeUppercase{\@graduateIna}}{\MakeUppercase{\@graduateEng}} \\
+          \iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}} \\
+          \MakeUppercase{\@university} \\
+          \MakeUppercase{\@city} \\
+          \@yearsubmit
+        }
+      \end{singlespacing}
+    \end{center}
+  }
 }
 
 % If Doctoral
 \iftoggle{doctoral}{
-	\newcommand{\printcover}[1]{
-		\newgeometry{left=3.5cm,top=2.5cm,bottom=2.5cm,right=2.5cm}
-		\titleformat*{\section}{\raggedright\normalfont\normalsize\bfseries}
-		\thispagestyle{empty}%
-		\setcounter{page}{1}
-		\pagenumbering{roman}
-		\begin{center}
-			\begin{singlespacing}
-				\MakeUppercase{\fontsize{14pt}{16pt}\selectfont\@title}\\
-				\vspace{1.5cm}
-				\iftoggle{lang}
-				{Bidang Studi \@program}
-				{\@program \vspace{1em} Program}\\
-				\vfill
-				\includegraphics[width=0.5\textwidth]{#1}
-				\vfill
-				\iftoggle{lang}
-				{diajukan oleh}
-				{proposed by}\\\vspace{0.4em}
-				\textbf{\@authorName \\ \@authorID \\}
-				\vfill
-				\iftoggle{lang}{Kepada}{To}\\
-				\vspace{0.4em}
-				\textbf{
-					\iftoggle{lang}{\MakeUppercase{\@graduateIna}}{\MakeUppercase{\@graduateEng}} \\
-					\iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}} \\
-					\MakeUppercase{\@university} \\
-					\MakeUppercase{\@city} \\
-					\@yearsubmit
-				}
-			\end{singlespacing}
-		\end{center}
-	}
+  \newcommand{\printcover}[1]{
+    \newgeometry{left=3.5cm,top=2.5cm,bottom=2.5cm,right=2.5cm}
+    \titleformat*{\section}{\raggedright\normalfont\normalsize\bfseries}
+    \thispagestyle{empty}%
+    \setcounter{page}{1}
+    \pagenumbering{roman}
+    \begin{center}
+      \begin{singlespacing}
+        \MakeUppercase{\fontsize{14pt}{16pt}\selectfont\@title}\\
+        \vspace{1.5cm}
+        \iftoggle{lang}
+        {Bidang Studi \@program}
+        {\@program \vspace{1em} Program}\\
+        \vfill
+        \includegraphics[width=0.5\textwidth]{#1}
+        \vfill
+        \iftoggle{lang}
+        {diajukan oleh}
+        {proposed by}\\\vspace{0.4em}
+        \textbf{\@authorName \\ \@authorID \\}
+        \vfill
+        \iftoggle{lang}{Kepada}{To}\\
+        \vspace{0.4em}
+        \textbf{
+          \iftoggle{lang}{\MakeUppercase{\@graduateIna}}{\MakeUppercase{\@graduateEng}} \\
+          \iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}} \\
+          \MakeUppercase{\@university} \\
+          \MakeUppercase{\@city} \\
+          \@yearsubmit
+        }
+      \end{singlespacing}
+    \end{center}
+  }
 }
 
 %======================================
@@ -383,311 +385,323 @@
 %======================================
 % If Bachelor
 \iftoggle{bachelor}{
-	\newcommand{\printendorsementpdf}{
-		%\chapter*{\approvalpage}
-		\addtocounter{page}{1}
-		\addcontentsline{toc}{chapter}{\approvalpage}
-		\includepdf[page={1}]{contents/endorsement/endorsement.pdf}
-		\addtocounter{page}{-1}
-	}
-	\newcommand{\printendorsement}{
-		\chapter*{\approvalpage}
-		\fancyhf{}
-		\fancyfoot[C]{\thepage}
-		\begin{center}
-			\begin{singlespacing}
-				%\MakeUppercase{\bfseries\fontsize{14pt}{16pt}\selectfont\@title}\\
-				\textbf{\MakeUppercase{\fontsize{14pt}{16pt}\selectfont\@title}}\\
-				\vspace{1cm}
-				\textbf{\iftoggle{lang}{SKRIPSI}{THESIS}}\\
-				\vspace{2cm}
-				\iftoggle{lang}
-				{Diajukan Sebagai Salah Satu Syarat untuk Memperoleh}
-				{Proposed as A Requirement to Obtain}\\
-				\iftoggle{lang}
-				{Gelar Sarjana Teknik}
-				{Undergraduate Degree (\textit{Sarjana Teknik})}\\
-				\iftoggle{lang}
-				{pada \@departmentIna}
-				{in \@departmentEng}\\
-				\iftoggle{lang}{\@facultyIna}{\@facultyEng}\\
-				\@university\\
-				\vfill
-				\iftoggle{lang}{Disusun oleh:}{Written by:}\\
-				\vspace{1em}
-				\textbf{\underline{\@authorName} \\ \@authorID \\}
-				\vfill
-				\iftoggle{lang}
-				{Telah disetujui dan disahkan}
-				{Has been approved and endorsed}\\
-				\vspace{0.5cm}
-				\iftoggle{lang}{Pada tanggal $\ldots\ldots$}{on $\ldots\ldots$}\\
-				\vfill
-				\begin{center}
-					\begin{tabular}{ccc}
-						\iftoggle{lang}{Dosen Pembimbing I}{Supervisor I}             & \hspace{2cm}   & \iftoggle{lang}{Dosen Pembimbing II}{Supervisor II} \\
-						\vspace{0.3cm}                                                & \vspace{0.3cm} & \vspace{0.3cm}                                      \\
-						\textbf{\underline{\scalebox{.7}[1.0]{\getsupervisor{1}{1}}}} &                &
-						\textbf{\underline{\scalebox{.7}[1.0]{\getsupervisor{2}{1}}}}                                                                        \\
-						\textbf{\getsupervisor{1}{2}}                                 &                & \textbf{\getsupervisor{2}{2}}                       \\
-					\end{tabular}
-				\end{center}
-			\end{singlespacing}
-		\end{center}
-		\addcontentsline{toc}{chapter}{\approvalpage}
-	}
+  \newcommand{\printendorsementpdf}{
+    %\chapter*{\approvalpage}
+    \addtocounter{page}{1}
+    \addcontentsline{toc}{chapter}{\approvalpage}
+    \includepdf[page={1}]{contents/endorsement/endorsement.pdf}
+    \addtocounter{page}{-1}
+  }
+  \newcommand{\printendorsement}{
+    \chapter*{\approvalpage}
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \begin{center}
+      \begin{singlespacing}
+        %\MakeUppercase{\bfseries\fontsize{14pt}{16pt}\selectfont\@title}\\
+        \textbf{\MakeUppercase{\fontsize{14pt}{16pt}\selectfont\@title}}\\
+        \vspace{1cm}
+        \textbf{\iftoggle{lang}{SKRIPSI}{THESIS}}\\
+        \vspace{2cm}
+        \iftoggle{lang}
+        {Diajukan Sebagai Salah Satu Syarat untuk Memperoleh}
+        {Proposed as A Requirement to Obtain}\\
+        \iftoggle{lang}
+        {Gelar Sarjana Teknik}
+        {Undergraduate Degree (\textit{Sarjana Teknik})}\\
+        \iftoggle{lang}
+        {pada \@departmentIna}
+        {in \@departmentEng}\\
+        \iftoggle{lang}{\@facultyIna}{\@facultyEng}\\
+        \@university\\
+        \vfill
+        \iftoggle{lang}{Disusun oleh:}{Written by:}\\
+        \vspace{1em}
+        \textbf{\underline{\@authorName} \\ \@authorID \\}
+        \vfill
+        \iftoggle{lang}
+        {Telah disetujui dan disahkan}
+        {Has been approved and endorsed}\\
+        \vspace{0.5cm}
+        \iftoggle{lang}{Pada tanggal $\ldots\ldots$}{on $\ldots\ldots$}\\
+        \vfill
+        \begin{center}
+          \begin{tabular}{ccc}
+            \iftoggle{lang}{Dosen Pembimbing I}{Supervisor I}             & \hspace{2cm}   & \iftoggle{lang}{Dosen Pembimbing II}{Supervisor II} \\
+            \vspace{0.3cm}                                                & \vspace{0.3cm} & \vspace{0.3cm}                                      \\
+            \textbf{\underline{\scalebox{.7}[1.0]{\getsupervisor{1}{1}}}} &                &
+            \textbf{\underline{\scalebox{.7}[1.0]{\getsupervisor{2}{1}}}}                                                                        \\
+            \textbf{\getsupervisor{1}{2}}                                 &                & \textbf{\getsupervisor{2}{2}}                       \\
+          \end{tabular}
+        \end{center}
+      \end{singlespacing}
+    \end{center}
+    \addcontentsline{toc}{chapter}{\approvalpage}
+  }
 }
 
 % If Master
 \iftoggle{master}{
-	\newcommand{\printendorsementpdf}{
-		%\chapter*{\approvalpage}
-		\addtocounter{page}{1}
-		\addcontentsline{toc}{chapter}{\approvalpage}
-		\includepdf[page={1}]{contents/endorsement/endorsement.pdf}
-		\addtocounter{page}{-1}
-	}
-	\newcommand{\printendorsement}{
-		%	\chapter*{\endorsementname}%
-		\fancyhf{}
-		\fancyfoot[C]{\thepage}
-		\begin{center}
-			\begin{singlespacing}
-				\textbf{\iftoggle{lang}{TESIS}{THESIS}}\\
-				\vspace{1em}
-				\MakeUppercase{\bfseries\fontsize{14pt}{16pt}\selectfont\@title}\\
-				\vspace{0.5cm}
-				\iftoggle{lang}{Dipersiapkan dan disusun oleh}{Written by}\\
-				\vspace{1em}
-				\textbf{\underline{\@authorName} \\ \@authorID \\}
-				\vspace{1em}
-				\iftoggle{lang}
-				{Telah dipertahankan di depan dewan penguji}
-				{Has been presented} \\
-				\iftoggle{lang}
-				{Pada tanggal: \@examdate}
-				{on \@examdate}\\
-				\vspace{1em}
-				\iftoggle{lang}
-				{\textbf{Susunan Dewan Penguji}}
-				{\textbf{Thesis Examiners}}\\
+  \newcommand{\printendorsementpdf}{
+    %\chapter*{\approvalpage}
+    \addtocounter{page}{1}
+    \addcontentsline{toc}{chapter}{\approvalpage}
+    \includepdf[page={1}]{contents/endorsement/endorsement.pdf}
+    \addtocounter{page}{-1}
+  }
+  \newcommand{\printendorsement}{
+    %	\chapter*{\endorsementname}%
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \begin{center}
+      \begin{singlespacing}
+        \textbf{\iftoggle{lang}{TESIS}{THESIS}}\\
+        \vspace{1em}
+        \MakeUppercase{\bfseries\fontsize{14pt}{16pt}\selectfont\@title}\\
+        \vspace{0.5cm}
+        \iftoggle{lang}{Dipersiapkan dan disusun oleh}{Written by}\\
+        \vspace{1em}
+        \textbf{\underline{\@authorName} \\ \@authorID \\}
+        \vspace{1em}
+        \iftoggle{lang}
+        {Telah dipertahankan di depan dewan penguji}
+        {Has been presented} \\
+        \iftoggle{lang}
+        {Pada tanggal: \@examdate}
+        {on \@examdate}\\
+        \vspace{1em}
+        \iftoggle{lang}
+        {\textbf{Susunan Dewan Penguji}}
+        {\textbf{Thesis Examiners}}\\
 
-				\begin{center}
-					\begin{tabular}{ccc}
-						\iftoggle{lang}{Pembimbing I}{Supervisor I}   & \hspace{2cm}   & \iftoggle{lang}{Anggota Dewan Penguji Lain}{Examiners} \\
-						\vspace{0.3cm}                                & \vspace{0.3cm} & \vspace{0.3cm}                                         \\
-						\textbf{\underline{\getsupervisor{1}{1}}}     &                &
-						\textbf{\underline{\getexaminer{1}{1}}}                                                                                 \\
-						\iftoggle{lang}{Pembimbing II}{Supervisor II} & \hspace{2cm}   &                                                        \\
-						\vspace{0.3cm}                                & \vspace{0.3cm} & \vspace{0.3cm}                                         \\
-						\textbf{\underline{\getsupervisor{2}{1}}}     &                &
-						\textbf{\underline{\getexaminer{2}{1}}}                                                                                 \\
-					\end{tabular}
-				\end{center}
-				\vspace{0.5cm}
+        \begin{center}
+          \begin{tabular}{ccc}
+            \iftoggle{lang}{Pembimbing I}{Supervisor I}   & \hspace{2cm}   & \iftoggle{lang}{Anggota Dewan Penguji Lain}{Examiners} \\
+            \vspace{0.3cm}                                & \vspace{0.3cm} & \vspace{0.3cm}                                         \\
+            \textbf{\underline{\getsupervisor{1}{1}}}     &                &
+            \textbf{\underline{\getexaminer{1}{1}}}                                                                                 \\
+            \iftoggle{lang}{Pembimbing II}{Supervisor II} & \hspace{2cm}   &                                                        \\
+            \vspace{0.3cm}                                & \vspace{0.3cm} & \vspace{0.3cm}                                         \\
+            \textbf{\underline{\getsupervisor{2}{1}}}     &                &
+            \textbf{\underline{\getexaminer{2}{1}}}                                                                                 \\
+          \end{tabular}
+        \end{center}
+        \vspace{0.5cm}
 
-				\iftoggle{lang}
-				{Tesis ini telah diterima sebagai salah satu persyaratan \\ untuk memperoleh gelar Magister}
-				{This thesis has been accepted as a partial fulfillment \\ for the degree of Master}\\
-				\vspace{0.3cm}
+        \iftoggle{lang}
+        {Tesis ini telah diterima sebagai salah satu persyaratan \\ untuk memperoleh gelar Magister}
+        {This thesis has been accepted as a partial fulfillment \\ for the degree of Master}\\
+        \vspace{0.3cm}
 
-				\iftoggle{lang}{Tanggal:}{Date: $\ldots\ldots$} \\
-				\iftoggle{lang}
-				{Pengelola Program Studi \@program}
-				{Program Coordinator of \@program}\\
-				\vspace{1.3cm}
-				\textbf{\underline{\@programcoorName}}\\
-				NIP. \@programcoorNIP \\
-				\vspace{0.5cm}
+        \iftoggle{lang}{Tanggal:}{Date: $\ldots\ldots$} \\
+        \iftoggle{lang}
+        {Pengelola Program Studi \@program}
+        {Program Coordinator of \@program}\\
+        \vspace{1.3cm}
+        \textbf{\underline{\@programcoorName}}\\
+        NIP. \@programcoorNIP \\
+        \vspace{0.5cm}
 
-				\iftoggle{lang}{Mengetahui,\\}{}
-				\iftoggle{lang}
-				{Ketua Departemen/Wakil Penanggung Jawab Program Studi}
-				{Head of Department}\\
-				\iftoggle{lang}{\@departmentIna}{\@departmentEng}\\
-				\vspace{1.3cm}
-				\textbf{\underline{\@depheadName}}\\
-				NIP. \@depheadNIP \\
+        \iftoggle{lang}{Mengetahui,\\}{}
+        \iftoggle{lang}
+        {Ketua Departemen/Wakil Penanggung Jawab Program Studi}
+        {Head of Department}\\
+        \iftoggle{lang}{\@departmentIna}{\@departmentEng}\\
+        \vspace{1.3cm}
+        \textbf{\underline{\@depheadName}}\\
+        NIP. \@depheadNIP \\
 
-			\end{singlespacing}
-		\end{center}
-		\addcontentsline{toc}{chapter}{\approvalpage}
-	}
+      \end{singlespacing}
+    \end{center}
+    \addcontentsline{toc}{chapter}{\approvalpage}
+  }
 }
 
 % If Doctoral
 \iftoggle{doctoral}{
-	\newcommand{\printendorsementpdf}{
-		%\chapter*{\approvalpage}
-		\addtocounter{page}{1}
-		\addcontentsline{toc}{chapter}{\approvalpage}
-		\includepdf[page={1}]{contents/endorsement/endorsement.pdf}
-		\addtocounter{page}{-1}
-	}
-	\newcommand{\printendorsement}{
-		\chapter*{\approvalpage}
-		\fancyhf{}
-		\fancyfoot[C]{\thepage}
-		\begin{center}
-			\begin{singlespacing}
-				\raggedright \hspace{2cm}Tim Promotor menyetujui laporan disertasi: \\
-				\begin{center}
-					\begin{tabular}{lcl}
-						Nama  & : & \@authorName \\
-						NIM   & : & \@authorID   \\
-						Judul & : & \@title      \\
-					\end{tabular}
-				\end{center}
-				\raggedright \hspace{2cm} yang telah diperbaiki sesuai saran dari Tim Penguji Ujian Tertutup \\
-				\vspace{1cm}
-				\begin{center}
-					\begin{tabular}{ccc}
-						Tanda Tangan                              & \hspace{3cm}   & Tanggal        \\
-						\vspace{0.6cm}                            & \vspace{0.6cm} & \vspace{0.6cm} \\
-						\textbf{\underline{\getsupervisor{1}{1}}} &                &
-						\ldots\ldots\ldots                                                          \\
-						(Promotor)                                &                &                \\
+  \newcommand{\printendorsementpdf}{
+    %\chapter*{\approvalpage}
+    \addtocounter{page}{1}
+    \addcontentsline{toc}{chapter}{\approvalpage}
+    \includepdf[page={1}]{contents/endorsement/endorsement.pdf}
+    \addtocounter{page}{-1}
+  }
+  \newcommand{\printendorsement}{
+    \chapter*{\approvalpage}
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \begin{center}
+      \begin{singlespacing}
+        \raggedright \hspace{2cm}Tim Promotor menyetujui laporan disertasi: \\
+        \begin{center}
+          \begin{tabular}{lcl}
+            Nama  & : & \@authorName \\
+            NIM   & : & \@authorID   \\
+            Judul & : & \@title      \\
+          \end{tabular}
+        \end{center}
+        \raggedright \hspace{2cm} yang telah diperbaiki sesuai saran dari Tim Penguji Ujian Tertutup \\
+        \vspace{1cm}
+        \begin{center}
+          \begin{tabular}{ccc}
+            Tanda Tangan                              & \hspace{3cm}   & Tanggal        \\
+            \vspace{0.6cm}                            & \vspace{0.6cm} & \vspace{0.6cm} \\
+            \textbf{\underline{\getsupervisor{1}{1}}} &                &
+            \ldots\ldots\ldots                                                          \\
+            (Promotor)                                &                &                \\
 
-						\vspace{0.6cm}                            & \vspace{0.6cm} & \vspace{0.6cm} \\
-						\textbf{\underline{\getsupervisor{2}{1}}} &                &
-						\ldots\ldots\ldots                                                          \\
-						(Ko-promotor)                             &                &                \\
+            \vspace{0.6cm}                            & \vspace{0.6cm} & \vspace{0.6cm} \\
+            \textbf{\underline{\getsupervisor{2}{1}}} &                &
+            \ldots\ldots\ldots                                                          \\
+            (Ko-promotor)                             &                &                \\
 
-						\vspace{0.6cm}                            & \vspace{0.6cm} & \vspace{0.6cm} \\
-						\textbf{\underline{\getsupervisor{3}{1}}} &                &
-						\ldots\ldots\ldots                                                          \\
-						(Ko-promotor)                             &                &                \\
-					\end{tabular}
-				\end{center}
+            \vspace{0.6cm}                            & \vspace{0.6cm} & \vspace{0.6cm} \\
+            \textbf{\underline{\getsupervisor{3}{1}}} &                &
+            \ldots\ldots\ldots                                                          \\
+            (Ko-promotor)                             &                &                \\
+          \end{tabular}
+        \end{center}
 
-			\end{singlespacing}
-		\end{center}
-		\addcontentsline{toc}{chapter}{\approvalpage}
-		\newpage
-		\chapter*{\approvalpage}
-		\begin{center}
-			\begin{singlespacing}
-				\raggedright \hspace{2cm}Tim Penguji menyetujui laporan disertasi: \\
-				\begin{center}
-					\begin{tabular}{lcl}
-						Nama  & : & \@authorName \\
-						NIM   & : & \@authorID   \\
-						Judul & : & \@title      \\
-					\end{tabular}
-				\end{center}
-				\raggedright \hspace{2cm} yang telah diperbaiki sesuai saran dari Tim Penguji Ujian Tertutup \\
-				\vspace{1cm}
-				\begin{center}
-					\begin{longtable}{ccc}
-						Tanda Tangan                                                         & \hspace{3cm}   & Tanggal        \\
-						% Iterate through the list of examiners
-						% get number of examiners from \value{exm}
-						\newcounter{end}
-						\forloop{end}{1}{\theend < \numexpr\value{exm}+1}{
-						\vspace{0.6cm}                                                       & \vspace{0.6cm} & \vspace{0.6cm} \\
-						\textbf{\underline{\getexaminer{\theend}{1}}}                        &                &
-						\ldots\ldots\ldots                                                                                     \\
-						\ifthenelse{\theend = 1}{(Ketua Tim Penguji)}{(Anggota Tim Penguji)} &                &                \\
-							\ifthenelse{\theend = 4} %newpage after the 4th item
-							{
-						\hspace{2cm}                                                                                           \\
-								\pagebreak
-						Tanda Tangan                                                         & \hspace{3cm}   & Tanggal        \\
-							}{}
-						}
-					\end{longtable}
-				\end{center}
+      \end{singlespacing}
+    \end{center}
+    \addcontentsline{toc}{chapter}{\approvalpage}
+    \newpage
+    \chapter*{\approvalpage}
+    \begin{center}
+      \begin{singlespacing}
+        \raggedright \hspace{2cm}Tim Penguji menyetujui laporan disertasi: \\
+        \begin{center}
+          \begin{tabular}{lcl}
+            Nama  & : & \@authorName \\
+            NIM   & : & \@authorID   \\
+            Judul & : & \@title      \\
+          \end{tabular}
+        \end{center}
+        \raggedright \hspace{2cm} yang telah diperbaiki sesuai saran dari Tim Penguji Ujian Tertutup \\
+        \vspace{1cm}
+        \begin{center}
+          \begin{longtable}{ccc}
+            Tanda Tangan                                                         & \hspace{3cm}   & Tanggal        \\
+            % Iterate through the list of examiners
+            % get number of examiners from \value{exm}
+            \newcounter{end}
+            \forloop{end}{1}{\theend < \numexpr\value{exm}+1}{
+            \vspace{0.6cm}                                                       & \vspace{0.6cm} & \vspace{0.6cm} \\
+            \textbf{\underline{\getexaminer{\theend}{1}}}                        &                &
+            \ldots\ldots\ldots                                                                                     \\
+            \ifthenelse{\theend = 1}{(Ketua Tim Penguji)}{(Anggota Tim Penguji)} &                &                \\
+              \ifthenelse{\theend = 4} %newpage after the 4th item
+              {
+            \hspace{2cm}                                                                                           \\
+                \pagebreak
+            Tanda Tangan                                                         & \hspace{3cm}   & Tanggal        \\
+              }{}
+            }
+          \end{longtable}
+        \end{center}
 
-			\end{singlespacing}
-		\end{center}
-	}
+      \end{singlespacing}
+    \end{center}
+  }
 }
 
 %======================================
 %% Scanned JPG Endorsement Page
 %======================================
 \newcommand{\printendorsementjpg}[1]{
-	\newpage
-	\fancyhf{}
-	\fancyfoot[C]{\thepage}
-	\begin{center}
-		\vspace*{-4cm}
-		\noindent\makebox[\textwidth]{\includegraphics[width=\paperwidth]{#1}}
-	\end{center}
-	\addcontentsline{toc}{chapter}{\approvalpage}
-	\clearpage
+  \newpage
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \begin{center}
+    \vspace*{-4cm}
+    \noindent\makebox[\textwidth]{\includegraphics[width=\paperwidth]{#1}}
+  \end{center}
+  \addcontentsline{toc}{chapter}{\approvalpage}
+  \clearpage
 }
 
 %======================================
 %% Dedication Page
 %======================================
 \newcommand{\chapterdedication}[1]{
-	\newgeometry{top=2.54cm,bottom=2.54cm,left=3.54cm,right=2.54cm}
-	\chapter*{\dedicationpage}%
-	\input{#1}
-	\addcontentsline{toc}{chapter}{\dedicationpage}
+  \newgeometry{top=2.54cm,bottom=2.54cm,left=3.54cm,right=2.54cm}
+  \chapter*{\dedicationpage}%
+  \input{#1}
+  \addcontentsline{toc}{chapter}{\dedicationpage}
 }
 
 %======================================
 %% Statement Page
 %======================================
 \newcommand{\chapterstatement}[1]{
-	\newgeometry{right=2.54cm,left=3.54cm,top=2.54cm,bottom=2.54cm}
-	\chapter*{\statementname}%
-	\input{#1}
-	\addcontentsline{toc}{chapter}{\statementname}
+  \newgeometry{right=2.54cm,left=3.54cm,top=2.54cm,bottom=2.54cm}
+  \chapter*{\statementname}%
+  \input{#1}
+  \addcontentsline{toc}{chapter}{\statementname}
 }
 
 %======================================
 %% Scanned JPG Statement Page
 %======================================
 \newcommand{\chapterstatementjpg}[1]{
-	\newpage
-	\fancyhf{}
-	\fancyfoot[C]{\thepage}
-	\begin{center}
-		\vspace*{-4cm}
-		\noindent\makebox[\textwidth]{\includegraphics[width=\paperwidth]{#1}}
-	\end{center}
-	\addcontentsline{toc}{chapter}{\statementname}
-	\clearpage
+  \newpage
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \begin{center}
+    \vspace*{-4cm}
+    \noindent\makebox[\textwidth]{\includegraphics[width=\paperwidth]{#1}}
+  \end{center}
+  \addcontentsline{toc}{chapter}{\statementname}
+  \clearpage
+}
+
+%======================================
+%% Statement Page PDF
+%======================================
+\newcommand{\chapterstatementpdf}[1]{%
+  \newpage
+  \fancyhf{} % clear headers/footers
+  \fancyfoot[C]{\thepage} % keep page number at bottom center
+  \includepdf[pages=-,pagecommand={}] {#1} % insert full PDF page(s)
+  \addcontentsline{toc}{chapter}{\statementname} % add to TOC
+  \clearpage
 }
 
 %======================================
 %% Preface
 %======================================
 \newcommand{\chapterpreface}[1]{
-	\restoregeometry% Restore Geometry
-	\chapter*{\prefacename}%
-	\input{#1}
-	\addcontentsline{toc}{chapter}{\prefacename}
+  \restoregeometry% Restore Geometry
+  \chapter*{\prefacename}%
+  \input{#1}
+  \addcontentsline{toc}{chapter}{\prefacename}
 }
 
 %======================================
 %% Nomenclature
 %======================================
 \newcommand{\chapternomenclature}[1]{
-	\chapter*{\nomenclaturename}
-	\input{#1}
-	\addcontentsline{toc}{chapter}{\nomenclaturename}
+  \chapter*{\nomenclaturename}
+  \input{#1}
+  \addcontentsline{toc}{chapter}{\nomenclaturename}
 }
 
 %======================================
 %% Abstract
 %======================================
 \newcommand{\chapterabstract}[1]{
-	\chapter*{ABSTRACT}
-	\input{#1}
-	\addcontentsline{toc}{chapter}{ABSTRACT}
+  \chapter*{ABSTRACT}
+  \input{#1}
+  \addcontentsline{toc}{chapter}{ABSTRACT}
 }
 
 %======================================
 %% Intisari
 %======================================
 \newcommand{\chapterintisari}[1]{
-	\chapter*{INTISARI}
-	\input{#1}
-	\addcontentsline{toc}{chapter}{INTISARI}
+  \chapter*{INTISARI}
+  \input{#1}
+  \addcontentsline{toc}{chapter}{INTISARI}
 }
 
 %======================================
@@ -710,35 +724,35 @@
 \renewcommand\cfttabpresnum{\tablename \space}
 \renewcommand\cftfigpresnum{\figurename \space}
 \AtBeginDocument{
-	\addtolength\cftchapnumwidth{\widthof{\bfseries \chaptername }}
-	\addtolength\cfttabnumwidth{\widthof{\bfseries \tablename }}
-	\addtolength\cftfignumwidth{\widthof{\bfseries \figurename }}
+  \addtolength\cftchapnumwidth{\widthof{\bfseries \chaptername }}
+  \addtolength\cfttabnumwidth{\widthof{\bfseries \tablename }}
+  \addtolength\cftfignumwidth{\widthof{\bfseries \figurename }}
 }
 
 
 % Adding entry to TOC
 \newcommand{\thetoc}{
-	\newpage
-	\addcontentsline{toc}{chapter}{\contentsname}
+  \newpage
+  \addcontentsline{toc}{chapter}{\contentsname}
 }
 % Adding entry to LOT
 \newcommand{\thelot}{
-	\newpage
-	\addcontentsline{toc}{chapter}{\listtablename}
+  \newpage
+  \addcontentsline{toc}{chapter}{\listtablename}
 }
 % Adding entry to LOF
 \newcommand{\thelof}{
-	\newpage
-	\addcontentsline{toc}{chapter}{\listfigurename}
+  \newpage
+  \addcontentsline{toc}{chapter}{\listfigurename}
 }
 % Put title of TOC, LOF, and LOT in top-center page
 \AtBeginDocument{
-	\renewcommand{\cfttoctitlefont}{\vspace{-2.5cm}\hfill\bfseries\fontsize{14pt}{16pt}\selectfont}
-	\renewcommand{\cftaftertoctitle}{\hfill}
-	\renewcommand{\cftlottitlefont}{\vspace{-2.5cm}\hfill\bfseries\fontsize{14pt}{16pt}\selectfont}
-	\renewcommand{\cftafterlottitle}{\hfill}
-	\renewcommand{\cftloftitlefont}{\vspace{-2.5cm}\hfill\bfseries\fontsize{14pt}{16pt}\selectfont}
-	\renewcommand{\cftafterloftitle}{\hfill}
+  \renewcommand{\cfttoctitlefont}{\vspace{-2.5cm}\hfill\bfseries\fontsize{14pt}{16pt}\selectfont}
+  \renewcommand{\cftaftertoctitle}{\hfill}
+  \renewcommand{\cftlottitlefont}{\vspace{-2.5cm}\hfill\bfseries\fontsize{14pt}{16pt}\selectfont}
+  \renewcommand{\cftafterlottitle}{\hfill}
+  \renewcommand{\cftloftitlefont}{\vspace{-2.5cm}\hfill\bfseries\fontsize{14pt}{16pt}\selectfont}
+  \renewcommand{\cftafterloftitle}{\hfill}
 }
 
 %======================================
@@ -780,59 +794,59 @@
 \definecolor{deepblue}{rgb}{0,0,0.5}
 
 \lstdefinelanguage{json}{
-	basicstyle=\ttfamily\small,
-	stringstyle=\color{codepurple}, % Color for strings
-	keywordstyle=\color{deepblue},  % Color for keywords (true, false, null)
-	commentstyle=\color{codegray},    % Color for numbers, since JSON has no comments
-	backgroundcolor=\color{backcolour},
-	showstringspaces=false,
-	breaklines=true,
-	% Define JSON keywords
-	keywords={true, false, null},
-	% Define strings
-	string=[s]{"}{"},
-	% In JSON, numbers are not strings or keywords, so we can treat them as comments for styling
-	morecomment=[l]{:},
-	literate=
-		*{0}{{{\color{codegray}0}}}{1}
-		{1}{{{\color{codegray}1}}}{1}
-		{2}{{{\color{codegray}2}}}{1}
-		{3}{{{\color{codegray}3}}}{1}
-		{4}{{{\color{codegray}4}}}{1}
-		{5}{{{\color{codegray}5}}}{1}
-		{6}{{{\color{codegray}6}}}{1}
-		{7}{{{\color{codegray}7}}}{1}
-		{8}{{{\color{codegray}8}}}{1}
-		{9}{{{\color{codegray}9}}}{1}
+  basicstyle=\ttfamily\small,
+  stringstyle=\color{codepurple}, % Color for strings
+  keywordstyle=\color{deepblue},  % Color for keywords (true, false, null)
+  commentstyle=\color{codegray},    % Color for numbers, since JSON has no comments
+  backgroundcolor=\color{backcolour},
+  showstringspaces=false,
+  breaklines=true,
+  % Define JSON keywords
+  keywords={true, false, null},
+  % Define strings
+  string=[s]{"}{"},
+  % In JSON, numbers are not strings or keywords, so we can treat them as comments for styling
+  morecomment=[l]{:},
+  literate=
+    *{0}{{{\color{codegray}0}}}{1}
+    {1}{{{\color{codegray}1}}}{1}
+    {2}{{{\color{codegray}2}}}{1}
+    {3}{{{\color{codegray}3}}}{1}
+    {4}{{{\color{codegray}4}}}{1}
+    {5}{{{\color{codegray}5}}}{1}
+    {6}{{{\color{codegray}6}}}{1}
+    {7}{{{\color{codegray}7}}}{1}
+    {8}{{{\color{codegray}8}}}{1}
+    {9}{{{\color{codegray}9}}}{1}
 }
 
 \lstdefinestyle{jsonstyle}{
-	language=json,
-	backgroundcolor=\color{backcolour},
-	commentstyle=\color{codegreen},
-	stringstyle=\color{codepurple},
-	keywordstyle=\color{deepblue}, % Untuk true, false, null
-	numberstyle=\tiny\color{codegray},
-	basicstyle=\ttfamily\small,
-	breakatwhitespace=false,
-	breaklines=true,
-	captionpos=b,
-	keepspaces=true,
-	showspaces=false,
-	showstringspaces=false,
-	showtabs=false,
-	tabsize=2,
-	literate= % Membuat angka menjadi hitam, bukan bagian dari string
-		*{0}{{{\color{black}0}}}{1}
-		{1}{{{\color{black}1}}}{1}
-		{2}{{{\color{black}2}}}{1}
-		{3}{{{\color{black}3}}}{1}
-		{4}{{{\color{black}4}}}{1}
-		{5}{{{\color{black}5}}}{1}
-		{6}{{{\color{black}6}}}{1}
-		{7}{{{\color{black}7}}}{1}
-		{8}{{{\color{black}8}}}{1}
-		{9}{{{\color{black}9}}}{1}
+  language=json,
+  backgroundcolor=\color{backcolour},
+  commentstyle=\color{codegreen},
+  stringstyle=\color{codepurple},
+  keywordstyle=\color{deepblue}, % Untuk true, false, null
+  numberstyle=\tiny\color{codegray},
+  basicstyle=\ttfamily\small,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  literate= % Membuat angka menjadi hitam, bukan bagian dari string
+    *{0}{{{\color{black}0}}}{1}
+    {1}{{{\color{black}1}}}{1}
+    {2}{{{\color{black}2}}}{1}
+    {3}{{{\color{black}3}}}{1}
+    {4}{{{\color{black}4}}}{1}
+    {5}{{{\color{black}5}}}{1}
+    {6}{{{\color{black}6}}}{1}
+    {7}{{{\color{black}7}}}{1}
+    {8}{{{\color{black}8}}}{1}
+    {9}{{{\color{black}9}}}{1}
 }
 \lstset{style=jsonstyle}
 
@@ -842,11 +856,11 @@
 %======================================
 % set page number style
 \AtBeginDocument{
-	\fancyhf{}
-	\fancyhead[R]{\thepage}
-	\renewcommand{\headrulewidth}{0pt}
-	\pagestyle{fancy}
-	\setlength{\parindent}{1.25cm}
+  \fancyhf{}
+  \fancyhead[R]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \pagestyle{fancy}
+  \setlength{\parindent}{1.25cm}
 }
 % depth of toc
 \setcounter{secnumdepth}{3}
@@ -877,104 +891,104 @@
 
 % Starting the main matter	
 \newcommand{\startmain}{
-	\clearpage
-	\setcounter{page}{1}
-	\pagenumbering{arabic}
-	\onehalfspacing
-	\nopagebreak
-	\setlength{\parindent}{1.25cm}
+  \clearpage
+  \setcounter{page}{1}
+  \pagenumbering{arabic}
+  \onehalfspacing
+  \nopagebreak
+  \setlength{\parindent}{1.25cm}
 }
 
 
 % Main chapter head styling
 \renewcommand{\@makechapterhead}[1]{%   
-	{\parindent \z@ \centering \bfseries
-			\fontsize{14pt}{16pt}\selectfont
-			\chaptername \space \thechapter
-			\par\nobreak
-			\MakeUppercase{#1}\par\nobreak
-			\vskip 20\p@
-		}}
+  {\parindent \z@ \centering \bfseries
+      \fontsize{14pt}{16pt}\selectfont
+      \chaptername \space \thechapter
+      \par\nobreak
+      \MakeUppercase{#1}\par\nobreak
+      \vskip 20\p@
+    }}
 
 % Other chapter head styling
 \renewcommand{\@makeschapterhead}[1]{%
-	{\parindent \z@ \centering \bfseries
-			\fontsize{14pt}{16pt}\selectfont
-			\par\nobreak
-			\MakeUppercase{#1}\par\nobreak
-			\vskip 20\p@
-		}}
+  {\parindent \z@ \centering \bfseries
+      \fontsize{14pt}{16pt}\selectfont
+      \par\nobreak
+      \MakeUppercase{#1}\par\nobreak
+      \vskip 20\p@
+    }}
 
 % References
 \newcommand{\thereferences}{
-	\addcontentsline{toc}{chapter}{\bibname}
-	\singlespacing
-	\nopagebreak
+  \addcontentsline{toc}{chapter}{\bibname}
+  \singlespacing
+  \nopagebreak
 }
 
 % Appendix
 \newcommand{\chapterappendix}[1]{
-	\newpage
-	% Reset counter
-	%\setcounter{chapter}{0}
-	%\setcounter{section}{0}
-	\setcounter{page}{1}
-	% Makes all chapter name to L
-	\renewcommand{\thechapter}{L}
-	\renewcommand{\thepage}{L-\arabic{page}}
-	\renewcommand \thesection {L.\@arabic\c@section}
-	\renewcommand\thesubsection {L.\@arabic\c@section.\@arabic\c@subsection}
+  \newpage
+  % Reset counter
+  %\setcounter{chapter}{0}
+  %\setcounter{section}{0}
+  \setcounter{page}{1}
+  % Makes all chapter name to L
+  \renewcommand{\thechapter}{L}
+  \renewcommand{\thepage}{L-\arabic{page}}
+  \renewcommand \thesection {L.\@arabic\c@section}
+  \renewcommand\thesubsection {L.\@arabic\c@section.\@arabic\c@subsection}
 
-	% Add to TOC
-	\addcontentsline{toc}{chapter}{LAMPIRAN}
-	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
-	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
-	%\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
-	% Page number style
-	\fancyhf{}
-	\fancyfoot[C]{\thepage}
+  % Add to TOC
+  \addcontentsline{toc}{chapter}{LAMPIRAN}
+  %\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
+  %\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
+  %\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+  % Page number style
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
 
-	\fontsize{14pt}{16pt}\selectfont
-	%\centering\MakeUppercase{\normalfont\bfseries \appendixname }\\
-	\vspace{20pt}
-	\fontsize{12}{2}\selectfont
-	\onehalfspacing
-	\input{#1}
+  \fontsize{14pt}{16pt}\selectfont
+  %\centering\MakeUppercase{\normalfont\bfseries \appendixname }\\
+  \vspace{20pt}
+  \fontsize{12}{2}\selectfont
+  \onehalfspacing
+  \input{#1}
 }
 
 \newcommand{\chapterappendixadd}[1]{
-	\newpage
+  \newpage
 
-	% Makes all chapter name to L
-	\renewcommand{\thechapter}{L}
-	\renewcommand{\thepage}{L-\arabic{page}}
-	\renewcommand \thesection {L.\@arabic\c@section}
-	\renewcommand\thesubsection {L.\@arabic\c@section.\@arabic\c@subsection}
+  % Makes all chapter name to L
+  \renewcommand{\thechapter}{L}
+  \renewcommand{\thepage}{L-\arabic{page}}
+  \renewcommand \thesection {L.\@arabic\c@section}
+  \renewcommand\thesubsection {L.\@arabic\c@section.\@arabic\c@subsection}
 
-	% Add to TOC
-	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
-	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\chaptername}	
-	%\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
-	% Page number style
-	\fancyhf{}
-	\fancyfoot[C]{\thepage}
+  % Add to TOC
+  %\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
+  %\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\chaptername}	
+  %\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+  % Page number style
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
 
-	\fontsize{14pt}{16pt}\selectfont
-	%\centering\MakeUppercase{\normalfont\bfseries \appendixname }\\
-	\vspace{20pt}
-	\fontsize{12}{2}\selectfont
-	\onehalfspacing
-	\input{#1}
+  \fontsize{14pt}{16pt}\selectfont
+  %\centering\MakeUppercase{\normalfont\bfseries \appendixname }\\
+  \vspace{20pt}
+  \fontsize{12}{2}\selectfont
+  \onehalfspacing
+  \input{#1}
 }
 
 \newcommand{\appendixtables}{
-	\renewcommand{\thetable}{L.\arabic{table}}%
-	\setcounter{table}{0}%
+  \renewcommand{\thetable}{L.\arabic{table}}%
+  \setcounter{table}{0}%
 }
 
 \newcommand{\appendixfigures}{
-	\renewcommand{\thefigure}{L.\arabic{figure}}
-	\setcounter{figure}{0}
+  \renewcommand{\thefigure}{L.\arabic{figure}}
+  \setcounter{figure}{0}
 }
 
 %----------------

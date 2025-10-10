@@ -130,7 +130,7 @@ Model ini memberikan pemodelan pengetahuan lebih alami berupa \textit{graph} yan
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.6\textwidth]{images/graph-rag-pipeline.png}
+	\includegraphics[width=0.8\textwidth]{images/graph-rag-pipeline.png}
 	\caption{
 		Alur kerja GraphRAG yang memanfaatkan indeks graf dan deteksi komunitas \cite{Edge2025LocalGlobalGraphRAG}
 	}
@@ -476,89 +476,85 @@ Untuk memberikan evaluasi yang komprehensif, RAGAS menyediakan beberapa metrik u
 Dalam tinjauan pustaka telah diulas berbagai metode untuk mengembangkan \textit{chatbot}.
 Komparasi dari masing-masing metode tersebut terdapat pada Tabel \ref{tab:method-comparision}.
 
-\begin{longtable}{|p{4cm}|p{5cm}|p{5cm}|}
-	\caption{Ringkasan dan Perbandingan Metode Pengembangan \textit{Chatbot}} \label{tab:method-comparision} \\
-	\hline
-	\textbf{Metode} & \textbf{Kelebihan} & \textbf{Kekurangan}                                               \\
-	\hline
-	\endfirsthead
+\begin{sidewaystable}
+	\centering
+	\caption{Ringkasan dan Perbandingan Metode Pengembangan \textit{Chatbot}}
+	\label{tab:method-comparision}
+	\begin{tabularx}{\textheight}{|X|p{8.5cm}|p{8.5cm}|}
+		\hline
+		\textbf{Metode} & \textbf{Kelebihan} & \textbf{Kekurangan} \\
+		\hline\hline
 
-	\hline
-	\textbf{Metode} & \textbf{Kelebihan} & \textbf{Kekurangan}                                               \\
-	\hline
-	\endhead
+		\textbf{\textit{Fine-Tuning LLM}: }
+		Melatih lebih lanjut sebuah \textit{Large Language Model} (LLM) yang sudah ada dengan menggunakan \textit{dataset} spesifik domain.
+		Tujuannya adalah untuk mengadaptasi pengetahuan dan gaya respons model agar sesuai dengan kebutuhan.
+		                &
+		\begin{enumerate}[leftmargin=*]
+			\item Menghasilkan respons yang sangat relevan dan akurat untuk domain spesifik.
+			\item Gaya bahasa dan "kepribadian" \textit{chatbot} dapat disesuaikan.
+			\item Latensi lebih rendah saat inferensi karena tidak butuh konteks eksternal.
+		\end{enumerate}
+		                &
+		\begin{enumerate}[leftmargin=*]
+			\item Membutuhkan \textit{dataset} pelatihan yang besar dan berkualitas tinggi.
+			\item Prosesnya mahal secara komputasi dan memakan waktu.
+			\item Pengetahuan sulit diperbarui tanpa melatih ulang.
+			\item Masih rentan terhadap "halusinasi".
+		\end{enumerate}
+		\\
+		\hline
+		\textbf{\textit{Prompt Engineering LLM}: }
+		Merancang dan menyusun instruksi (\textit{prompt}) yang detail dan terstruktur untuk mengarahkan LLM agar memberikan respons yang diinginkan tanpa mengubah model itu sendiri.
+		                &
+		\begin{enumerate}[leftmargin=*]
+			\item Tidak memerlukan pelatihan ulang.
+			\item Biaya rendah dan fleksibel.
+			\item Sangat mudah dilakukan pembaruan sesuai kebutuhan.
+		\end{enumerate}
+		                &
+		\begin{enumerate}[leftmargin=*]
+			\item Performa sangat tergantung kualitas \textit{prompt}.
+			\item Konsistensi jawaban tidak selalu terjamin.
+			\item Sulit untuk menangani domain yang sangat spesifik.
+		\end{enumerate}
+		\\
+		\hline
+		\textbf{\textit{Retrieval-Augmented Generation} Konvensional: }
+		Menggabungkan LLM dengan sistem pencarian informasi dari basis data eksternal (misalnya, dokumen teks).
+		Sebelum menjawab, sistem mencari informasi relevan terlebih dahulu, lalu memberikannya sebagai konteks bagi LLM.
+		                &
+		\begin{enumerate}[leftmargin=*]
+			\item Mengurangi halusinasi karena jawaban didasarkan pada sumber nyata.
+			\item Memudahkan pembaruan informasi tanpa proses \textit{training} ulang.
+		\end{enumerate}
+		                &
+		\begin{enumerate}[leftmargin=*]
+			\item Kualitas jawaban sangat bergantung pada kualitas \textit{retriever}.
+			\item Butuh \textit{pipeline} tambahan untuk pencarian data yang dapat menambah latensi.
+		\end{enumerate}
+		\\
+		\hline
+		\textbf{\textit{Retrieval-Augmented Generation} dengan \textit{Knowledge Graph}: }
+		Varian dari RAG yang menggunakan \textit{Knowledge Graph} (KG) sebagai basis data eksternal.
+		KG merepresentasikan informasi sebagai entitas dan hubungan yang terstruktur, memberikan konteks yang lebih kaya kepada LLM.
+		                &
+		\begin{enumerate}[leftmargin=*]
+			\item Lebih terstruktur dalam memodelkan informasi dibanding dokumen teks biasa.
+			\item Mendukung pencarian dengan konteks yang lebih luas.
+			\item Memperkuat konteks relasional antar data.
+			\item Dapat meng-\textit{update} informasi tanpa \textit{retraining}.
+		\end{enumerate}
+		                &
+		\begin{enumerate}[leftmargin=*]
+			\item Pembuatan \textit{Knowledge Graph} memerlukan pemodelan yang optimal.
+			\item Kompleksitas implementasi tinggi.
+		\end{enumerate}
+		\\
+		\hline
+	\end{tabularx}
+\end{sidewaystable}
 
-	\hline
-	\endfoot
-
-	\textbf{\textit{Fine-Tuning LLM}: }
-	Melatih lebih lanjut sebuah \textit{Large Language Model} (LLM) yang sudah ada dengan menggunakan \textit{dataset} spesifik domain.
-	Tujuannya adalah untuk mengadaptasi pengetahuan dan gaya respons model agar sesuai dengan kebutuhan.
-	                &
-	\begin{enumerate}
-		\item Menghasilkan respons yang sangat relevan dan akurat untuk domain spesifik.
-		\item Gaya bahasa dan "kepribadian" \textit{chatbot} dapat disesuaikan.
-		\item Latensi lebih rendah saat inferensi karena tidak butuh konteks eksternal.
-	\end{enumerate}
-	                &
-	\begin{enumerate}
-		\item Membutuhkan \textit{dataset} pelatihan yang besar dan berkualitas tinggi.
-		\item Prosesnya mahal secara komputasi dan memakan waktu.
-		\item Pengetahuan sulit diperbarui tanpa melatih ulang.
-		\item Masih rentan terhadap "halusinasi".
-	\end{enumerate}
-	\\
-	\hline
-	\textbf{\textit{Prompt Engineering LLM}: }
-	Merancang dan menyusun instruksi (\textit{prompt}) yang detail dan terstruktur untuk mengarahkan LLM agar memberikan respons yang diinginkan tanpa mengubah model itu sendiri.
-	                &
-	\begin{enumerate}
-		\item Tidak memerlukan pelatihan ulang.
-		\item Biaya rendah dan fleksibel.
-		\item Sangat mudah dilakukan pembaruan sesuai kebutuhan.
-	\end{enumerate}
-	                &
-	\begin{enumerate}
-		\item Performa sangat tergantung kualitas \textit{prompt}.
-		\item Konsistensi jawaban tidak selalu terjamin.
-		\item Sulit untuk menangani domain yang sangat spesifik.
-	\end{enumerate}
-	\\
-	\hline
-	\textbf{\textit{Retrieval-Augmented Generation} Konvensional: }
-	Menggabungkan LLM dengan sistem pencarian informasi dari basis data eksternal (misalnya, dokumen teks).
-	Sebelum menjawab, sistem mencari informasi relevan terlebih dahulu, lalu memberikannya sebagai konteks bagi LLM.
-	                &
-	\begin{enumerate}
-		\item Mengurangi halusinasi karena jawaban didasarkan pada sumber nyata.
-		\item Memudahkan pembaruan informasi tanpa proses \textit{training} ulang.
-	\end{enumerate}
-	                &
-	\begin{enumerate}
-		\item Kualitas jawaban sangat bergantung pada kualitas \textit{retriever}.
-		\item Butuh \textit{pipeline} tambahan untuk pencarian data yang dapat menambah latensi.
-	\end{enumerate}
-	\\
-	\hline
-	\textbf{\textit{Retrieval-Augmented Generation} dengan \textit{Knowledge Graph}: }
-	Varian dari RAG yang menggunakan \textit{Knowledge Graph} (KG) sebagai basis data eksternal.
-	KG merepresentasikan informasi sebagai entitas dan hubungan yang terstruktur, memberikan konteks yang lebih kaya kepada LLM.
-	                &
-	\begin{enumerate}
-		\item Lebih terstruktur dalam memodelkan informasi dibanding dokumen teks biasa.
-		\item Mendukung pencarian dengan konteks yang lebih luas.
-		\item Memperkuat konteks relasional antar data.
-		\item Dapat meng-\textit{update} informasi tanpa \textit{retraining}.
-	\end{enumerate}
-	                &
-	\begin{enumerate}
-		\item Pembuatan \textit{Knowledge Graph} memerlukan pemodelan yang optimal.
-		\item Kompleksitas implementasi tinggi.
-	\end{enumerate}
-	\\
-	\hline
-\end{longtable}
-
+\pagebreak
 Metode \textit{Fine-Tuning} LLM menawarkan beberapa keunggulan utama, seperti kemampuan untuk menghasilkan respons yang sangat relevan dan akurat untuk domain spesifik.
 Selain itu, metode ini memungkinkan pengembang untuk menyesuaikan gaya bahasa dan "kepribadian" \textit{chatbot}, yang didukung oleh latensi yang lebih rendah karena tidak memerlukan konteks eksternal saat inferensi.
 
