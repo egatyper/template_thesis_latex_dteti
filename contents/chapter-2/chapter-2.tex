@@ -405,8 +405,10 @@ dengan:
 	\item $FP$ adalah \textit{False Positives}, yaitu jumlah prediksi positif yang salah.
 \end{itemize}
 
+Presisi memiliki rentang nilai antara 0 dan 1 ($0 \leq Precision \leq 1$).
+Nilai presisi mendekati 1 menunjukkan banyak \textit{item} relevan dari semua \textit{item} yang diambil.
+Nilai presisi mendekati 0 berarti banyak \textit{noise} atau \textit{item} tidak relevan yang diambil.
 Dalam kasus RAG, presisi berarti proporsi banyaknya informasi relevan dari semua informasi yang dihasilkan dibandingkan dengan total informasi yang dihasilkan.
-Metrik ini dapat menunjukkan tingkat \textit{noise} dari konteks yang dihasilkan \textit{retriever}.
 
 \subsection{\textit{Recall}}
 
@@ -425,8 +427,11 @@ dengan:
 	\item $FN$ adalah \textit{False Negatives}, yaitu jumlah kasus positif yang gagal diprediksi (salah diprediksi negatif).
 \end{itemize}
 
+\textit{Recall} memiliki rentang nilai antara 0 dan 1 ($0 \leq Recall \leq 1$).
+Nilai \textit{recall} mendekati 1 menunjukkan banyak \textit{item} relevan yang diambil dari semua kemungkinan \textit{item} relevan.
+Nilai \textit{recall} mendekati 0 menunjukkan sedikit \textit{item} relevan yang diambil dari semua kemungkinan \textit{item} relevan.
 Dalam kasus RAG \textit{recall} berarti proporsi banyaknya informasi relevan dari semua informasi yang dihasilkan dibandingkan dengan total informasi relevan yang seharusnya muncul.
-Metrik ini dapat menunjukkan seberapa banyak informasi relevan yang dihasilkan \textit{retriever} dari yang seharusnya muncul.
+
 
 \subsection{\textit{Mean Reciprocal Rank} (MRR)}
 Metrik \textit{Reciprocal Rank} (RR) menghitung kebalikan dari peringkat (\textit{rank}) di mana dokumen relevan pertama ditemukan.
@@ -439,6 +444,9 @@ MRR didefinisikan dalam Persamaan \ref{eq:mrr}
 	\mathrm{MRR} = \frac{1}{N} \sum_{i=1}^{N} \frac{1}{\text{rank}_i}
 \end{equation}
 
+MRR memiliki rentang nilai antara 0 dan 1 ($0 \leq \mathrm{MRR} \leq 1$).
+Nilai 1 adalah skor sempurna, yang berarti untuk setiap kueri, dokumen relevan pertama selalu muncul di peringkat pertama.
+Nilai 0 berarti sistem tidak pernah berhasil menemukan dokumen relevan untuk kueri apa pun.
 Dalam konteks RAG, MRR menunjukkan performa \textit{retriever} dalam memprioritaskan urutan munculnya konteks yang relevan.
 Hal tersebut cukup krusial karena beberapa LLM memiliki kecenderungan memprioritaskan informasi yang muncul di awal.
 
@@ -456,14 +464,16 @@ Untuk memberikan evaluasi yang komprehensif, RAGAS menyediakan beberapa metrik u
 	      Metrik pertama adalah \textit{faithfulness} atau kepatuhan.
 	      \textit{Faithfulness} adalah metrik krusial yang mengukur konsistensi faktual jawaban yang dihasilkan terhadap konteks yang diambil.
 	      Metrik ini memastikan bahwa model tidak berhalusinasi dengan memverifikasi bahwa setiap klaim dalam jawaban didukung oleh sumber yang diberikan.
+	      Rentang nilai \textit{faithfulness} adalah dari 0 hingga 1, di mana skor 1 menunjukkan kepatuhan faktual yang sempurna (semua klaim terdukung), dan skor 0 menunjukkan jawaban sepenuhnya berhalusinasi atau tidak relevan dengan konteks.
 	\item \textbf{\textit{Response Relevancy}} \\
 	      \textit{Response Relevancy} menilai seberapa relevan jawaban terhadap pertanyaan asli.
 	      Jawaban yang tidak lengkap atau mengandung informasi berlebihan yang tidak diminta akan dikenakan penalti.
+	      Metrik ini memiliki rentang nilai dari 0 hingga 1.
 	      Semakin tinggi nilainya menunjukkan respons selaras dengan pertanyaan, sedangkan semakin kecil nilainya menunjukkan respons kurang lengkap atau mengandung informasi yang redundan.
 	      Metrik ini tidak mengukur kebenaran, melainkan fokus pada ketepatan dalam menjawab pertanyaan.
 	\item \textbf{\textit{Answer Similarity}} \\
 	      \textit{Answer Similarity} secara spesifik mengukur kemiripan semantik antara jawaban yang dihasilkan dan jawaban referensi, biasanya dihitung menggunakan \textit{cosine similarity} dari \textit{embedding} kedua jawaban tersebut.
-	      Secara bersama-sama, metrik-metrik ini memberikan pandangan holistik yang memungkinkan pengembang untuk memahami secara mendalam apakah jawaban yang dihasilkan tidak hanya relevan dan setia pada konteks, tetapi juga benar dan mirip secara semantik dengan jawaban yang ideal.
+	      Skala nilainya berkisar dari 0 (tidak ada kemiripan makna) hingga 1 (makna identik secara semantik).
 	\item \textbf{\textit{Correctness}} \\
 	      Selanjutnya, \textit{Correctness} mengevaluasi keakuratan jawaban secara keseluruhan dengan membandingkannya dengan jawaban referensi (\textit{ground truth}).
 	      Metrik ini bergantung pada \textit{ground truth} dan jawaban, dengan skor berkisar antara 0 hingga 1.
@@ -492,14 +502,14 @@ Komparasi dari masing-masing metode tersebut terdapat pada Tabel \ref{tab:method
 		\begin{enumerate}[leftmargin=*]
 			\item Menghasilkan respons yang sangat relevan dan akurat untuk domain spesifik.
 			\item Gaya bahasa dan "kepribadian" \textit{chatbot} dapat disesuaikan.
-			\item Latensi lebih rendah saat inferensi karena tidak butuh konteks eksternal.
+			\item Latensi sama dengan \textit{base} model.
 		\end{enumerate}
 		                &
 		\begin{enumerate}[leftmargin=*]
 			\item Membutuhkan \textit{dataset} pelatihan yang besar dan berkualitas tinggi.
 			\item Prosesnya mahal secara komputasi dan memakan waktu.
-			\item Pengetahuan sulit diperbarui tanpa melatih ulang.
-			\item Masih rentan terhadap "halusinasi".
+			\item Pengetahuan terbatas pada saat pelatihan.
+			\item Pengetahuan baru ditambahkan dengan melatih ulang model.
 		\end{enumerate}
 		\\
 		\hline
@@ -516,6 +526,7 @@ Komparasi dari masing-masing metode tersebut terdapat pada Tabel \ref{tab:method
 			\item Performa sangat tergantung kualitas \textit{prompt}.
 			\item Konsistensi jawaban tidak selalu terjamin.
 			\item Sulit untuk menangani domain yang sangat spesifik.
+			\item Tidak \textit{scalable} untuk domain pengetahuan masif.
 		\end{enumerate}
 		\\
 		\hline

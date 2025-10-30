@@ -484,8 +484,30 @@ Nilai tinggi pada Default (0,9435) dan Neighbor Expansion (0,9428) menunjukkan b
 RAG-KG dengan strategi tersebut tetap lebih tinggi sekitar 4\% dibandingkan dengan \textit{baseline} Naive RAG menghasilkan skor (0,8993).
 Ini adalah bukti bahwa konteks yang diperkaya oleh \textit{Knowledge Graph} dengan pemilihan metode yang tepat secara efektif dapat mengurangi LLM dari halusinasi atau mengarang informasi.
 
+\begin{table}[H]
+	\centering
+	\caption{Peningkatan yang diperoleh RAG berbasis \textit{Knowledge Graph} dibandingkan dengan \textit{baseline} Naive RAG}
+	\label{tab:final-answer-evaluation-improvements}
+	\begin{tabular}{|m{3cm}|c|c|c|c|c|}
+		\hline
+		\textbf{Metrik}                       & \textbf{Similarity} & \textbf{Correctness} & \textbf{Relevancy} & \textbf{Faithfulness} & \textbf{Rerata} \\
+		\hline \hline
+		\textbf{Default}                      & 1,94\%              & 7,64\%               & 16,28\%            & \textbf{4,42\%}       & 7,57\%          \\
+		\hline
+		\textbf{Vector Search}                & 0,67\%              & 5,04\%               & 3,91\%             & -0,91\%               & 2,18\%          \\
+		\hline
+		\textbf{Neighbor Expansion}           & \textbf{2,00\%}     & \textbf{8,55\%}      & \textbf{17,27\%}   & 4,35\%                & \textbf{8,04\%} \\
+		\hline
+		\textbf{N-Shortest Path}              & -0,15\%             & 5,45\%               & 9,04\%             & -43,79\%              & -7,36\%         \\
+		\hline
+		\multicolumn{5}{|c|}{\textbf{Rerata}} & 2,61\%                                                                                                    \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\pagebreak
 Hasil evaluasi jawaban final secara umum menunjukkan bahwa penggunaan \textit{Knowledge Graph} yang tepat dapat meningkatkan kualitas jawaban akhir secara signifikan.
-Peningkatan tertinggi dari \textit{baseline} dapat diperoleh sistem RAG-KG yang mengimplementasikan metode Default dan Neighbor Expansion hingga 8\% secara rata-rata.
+Pada Tabel \ref{tab:final-answer-evaluation-improvements} dapat dilihat peningkatan paling signifikan dari \textit{baseline} dapat diperoleh sistem RAG-KG yang mengimplementasikan metode Default dan Neighbor Expansion hingga 8\% secara rata-rata.
 Penggunaan metode Vector Search secara umum menunjukkan peningkatan dibandingkan dengan Naive RAG meskipun tertinggal dari RAG-KG dengan metode pencarian \textit{full-text} (Default dan Neighbor Expansion) dalam hal relevansi dan \textit{correctness}.
 Sementara itu, penggunaan N-Shortest Path dalam melakukan penelusuran graf secara umum berpotensi menghasilkan jawaban yang tidak akurat ditandai dengan skor \textit{faithfulness} yang sangat rendah, bahkan lebih rendah dibandingkan dengan \textit{baseline}.
 

@@ -41,6 +41,57 @@ Berikut merupakan bahan yang akan digunakan dalam tugas akhir.
 	\item Artikel dari \textit{website} \href{https://hpu.ugm.ac.id}{HPU UGM}
 \end{enumerate}
 
+\subsection{Konfigurasi Platform Pengembangan}
+Platform perangkat lunak yang digunakan dalam penelitian ini tersusun dari berbagai komponen teknologi yang saling terintegrasi.
+Seluruh proses, mulai dari pengembangan kode, eksekusi, dan pengujian, dijalankan sepenuhnya secara lokal pada laptop dengan sistem operasi Windows 11.
+Rincian lengkap mengenai setiap perangkat lunak, termasuk versi dan fungsi spesifiknya dalam arsitektur sistem, disajikan pada Tabel \ref{tab:konfigurasi}.
+
+\begin{longtable}{
+	@{}p{2.5cm}
+	p{2.5cm}
+	p{3cm}
+	p{\textwidth - 2.5cm - 2.5cm - 3cm - 6\tabcolsep}@{}}
+
+
+	\caption{Konfigurasi Perangkat Lunak Platform}
+	\label{tab:konfigurasi}                                                                                                                                                                 \\
+
+	\toprule
+	\textbf{Kategori}                              & \textbf{Perangkat Lunak} & \textbf{Versi/Model}         & \textbf{Fungsi dalam Penelitian}                                             \\
+	\midrule
+	\endfirsthead
+
+	\toprule
+	\textbf{Kategori}                              & \textbf{Perangkat Lunak} & \textbf{Versi/Model}         & \textbf{Fungsi dalam Penelitian}                                             \\
+	\midrule
+	\endhead
+
+
+	\multirow{3}{=}{\textbf{Alat Pengembangan}}    & Python                   & 3.11.5                       & Bahasa pemrograman utama untuk implementasi sistem.                          \\
+	                                               & Postman                  & 11.64.7                      & Perangkat lunak untuk melakukan pengujian \textit{endpoint}.                 \\
+	                                               & Visual Studio Code       & 1.82                         & \textit{Text editor} untuk penulisan kode.                                   \\ \midrule
+
+	\multirow{2}{=}{\textbf{Lingkungan Eksekusi}}  & Windows 11               & 24H2                         & Sistem operasi tempat aplikasi dijalankan dan diuji.                         \\
+	                                               & Uvicorn                  & 0.30.1                       & Server ASGI yang menjalankan aplikasi berbasis FastAPI.                      \\ \midrule
+
+	\textbf{Basis Data}                            & Pinecone                 & Starter Serverless July 2025 & Menyimpan dokumen dan vektor \textit{embedding}.                             \\
+	\textbf{Basis Data}                            & Neo4j                    & Neo4j Aura Free Tier 2025    & Menyimpan \textit{knowledge graph}.                                          \\ \midrule
+
+	\multirow{3}{*}{\textbf{LLM}}                  & Google Gemini            & 2.5 Flash                    & LLM utama dalam sistem.                                                      \\
+	                                               & \multirow{2}{*}{OpenAI}  & o4-mini                      & \multirow{2}{=}{LLM untuk evaluasi dan pembuatan \textit{dataset} evaluasi.} \\
+	                                               &                          & gpt-4.1-nano                 &                                                                              \\ \midrule
+
+	\multirow{2}{=}{\textbf{Model Embedding}}      & Google Text Embedding    & text-embedding-001           & Mengonversi teks menjadi representasi vektor.                                \\
+	                                               & OpenAI Text Embedding    & text-embedding-ada-002       & Model alternatif untuk evaluasi.                                             \\ \midrule
+
+	\multirow{6}{=}{\textbf{Pustaka \& Framework}} & FastAPI                  & 0.111.0                      & Kerangka kerja untuk membangun API.                                          \\
+	                                               & Google GenAI             & 1.13.0                       & Interaksi dengan Google Gemini.                                              \\
+	                                               & OpenAI                   & 1.97.1                       & Interaksi dengan Open AI.                                                    \\
+	                                               & Neo4j                    & 5.28.1                       & Interaksi dengan Neo4j.                                                      \\
+	                                               & Pinecone                 & 7.3.0                        & Interaksi dengan Pinecone.                                                   \\
+	                                               & RAGAS                    & 0.3.1                        & Kerangka kerja untuk evaluasi RAG.                                           \\ \bottomrule
+\end{longtable}
+% \end{table}
 \section{Metode yang Digunakan}
 Penelitian ini menerapkan pendekatan hibrida yang mengintegrasikan kekuatan \textit{Large Language Models} (LLM) untuk pemahaman bahasa alami dengan representasi pengetahuan terstruktur dari \textit{Knowledge Graph}.
 Metode yang digunakan berfokus pada dua area utama yaitu ekstraksi pengetahuan berbasis \textit{few-shot learning} dan mekanisme pengambilan pengetahuan yang adaptif.
@@ -140,7 +191,7 @@ Dokumen yang digunakan dalam membangun KG meliputi.
 \end{enumerate}
 
 Sebagian besar dokumen tersebut berada dalam format PDF, sedangkan artikel dari situs web CPMH dan HPU UGM berada dalam format HTML.
-Mengekstrak \textit{file} PDF dengan mempertahankan struktur dokumen cukup sulit untuk dilakukan secara langsung karena PDF merupakan tipe dokumen berbasis halaman (\textit{page}) yang mengabaikan struktur keseluruhan seperti judul, paragraf, atau tabel.
+Mengekstrak \textit{file} PDF dengan mempertahankan struktur dokumen cukup sulit untuk dilakukan secara langsung karena PDF merupakan tipe dokumen berbasis halaman (\textit{page}) yang mengabaikan struktur keseluruhan seperti judul, paragraf, atau tabel \cite{mohemad2011automaticPDFStructExtract}.
 Informasi mengenai struktur dokumen penting dijaga untuk langkah selanjutnya.
 Untuk itu, dilakukan strategi konversi \textit{file} PDF ke dalam bentuk dokumen yang lebih terstruktur seperti DOCX dan HTML.
 Konversi dilakukan menggunakan layanan konversi file online \href{https://www.freeconvert.com/}{FreeConvert}.
@@ -159,8 +210,9 @@ Keterbatasan tersebut berimplikasi pada ukuran dokumen (dalam satuan token) menj
 Analisis menggunakan LLM dengan dokumen yang melebihi atau mendekati ukuran maksimal \textit{context window} tidak akan maksimal karena LLM gagal memahami konteks dokumen secara keseluruhan.
 Untuk itu, dokumen perlu dipecah menjadi beberapa bagian yang disebut \textit{chunk}.
 
-Proses \textit{chunking} secara umum dapat dilakukan dengan memecah dokumen menjadi beberapa \textit{chunk} dengan panjang tertentu.
+Proses \textit{chunking} pada RAG yang disusulkan oleh lewis et al, (2020) dilakukan dengan memecah dokumen menjadi beberapa \textit{chunk} dengan panjang 100 kata \cite{Lewis2021RAGKnowledgeIntensiveNLP}.
 Metode \textit{chunking} seperti itu cukup mudah dilakukan, tetapi ada potensi bagian kata atau kalimat dapat terpisah antar \textit{chunk} akibat pemotongan yang menyebabkan kehilangan makna dan konteks.
+Selain itu, LLM modern memiliki kapabilitas untuk memahami konteks yang panjang, lebih dari 100.000 token  setara dengan 60.000 hingga 80.000 kata \cite{LLMStats}.
 Dokumen yang masih memiliki informasi strukturnya dapat dimanfaatkan untuk melakukan pemecahan dokumen.
 Alih-alih memotong dokumen menjadi potongan berukuran tetap, dokumen dibagi berdasarkan format struktural tertentu, misal dalam dokumen HTML berupa tag \texttt{<h1>} atau pada dokumen DOCX berupa \textit{style paragraph heading} atau \textit{title}.
 Pada buku "Petunjuk Teknis Pencegahan dan Pengendalian Gangguan Mental Emosional" yang telah dikonversi menjadi DOCX, dipecah menjadi beberapa chunk berdasarkan judul-judul bagian (seperti BAB I, BAB II, dst).
@@ -173,11 +225,15 @@ Ekstraksi entitas dan relasi dalam penelitian ini dilakukan melalui mekanisme in
 Penggunaan LLM untuk mengekstrak entitas dan relasi didasarkan pada kemampuannya dalam memahami struktur dan konteks dokumen yang kompleks dan berukuran besar berkat arsitekturnya yang dilengkapi dengan jumlah parameter yang sangat besar hingga triliunan parameter.
 Kapasitas ini memungkinkan LLM untuk menangkap pola linguistik, semantik, dan hubungan antar entitas secara lebih mendalam.
 LLM yang digunakan sebagai basis ekstraksi entitas dan relasi adalah Google Gemini 2.5 Flash.
-Pemilihan model tersebut didasarkan pada performanya yang sangat baik dan masuk dalam \textit{leaderboard} paling atas pada \href{https://llm-stats.com/}{LLM Stats} setidaknya saat penelitian ini dilakukan dengan skor GPQA (\textit{Graduate-Level Google-Proof Question and Answer}) sebesar 82,8\%.
-Faktor krusial lainnya yang tidak kalah penting adalah Gemini 2.5 Flash memiliki ukuran \textit{context window} yang sangat besar hingga 1 juta dibandingkan model LLM lain seperti Claude 3.7 Sonet, Grok-3, dan GPT o3.
+Pemilihan model tersebut didasarkan pada performanya yang sangat baik dan masuk dalam \textit{leaderboard} paling atas pada \href{https://llm-stats.com/}{LLM Stats}, setidaknya saat penelitian ini dilakukan, dengan skor GPQA (\textit{Graduate-Level Google-Proof Question and Answer}) sebesar 82,8\% \cite{LLMStats}.
+GPQA didesain untuk mengevaluasi kemampuan LLM untuk menjawab pertanyaan sulit dari berbagai domain penegetahuan \cite{rein2024gpqa}.
+Hasil \textit{benchmark} GPQA mencerminkan kemampuan model dalam analisis dan penalaran.
+Kemampuan tersebut dibutuhkan untuk proses ekstraksi untuk mencari, memahami, dan menghubungkan konsep yang terdapat pada korpus pengetahuan.
+Faktor krusial lainnya adalah Gemini 2.5 Flash memiliki ukuran \textit{context window} yang sangat besar hingga 1 juta dibandingkan model LLM lain seperti Claude 3.7 Sonet, Grok-3, dan OpenAI o3.
+\textit{Context window} yang bersar memungkinkan model untuk menjaga konteks global dan menangkap hubungan relasi antar entitas yang mungkin terpisah jauh di dalam teks.
 Perbandingan performa dan kapasitas LLM tersebut dapat dilihat pada Tabel \ref{tab:llm-comparison}.
 
-\begin{table}[ht]
+\begin{table}[H]
 	\centering
 	\caption{Perbandingan performa dan kapasitas LLM modern \cite{LLMStats}}
 	\label{tab:llm-comparison}
@@ -196,12 +252,13 @@ Perbandingan performa dan kapasitas LLM tersebut dapat dilihat pada Tabel \ref{t
 	\end{tabular}
 \end{table}
 
-\pagebreak
 Setiap \textit{chunk} teks dari dokumen kemudian diproses oleh Gemini 2.5 Flash untuk mengekstrak entitas dan relasi yang terkandung di dalamnya.
-Proses ini memanfaatkan teknik \textit{few-shot prompting}, di mana LLM diberikan beberapa contoh konkret untuk memandunya dalam melakukan ekstraksi sesuai dengan ontologi yang telah didefinisikan.
-\textit{Prompt} dirancang sejelas mungkin untuk menjelaskan apa yang seharusnya dilakukan oleh LLM dalam proses ekstraksi.
-Untuk menjaga jenis entitas yang ditemukan dalam dokumen tidak keluar dari tujuan layanan kesehatan mental maka beberapa istilah yang berkaitan telah didefinisikan terlebih dahulu dalam \textit{prompt}.
-Format respons dari LLM juga didefinisikan berupa tipe data JSON yang memudahkan dalam pemrosesan selanjutnya. Format instruksi \textit{prompt} dapat dilihat pada Gambar \ref{fig:prompt-extraction-instruction}.
+Proses ini meliputi pemberian instruksi, di mana LLM diberikan serangkaian panduan untuk melakukan ekstraksi.
+Untuk menjaga jenis entitas yang ditemukan dalam dokumen tidak keluar dari tujuan layanan kesehatan mental maka dirancang sistem tipe yang berisi kategori entitas dan relasi yang masih dalam domain kesehatan mental.
+Perancangan sistem tipe ini terinspirasi dari rancangan kategorisasi standar medis yang ada, yaitu \textit{Unified Medical Language System} (UMLS) \textit{Semantic Types} \cite{NIMHSemanticTypes}.
+Sebagai contoh, Sebagai contoh, kategori Gejala merujuk pada konsep \textit{Sign or Symptom} dan Gangguan Mental merujuk pada \textit{Disease or Syndrome} dalam hierarki UMLS.
+Respons dari LLM didefinisikan berupa tipe data JSON untuk memastikan hasil ekstraksi terstruktur dan dapat diproses secara otomatis pada tahap selanjutnya.
+Format instruksi \textit{prompt} dapat dilihat pada Gambar \ref{fig:prompt-extraction-instruction}.
 
 \begin{figure}[H]
 	\centering
@@ -228,7 +285,7 @@ Contoh masukkan dan keluaran pada \textit{prompt} dapat dilihat pada Gambar \ref
 \end{figure}
 
 % \vspace{5cm}
-\textit{Prompt} pada Gambar \ref{fig:prompt-extraction-instruction} dan Gambar \ref{fig:prompt-extraction-few-shot} kemudian dieksekusi menggunakan pustaka google genai.
+\textit{Prompt} pada Gambar \ref{fig:prompt-extraction-instruction} dan Gambar \ref{fig:prompt-extraction-few-shot} kemudian dieksekusi menggunakan pustaka google-genai.
 Eksekusi \textit{prompt} diikuti dengan data \textit{chunk} dokumen ditambah dengan konfigurasi struktur JSON yang diinginkan untuk mendapatkan respons bukan dalam bentuk teks, melainkan dalam bentuk JSON yang dapat direpresentasikan dalam bentuk objek pydantic.
 Struktur dari respons terbagi menjadi 2 bagian yaitu \texttt{entities} yang berisi daftar entitas dan \texttt{relations} yang berisi daftar relasi.
 Setiap entitas memiliki atribut \texttt{name}, \texttt{type}, dan \texttt{description}, sedangkan relasi memiliki atribut \\
@@ -283,7 +340,7 @@ Salah satu representasi data yang cukup mudah diolah oleh komputer sekaligus dap
 Vektor \textit{embedding} merupakan sebuah vektor berdimensi tinggi yang umum digunakan untuk menangkap makna dari sebuah data.
 Data dalam bentuk vektor memiliki keuntungan dalam melakukan pencarian semantik (\textit{semantic search}) dengan hanya melakukan operasi \textit{dot product} 2 vektor dapat mengetahui tingkat kemiripan antara 2 data.
 
-Dalam penelitian ini, objek yang akan dilakukan pencarian semantik dalam prosen \textit{knowledge retrieval} adalah entitas.
+Dalam penelitian ini, objek yang akan dilakukan pencarian semantik dalam proses \textit{knowledge retrieval} adalah entitas.
 Untuk itu, setiap entitas akan memiliki representasi vektornya masing-masing.
 Vektor \textit{embedding} akan dibentuk menggunakan model gemini-embedding-001.
 Model \textit{embedding} ini dipilih menjadi model \textit{embedding} karena memiliki performa yang sangat baik dalam tugas \textit{Semantic Text Similarity} (STS) sebesar 79,40 poin.
@@ -533,10 +590,10 @@ Selain itu, teknik \textit{few-shot} digunakan pada \textit{prompt} untuk member
 Dalam setiap potongan dokumen akan dihasilkan pertanyaan setidaknya setengah dari jumlah \textit{nodes} yang tersedia.
 Jumlah tersebut dipilih guna memberikan keleluasaan LLM untuk memberikan variasi pertanyaan dan tidak terpaku bahwa setiap \textit{node} harus memiliki satu pertanyaan.
 
-\textit{Prompt} yang sudah dirancang kemudian dieksekusi dengan model OpenAI \texttt{o4-mini}.
+\textit{Prompt} yang sudah dirancang kemudian dieksekusi dengan model OpenAI o4-mini.
 Pemilihan model dari OpenAI didasarkan pada model yang digunakan dalam proses evaluasi harus berbeda dengan model yang digunakan pada operasional.
 Hal tersebut dilakukan guna menghindari bias dalam evaluasi apabila model yang sama digunakan dalam menjawab pertanyaan sekaligus evaluasi.
-Model OpenAI \texttt{o4-mini} merupakan salah satu model kekinian yang dioptimalkan untuk tugas \textit{reasoning} yang cepat.
+Model OpenAI o4-mini merupakan salah satu model kekinian yang dioptimalkan untuk tugas \textit{reasoning} yang cepat.
 Kelebihan tersebut sangat sesuai dengan kebutuhan membuat \textit{dataset} evaluasi berdasarkan instruksi.
 
 \subsubsection{Evaluasi Sistem \textit{Retrieval}}
@@ -572,7 +629,10 @@ Masing-masing jenis subgraf tersebut memiliki struktur yang berbeda, tetapi tida
 		\textit{Recall} mengukur proporsi \textit{nodes} relevan yang berhasil ditemukan dari semua \textit{nodes} relevan yang tersedia. Metrik ini menjawab pertanyaan \textit{"Seberapa lengkap cakupan hasil yang diberikan oleh sistem?"}.                                                               \\
 		\hline
 		\textbf{\textit{Hit Ratio}}                  &
-		\textit{Hit Ratio} mengukur apakah setidaknya satu \textit{node} yang relevan berada di antara $k$ hasil teratas yang dikembalikan. Ini adalah metrik biner yang hanya peduli apakah jawaban yang benar ada di dalam daftar hasil, tidak peduli di peringkat berapa.                                  \\
+		\textit{Hit Ratio} mengukur apakah setidaknya satu \textit{node} yang relevan berada di antara $k$ hasil yang dikembalikan.
+		Ketika dirata-ratakan untuk banyak kueri, rentang nilainya menjadi 0 hingga 1.
+		Nilai yang tinggi (mendekati 1) menunjukkan bahwa sistem hampir selalu berhasil menemukan setidaknya satu item yang relevan dalam hasil teratasnya.
+		Sebaliknya, nilai yang rendah (mendekati 0) berarti sistem seringkali gagal.                                                                                                                                                                                                                          \\
 		\hline
 		\textbf{\textit{Mean Reciprocal Rank} (MRR)} &
 		\textit{Mean Reciprocal Rank} (MRR) mengukur seberapa cepat sistem memprioritaskan \textit{nodes} yang relevan. Metrik ini berfokus pada dokumen peringkat dari \textit{node} relevan pertama yang ditemukan. Skor tinggi menunjukkan sistem memprioritaskan \textit{node} relevan di peringkat atas. \\

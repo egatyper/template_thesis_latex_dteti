@@ -386,11 +386,15 @@
 % If Bachelor
 \iftoggle{bachelor}{
   \newcommand{\printendorsementpdf}{
-    %\chapter*{\approvalpage}
-    \addtocounter{page}{1}
+    % \chapter*{\approvalpage}
+    % \addtocounter{page}{1}
+    % \addcontentsline{toc}{chapter}{\approvalpage}
+    % \includepdf[page={1-2}]{contents/endorsement/endorsement.pdf}
+    % \addtocounter{page}{-1}
+
+    \clearpage % Best practice to ensure you start on a fresh page
     \addcontentsline{toc}{chapter}{\approvalpage}
     \includepdf[page={1}]{contents/endorsement/endorsement.pdf}
-    \addtocounter{page}{-1}
   }
   \newcommand{\printendorsement}{
     \chapter*{\approvalpage}
@@ -658,15 +662,19 @@
 %======================================
 %% Statement Page PDF
 %======================================
-\newcommand{\chapterstatementpdf}[1]{%
-  \newpage
-  \fancyhf{} % clear headers/footers
-  \fancyfoot[C]{\thepage} % keep page number at bottom center
-  \includepdf[pages=-,pagecommand={}] {#1} % insert full PDF page(s)
-  \addcontentsline{toc}{chapter}{\statementname} % add to TOC
+\newcommand{\chapterstatementpdf}[1]{
   \clearpage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\statementname}
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \includepdf[
+    pages=-,
+    pagecommand={},
+    trim=0 2cm 0 2cm,
+    clip
+  ]{#1}
 }
-
 %======================================
 %% Preface
 %======================================
